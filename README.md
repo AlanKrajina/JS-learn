@@ -12,7 +12,6 @@
 * [What's the difference between host objects and native objects?](#whats-the-difference-between-host-objects-and-native-objects)
 * [Difference between: `function Person(){}`, `var person = Person()`, and `var person = new Person()`?](#difference-between-function-person-var-person--person-and-var-person--new-person)
 * [What's the difference between `.call` and `.apply`?](#whats-the-difference-between-call-and-apply)
-* [Explain `Function.prototype.bind`.](#explain-functionprototypebind)
 * [Bind, Call, Apply](#Bind-Call-Apply)
 * [When would you use `document.write()`?](#when-would-you-use-documentwrite)
 * [Explain Ajax in as much detail as possible.](#explain-ajax-in-as-much-detail-as-possible)
@@ -545,17 +544,19 @@ console.log(add.call(null, 1, 2)); // 3
 console.log(add.apply(null, [1, 2])); // 3
 ```
 
-
-### Explain `Function.prototype.bind`.
-
-Taken word-for-word from [MDN](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_objects/Function/bind):
-
-> The `bind()` method creates a new function that, when called, has its `this` keyword set to the provided value, with a given sequence of arguments preceding any provided when the new function is called.
-
-In my experience, it is most useful for binding the value of `this` in methods of classes that you want to pass into other functions. This is frequently done in React components.
-
-
 ## Bind, Call, Apply
+
+##### bind 
+
+This method returns a copy of the function but with the execution context "set" to the argument that's passed to bind. It looks like this: sayHello.bind(greenFrog)("Hello") //=> "Mr. GreenFrog says *Hello* to you all."
+
+##### call 
+
+This is a method on a function that calls the function, just like (). You provide a new execution context as the first argument, traditionally called thisArg, and the arguments you want to send to the function after the thisArg. An invocation of call looks like: Calculator.sum.call(multilingualMessages, 1, 2)
+
+##### apply
+
+This is a method on a function that calls the function, just like (). You provide a new execution context as the first argument, traditionally called thisArg, and the arguments you want to send to the function as an Array after the thisArg. An invocation of apply looks like: Calculator.sum.apply(multilingualMessages, [1, 2])
 
 
 #### .call and .apply 
