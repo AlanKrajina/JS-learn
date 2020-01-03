@@ -73,6 +73,16 @@ Event delegation is a technique involving adding event listeners to a parent ele
 5. If multiple of the above rules apply, the rule that is higher wins and will set the `this` value.
 6. If the function is an ES2015 arrow function, it ignores all the rules above and receives the `this` value of its surrounding scope at the time it is created.
 
+- Outside of any function, this refers to the global object. In web browsers, this is the window
+
+- Inside an object method, this refers to the object that received the method call
+
+- Inside a standalone function, even one inside a method, this will default to the global object
+
+- When using strict mode in a standalone function, as we do inside classes, this will be undefined
+
+- Arrow functions dont define their own this like standard functions do.
+
 - OBJECT CREATION
 - Object Methods
 - classes
@@ -275,18 +285,6 @@ sally.greet();
     2. level=  this -> global window 
 
 ```
-
-
-- Outside of any function, this refers to the global object. In web browsers, this is the window
-
-- Inside an object method, this refers to the object that received the method call
-
-- Inside a standalone function, even one inside a method, this will default to the global object
-
-- When using strict mode in a standalone function, as we do inside classes, this will be undefined
-
-- Arrow functions dont define their own this like standard functions do.
-
 
 
 #### Can you give an example of one of the ways that working with this has changed in ES6?
@@ -1431,7 +1429,7 @@ Static class members (properties/methods) are not tied to a specific instance of
 
 ```javascript
 
-____________________________________________________Array methods_____________________________________________________
+__________________________________________________Array methods_____________________________________________________
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ----------------------.forEach-----------------------------
@@ -1738,12 +1736,7 @@ var myChildren = myGirls.concat(myBoys);
 
 
 
-
-
-
-
-
-____________________________________________________String methods_____________________________________________________
+__________________________________________________String methods_____________________________________________________
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String
 
 
@@ -1980,7 +1973,6 @@ console.log(stringObj.toString());
 
 
 
-
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 -----------------------.valueOf()--------------------------
 
@@ -1992,17 +1984,4 @@ console.log(stringObj);
 console.log(stringObj.valueOf());
 // expected output: "foo"
 
-
-
 ```
-
-
-
-
-
-
-
-
-
-
-
