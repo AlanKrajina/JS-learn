@@ -13,6 +13,7 @@
 * [Difference between: `function Person(){}`, `var person = Person()`, and `var person = new Person()`?](#difference-between-function-person-var-person--person-and-var-person--new-person)
 * [What's the difference between `.call` and `.apply`?](#whats-the-difference-between-call-and-apply)
 * [Explain `Function.prototype.bind`.](#explain-functionprototypebind)
+* [What's the difference between `.call` and `.apply`?](#Bind, Call, Apply)
 * [When would you use `document.write()`?](#when-would-you-use-documentwrite)
 * [Explain Ajax in as much detail as possible.](#explain-ajax-in-as-much-detail-as-possible)
 * [What are the advantages and disadvantages of using Ajax?](#what-are-the-advantages-and-disadvantages-of-using-ajax)
@@ -516,11 +517,80 @@ Taken word-for-word from [MDN](https://developer.mozilla.org/en/docs/Web/JavaScr
 In my experience, it is most useful for binding the value of `this` in methods of classes that you want to pass into other functions. This is frequently done in React components.
 
 
+## Bind, Call, Apply
+
+
+#### .call and .apply 
+```javascript
+
+
+let sally = { name: 'Sally' };
+ 
+function greet(customerOne, customerTwo) {
+    console.log(`Hi ${customerOne} and ${customerTwo}, my name is ${this.name}!`);
+}
+ 
+greet.call(sally, 'Terry', 'George');        // sally -> this
+// Hi Terry and George, my name is Sally!
+
+greet.call(sally);
+// Hi undefined and undefined, my name is Sally!
+
+
+-----------------
+
+The APPLY works similarly to call, except that apply only takes two arguments: 
+- the value of this, 
+- and then an Array of arguments to pass to the function, like so:
+
+
+greet.apply(sally, ['Terry', 'George']);
+// Hi Terry and George, my name is Sally!
+
+
+----> the first argument to call() or apply() is always the value for this <----
+
+```
+
+#### .bind
+
+```javascript
+
+let sally = { name: 'Sally' };
+ 
+function greet(customer) {
+    console.log(`Hi ${customer}, my name is ${this.name}!`);
+}
+ 
+let newGreet = greet.bind(sally); // newGreet is context-bound to sally
+ 
+newGreet('Bob');                // sally je vec sejvano, "Bob" je customer argument
+// Hi Bob, my name is Sally!
+ 
+greet('Bob');                   // sally ovdje nije sejvano, "Bob" je customer argument
+// Hi Bob, my name is !
+
+
+
+- by calling greet.bind(sally), we return a new function that we then assign to the variable newGreet. 
+Invoking newGreet shows that the this object is bound to sally
+
+- Note that the original greet function is unchanged. bind does not change it. 
+Instead, bind copies the function, and sets the copied functions this context to whatever is passed 
+through as an argument.
+
+
+greet.bind(sally)('Bob');
+// Hi Bob, my name is Sally!
+
+But this is just a noisy way of doing the same work of call() or apply().
+
+```
+
+
 ### When would you use `document.write()`?
 
 `document.write()` writes a string of text to a document stream opened by `document.open()`. When `document.write()` is executed after the page has loaded, it will call `document.open` which clears the whole document (`<head>` and `<body>` removed!) and replaces the contents with the given parameter value. Hence it is usually considered dangerous and prone to misuse.
-
-There are some answers online that explain `document.write()` is being used in analytics code or [when you want to include styles that should only work if JavaScript is enabled](https://www.quirksmode.org/blog/archives/2005/06/three_javascrip_1.html). It is even being used in HTML5 boilerplate to [load scripts in parallel and preserve execution order](https://github.com/paulirish/html5-boilerplate/wiki/Script-Loading-Techniques#documentwrite-script-tag)! However, I suspect those reasons might be outdated and in the modern day, they can be achieved without using `document.write()`. Please do correct me if I'm wrong about this.
 
 
 ### Explain Ajax in as much detail as possible.
@@ -746,7 +816,6 @@ Overall, I think the benefits outweigh the disadvantages, and I never had to rel
 
 ### Create a for loop that iterates up to `100` while outputting **"fizz"** at multiples of `3`, **"buzz"** at multiples of `5` and **"fizzbuzz"** at multiples of `3` and `5`.
 
-Check out this version of FizzBuzz by [Paul Irish](https://gist.github.com/jaysonrowe/1592432#gistcomment-790724).
 
 ```js
 for (let i = 1; i <= 100; i++) {
@@ -773,7 +842,6 @@ The DOM event `DOMContentLoaded` will fire after the DOM for the page has been c
 
 ### Explain what a single page app is and how to make one SEO-friendly.
 
-The below is taken from the awesome [Grab Front End Guide](https://github.com/grab/front-end-guide), which coincidentally, is written by me!
 
 Web developers these days refer to the products they build as web apps, rather than websites. While there is no strict difference between the two terms, web apps tend to be highly interactive and dynamic, allowing the user to perform actions and receive a response to their action. Traditionally, the browser receives HTML from the server and renders it. When the user navigates to another URL, a full-page refresh is required and the server sends fresh new HTML to the new page. This is called server-side rendering.
 
