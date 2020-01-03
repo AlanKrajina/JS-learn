@@ -1,6 +1,5 @@
 ## JS Questions - updated
 
-Answers to [Front-end Job Interview Questions - JS Questions](https://github.com/h5bp/Front-end-Developer-Interview-Questions/blob/master/src/questions/javascript-questions.md). Pull requests for suggestions and corrections are welcome!
 
 * [Explain event delegation](#explain-event-delegation)
 * [Explain how `this` works in JavaScript](#explain-how-this-works-in-javascript)
