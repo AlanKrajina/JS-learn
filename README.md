@@ -56,6 +56,8 @@ Answers to [Front-end Job Interview Questions - JS Questions](https://github.com
 * [What are the benefits of using spread syntax and how is it different from rest syntax?](#what-are-the-benefits-of-using-spread-syntax-and-how-is-it-different-from-rest-syntax)
 * [How can you share code between files?](#how-can-you-share-code-between-files)
 * [Why you might want to create static class members?](#why-you-might-want-to-create-static-class-members)
+* [Array and String methods](#aray-string-methods)
+
 
 ### Explain event delegation
 
@@ -1753,12 +1755,4 @@ ES2015 defines a module syntax which aims to replace both AMD and CommonJS. This
 
 Static class members (properties/methods) are not tied to a specific instance of a class and have the same value regardless of which instance is referring to it. Static properties are typically configuration variables and static methods are usually pure utility functions which do not depend on the state of the instance.
 
-###### References
-
-* https://stackoverflow.com/questions/21155438/when-to-use-static-variables-methods-and-when-to-use-instance-variables-methods
-
-[[↑] Back to top](#js-questions)
-
-### Other Answers
-
-* http://flowerszhong.github.io/2013/11/20/javascript-questions.html
+## Array and String methods
