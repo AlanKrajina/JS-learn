@@ -103,7 +103,7 @@ lauren.sayHello()
 // "Hello everybody, my name is lauren!"
 ```
 
--------------------------------------------- classes -----------------------------------------------------
+## classes 
 ```javascript
 
 class User {
@@ -181,7 +181,7 @@ tom.teachMath()    // --> only available to Teacher instance
 
 ```
 
-##this 
+## this 
 ```javascript
 
 let person = {
