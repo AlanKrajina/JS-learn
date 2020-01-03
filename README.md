@@ -74,13 +74,15 @@ Event delegation is a technique involving adding event listeners to a parent ele
 5. If multiple of the above rules apply, the rule that is higher wins and will set the `this` value.
 6. If the function is an ES2015 arrow function, it ignores all the rules above and receives the `this` value of its surrounding scope at the time it is created.
 
-1. OBJECT CREATION
-2. Object Methods
-3. classes
-4. this 
--------------------------------------- OBJECT CREATION --------------------------------------------------
---------------------------------------- Object Methods --------------------------------------------------
+- OBJECT CREATION
+- Object Methods
+- classes
+- this 
 
+## OBJECT CREATION 
+## Object Methods 
+
+```javascript
 
 function User(name, email) {
     this.name = name;
@@ -99,9 +101,10 @@ User.prototype.sayHello = function() {
 let lauren = new User('lauren', 'lauren@gmail.com')
 lauren.sayHello()
 // "Hello everybody, my name is lauren!"
-
+```
 
 -------------------------------------------- classes -----------------------------------------------------
+```javascript
 
 class User {
   constructor(name, email) {
@@ -176,9 +179,10 @@ tom.sayHello()
 tom.teachMath()    // --> only available to Teacher instance
 // My name is Tom and 1 + 1 is 2.
 
+```
 
---------------------------------------------------------------------------------------------------------
---------------------------------------------- this -----------------------------------------------------
+##this 
+```javascript
 
 let person = {
     greet: function() {   // hash {greet: function()}  --> person.greet
@@ -201,9 +205,11 @@ person.greet();
     1. level=  this -> object 
     2. level=  this -> global window 
 
+```
 
------------------------- Arrow Functions -----------------------
+## Arrow Functions 
 
+```javascript
 
 let person = {
     greet: function() {
@@ -227,9 +233,11 @@ person.greet();
     1. level=  this -> object 
     2. level=  this -> object
 
+```
 
------------------------- Callbacks -----------------------
+## Callbacks 
 
+```javascript
 
 [1, 2, 3].filter(function(element) {
     console.log(this);
@@ -239,8 +247,10 @@ person.greet();
 // window
 // window
 
+```
 
------------------------- Classes -----------------------
+## Classes 
+```javascript
 
 class Person {
     constructor(name) {
@@ -265,6 +275,7 @@ sally.greet();
     1. level=  this -> object 
     2. level=  this -> global window 
 
+```
 
 
 - Outside of any function, this refers to the global object. In web browsers, this is the window
