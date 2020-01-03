@@ -1756,3 +1756,581 @@ ES2015 defines a module syntax which aims to replace both AMD and CommonJS. This
 Static class members (properties/methods) are not tied to a specific instance of a class and have the same value regardless of which instance is referring to it. Static properties are typically configuration variables and static methods are usually pure utility functions which do not depend on the state of the instance.
 
 ## Array and String methods
+
+```javascript
+
+____________________________________________________Array methods_____________________________________________________
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+----------------------.forEach-----------------------------
+
+
+const array1 = ['a', 'b', 'c'];
+
+array1.forEach(element => console.log(element)); 
+
+// expected output: "a"
+// expected output: "b"
+// expected output: "c"
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+------------------------.map-------------------------------
+
+const array1 = [1, 4, 9, 16];
+
+// pass a function to map
+const map1 = array1.map(x => x * 2);
+
+// [2, 8, 18, 32]
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-------------------------.filter---------------------------
+
+const words = ['spray', 'limit', 'elite', 'exuberant', 'destruction', 'present'];
+
+const result = words.filter(word => word.length > 6);
+
+// ["exuberant", "destruction", "present"]
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+------------------------.find------------------------------
+
+const array1 = [5, 12, 8, 130, 44];
+
+const found = array1.find(element => element > 10);
+
+
+// found = 12
+
+
+// learn primjer
+
+function isOdd(element, index, array) {
+  return (element %2 === 1);
+}
+ 
+console.log([4, 6, 8, 10].find(isOdd)); // undefined, not found
+console.log([4, 5, 8, 10].find(isOdd)); // 5
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-----------------------.reduce-----------------------------
+
+
+const array1 = [1, 2, 3, 4];
+const reducer = (accumulator, currentValue) => accumulator + currentValue;
+
+// 1 + 2 + 3 + 4
+console.log(array1.reduce(reducer));
+// expected output: 10
+
+// 5 + 1 + 2 + 3 + 4
+console.log(array1.reduce(reducer, 5));
+// expected output: 15
+
+
+// drugi nacin
+[10, 20, 30, 40].reduce(function(memo, i) { return memo + i }) //=> 100
+[10, 20, 30, 40].reduce(function(memo, i) { return memo + i }, 100) //=> 200
+
+
+
+
+// learn primjer
+
+function reduceToTotal(values,startingPoint= null){
+  const reducer = (accumulator, currentValue) => accumulator + currentValue;
+  if (startingPoint === null){
+  return values.reduce(reducer)
+  } else {
+  return values.reduce(reducer,startingPoint)
+  }
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-----------------------.every, .some-----------------------------
+
+
+function reduceToAllTrue(values){
+  const isBelowThreshold = (currentValue) => currentValue ? true : false;
+  return values.every(isBelowThreshold);
+}
+
+
+function reduceToAnyTrue(values){
+  const isBelowThreshold = (currentValue) => currentValue ? true : false;
+  return values.some(isBelowThreshold);
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+----------------------.findIndex---------------------------
+
+const array1 = [5, 12, 8, 130, 44];
+
+const isLargeNumber = (element) => element > 13;
+
+console.log(array1.findIndex(isLargeNumber));
+// expected output: 3
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-----------------------.indexOf----------------------------
+
+const beasts = ['ant', 'bison', 'camel', 'duck', 'bison'];
+
+console.log(beasts.indexOf('bison'));
+// expected output: 1
+
+// start from index 2
+console.log(beasts.indexOf('bison', 2));
+// expected output: 4
+
+console.log(beasts.indexOf('giraffe'));
+// expected output: -1
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-----------------------.flat()-----------------------------
+
+
+var arr1 = [1, 2, [3, 4]];
+arr1.flat(); 
+// [1, 2, 3, 4]
+
+var arr2 = [1, 2, [3, 4, [5, 6]]];
+arr2.flat();
+// [1, 2, 3, 4, [5, 6]]
+
+var arr3 = [1, 2, [3, 4, [5, 6]]];
+arr3.flat(2);
+// [1, 2, 3, 4, 5, 6]
+
+var arr4 = [1, 2, [3, 4, [5, 6, [7, 8, [9, 10]]]]];
+arr4.flat(Infinity);
+// [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+----------------------.join('')----------------------------
+
+fruits.join('')
+"BananaOrangeAppleMango"
+
+fruits.join(',')
+"Banana,Orange,Apple,Mango"
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+---------------------.slice()------------------------------
+
+
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+
+function returnFirstTwoDrivers(fruits) {
+  return fruits.slice(0, 2);
+};
+// fruits = ["Banana", "Orange"];
+
+const returnLastTwoDrivers = function (fruits) {
+  return fruits.slice(-2);
+};
+// fruits = ["Apple", "Mango"];
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+----------------------.splice()----------------------------
+
+
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.splice(2, 0, "Lemon", "Kiwi");
+
+// fruits = ["Banana", "Orange", "Lemon", "Kiwi", "Apple", "Mango"]
+
+
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.splice(0, 1);        // Removes the first element of fruits
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-----------------------.sort()-----------------------------
+-----------------------.reverse()--------------------------
+
+
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.sort();        // First sort the elements of fruits
+                      // ["Apple", "Banana", "Mango", "Orange"]
+fruits.reverse();     // Then reverse the order of the elements
+                      // ["Mango", "Apple", "Orange", "Banana"]
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+---------------------.push('Kiwi')-------------------------
+
+
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.push("Kiwi"); 
+
+// fruits = ["Banana", "Orange", "Apple", "Mango", "Kiwi"]
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+---------------------.pop()--------------------------------
+
+
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.pop();
+
+// fruits = ["Banana", "Orange", "Apple"]
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+---------------------.unshift('Lemon')---------------------
+
+
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+
+fruits.unshift("Lemon")
+// 5
+
+// fruits = ["Lemon", "Banana", "Orange", "Apple", "Mango"]
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+----------------------.shift()-----------------------------
+
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+
+fruits.shift()
+"Banana"
+
+// fruits = ["Orange", "Apple", "Mango"]
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+---------------------.toString()---------------------------
+
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+
+ruits.toString()
+
+// "Banana,Orange,Apple,Mango"
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-----------------------.concat(arr)------------------------
+
+var myGirls = ["Cecilie", "Lone"];
+var myBoys = ["Emil", "Tobias", "Linus"];
+var myChildren = myGirls.concat(myBoys);
+
+// myChildren = ["Cecilie", "Lone", "Emil", "Tobias", "Linus"]
+
+
+
+
+
+
+
+
+
+
+
+____________________________________________________String methods_____________________________________________________
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+----------------------.charAt()----------------------------
+
+var sentence = 'The quick brown fox jumps over the lazy dog.';
+
+var index = 4;
+
+console.log('The character at index ' + index + ' is ' + sentence.charAt(index));
+// expected output: "The character at index 4 is q"
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+----------------------.concat()----------------------------
+
+var str1 = 'Hello';
+var str2 = 'World';
+
+console.log(str1.concat(' ', str2));
+// expected output: "Hello World"
+
+console.log(str2.concat(', ', str1));
+// expected output: "World, Hello"
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+--------------------.includes()----------------------------
+
+var sentence = 'The quick brown fox jumps over the lazy dog.';
+
+var word = 'fox';
+
+console.log(`The word "${word}" ${sentence.includes(word)? 'is' : 'is not'} in the sentence`);
+// expected output: "The word "fox" is in the sentence"
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+---------------------.indexOf()----------------------------
+
+var paragraph = 'The quick brown fox jumps over the lazy dog. If the dog barked, was it really lazy?';
+
+var searchTerm = 'dog';
+var indexOfFirst = paragraph.indexOf(searchTerm);
+
+console.log('The index of the first "' + searchTerm + '" from the beginning is ' + indexOfFirst);
+// expected output: "The index of the first "dog" from the beginning is 40"
+
+console.log('The index of the 2nd "' + searchTerm + '" is ' + paragraph.indexOf(searchTerm, (indexOfFirst + 1)));
+// expected output: "The index of the 2nd "dog" is 52"
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+---------------------.lastIndexOf()------------------------
+
+var paragraph = 'The quick brown fox jumps over the lazy dog. If the dog barked, was it really lazy?';
+
+var searchTerm = 'dog';
+
+console.log('The index of the first "' + searchTerm + '" from the end is ' + paragraph.lastIndexOf(searchTerm));
+// expected output: "The index of the first "dog" from the end is 52"
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+------------------------.length----------------------------
+
+var str = 'Life, the universe and everything. Answer:';
+  
+console.log(str + ' ' + str.length);
+// expected output: "Life, the universe and everything. Answer: 42"
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-------------------.localeCompare()------------------------
+
+var a = 'réservé'; // with accents, lowercase
+var b = 'RESERVE'; // no accents, uppercase
+
+console.log(a.localeCompare(b));
+// expected output: 1
+console.log(a.localeCompare(b, 'en', {sensitivity: 'base'}));
+// expected output: 0
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+------------------------.match()---------------------------
+
+var paragraph = 'The quick brown fox jumps over the lazy dog. It barked.';
+var regex = /[A-Z]/g;
+var found = paragraph.match(regex);
+
+console.log(found);
+// expected output: Array ["T", "I"]
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+----------------------.replace()---------------------------
+
+var p = 'The quick brown fox jumps over the lazy dog. If the dog reacted, was it really lazy?';
+
+var regex = /dog/gi;
+
+console.log(p.replace(regex, 'ferret'));
+// expected output: "The quick brown fox jumps over the lazy ferret. If the ferret reacted, was it really lazy?"
+
+console.log(p.replace('dog', 'monkey'));
+// expected output: "The quick brown fox jumps over the lazy monkey. If the dog reacted, was it really lazy?"
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+----------------------.search()----------------------------
+
+var paragraph = 'The quick brown fox jumps over the lazy dog. If the dog barked, was it really lazy?';
+
+// any character that is not a word character or whitespace
+var regex = /[^\w\s]/g;
+
+console.log(paragraph.search(regex));
+// expected output: 43
+
+console.log(paragraph[paragraph.search(regex)]);
+// expected output: "."
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-----------------------.slice()----------------------------
+
+var str = 'The quick brown fox jumps over the lazy dog.';
+
+console.log(str.slice(31));
+// expected output: "the lazy dog."
+
+console.log(str.slice(4, 19));
+// expected output: "quick brown fox"
+
+console.log(str.slice(-4));
+// expected output: "dog."
+
+console.log(str.slice(-9, -5));
+// expected output: "lazy"
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+---------------------.split()------------------------------
+
+var str = 'The quick brown fox jumps over the lazy dog.';
+
+var words = str.split(' ');
+console.log(words[3]);
+// expected output: "fox"
+
+var chars = str.split('');
+console.log(chars[8]);
+// expected output: "k"
+
+var strCopy = str.split();
+console.log(strCopy);
+// expected output: Array ["The quick brown fox jumps over the lazy dog."]
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+--------------------.substring()---------------------------
+
+var str = 'Mozilla';
+
+console.log(str.substring(1, 3));
+// expected output: "oz"
+
+console.log(str.substring(2));
+// expected output: "zilla"
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+--------------------.toLowerCase()-------------------------
+
+var sentence = 'The quick brown fox jumps over the lazy dog.';
+
+console.log(sentence.toLowerCase());
+// expected output: "the quick brown fox jumps over the lazy dog."
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+--------------------.toUpperCase()-------------------------
+
+var sentence = 'The quick brown fox jumps over the lazy dog.';
+
+console.log(sentence.toUpperCase());
+// expected output: "THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG."
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+----------------------.toString()--------------------------
+
+var stringObj = new String("foo");
+
+console.log(stringObj);
+// expected output: String { "foo" }
+
+console.log(stringObj.toString());
+// expected output: "foo"
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-----------------------.valueOf()--------------------------
+
+var stringObj = new String("foo");
+
+console.log(stringObj);
+// expected output: String { "foo" }
+
+console.log(stringObj.valueOf());
+// expected output: "foo"
+
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
