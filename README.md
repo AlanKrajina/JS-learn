@@ -1725,6 +1725,22 @@ fruits.reverse();     // Then reverse the order of the elements
                       // ["Mango", "Apple", "Orange", "Banana"]
 
 
+---------------- .sort() with a callback ------------------
+
+const primes = [13, 7, 17, 2, 5, 3];
+
+const numberSorter = function (num1, num2) {
+  return num1 - num2;
+};
+ 
+primes.sort(numberSorter);
+// => [2, 3, 5, 7, 13, 17]
+
+
+If num1 is larger than num2, the subtraction operation will return a positive number, 
+which tells .sort() to reverse the order of num1 and num2 in the array. 
+If num1 - num2 returns a negative number or 0, .sort() knows to not mess with the ordering.
+
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
