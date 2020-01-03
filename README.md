@@ -64,16 +64,8 @@ Event delegation is a technique involving adding event listeners to a parent ele
 * Memory footprint goes down because only one single handler is needed on the parent element, rather than having to attach event handlers on each descendant.
 * There is no need to unbind the handler from elements that are removed and to bind the event for new elements.
 
-###### References
-
-* https://davidwalsh.name/event-delegate
-* https://stackoverflow.com/questions/1687296/what-is-dom-event-delegation
-
-[[↑] Back to top](#js-questions)
 
 ### Explain how `this` works in JavaScript
-
-There's no simple explanation for `this`; it is one of the most confusing concepts in JavaScript. A hand-wavey explanation is that the value of `this` depends on how the function is called. I have read many explanations on `this` online, and I found [Arnav Aggrawal](https://medium.com/@arnav_aggarwal)'s explanation to be the clearest. The following rules are applied:
 
 1. If the `new` keyword is used when calling the function, `this` inside the function is a brand new object.
 2. If `apply`, `call`, or `bind` are used to call/create a function, `this` inside the function is the object that is passed in as the argument.
@@ -82,18 +74,217 @@ There's no simple explanation for `this`; it is one of the most confusing concep
 5. If multiple of the above rules apply, the rule that is higher wins and will set the `this` value.
 6. If the function is an ES2015 arrow function, it ignores all the rules above and receives the `this` value of its surrounding scope at the time it is created.
 
-For an in-depth explanation, do check out his [article on Medium](https://codeburst.io/the-simple-rules-to-this-in-javascript-35d97f31bde3).
+1. OBJECT CREATION
+2. Object Methods
+3. classes
+4. this 
+-------------------------------------- OBJECT CREATION --------------------------------------------------
+--------------------------------------- Object Methods --------------------------------------------------
+
+
+function User(name, email) {
+    this.name = name;
+    this.email = email;
+}
+  // this.sayHello = function(){  
+  //  console.log(`Hello everybody, my name is ${this.name}!`);
+  // }} - ne koristimo to 
+
+User.prototype.sayHello = function() {
+    console.log(`Hello everybody, my name is ${this.name}`);
+};
+
+ 
+
+let lauren = new User('lauren', 'lauren@gmail.com')
+lauren.sayHello()
+// "Hello everybody, my name is lauren!"
+
+
+-------------------------------------------- classes -----------------------------------------------------
+
+class User {
+  constructor(name, email) {
+    this.name = name;
+    this.email = email;
+  }
+ 
+  sayHello() {
+    console.log(`Hello, my name is ${this.name}`);
+  }
+}
+
+-----
+
+class Teacher extends User {
+  sayHello(){
+    console.log('hello')
+  }
+}
+ 
+-----
+
+let fred = new User('fred', 'fred@gmail.com')
+fred.sayHello()
+// Hello, my name is fred
+ 
+let tom = new Teacher('tom', 'tom@gmail.com')
+tom.sayHello()                                    // overwritea staru FUNKCIJU 
+// hello
+
+----------------------------------------------------------------
+
+
+class User {
+  constructor(name, email) {
+    this.name = name;
+    this.email = email;
+  }
+ 
+  sayHello() {
+    console.log(`Hello, my name is ${this.name}`);
+  }
+}
+ 
+
+--- 
+ 
+class Teacher extends User {
+
+  teachMath(){
+  return `My name is ${this.name} and 1 + 1 is 2.`
+  }
+
+  sayHello(){
+    super.sayHello()          // SUPER dodaje staru FUNKCIJU da mozemo modificirat staru bez overwritea
+    console.log('hello')
+  }
+}
+ 
+---
+
+let fred = new User('fred', 'fred@gmail.com')
+fred.sayHello()
+// Hello, my name is fred
+
+
+let tom = new Teacher('tom', 'tom@gmail.com')
+tom.sayHello()
+// Hello, my name is tom
+// hello
+
+tom.teachMath()    // --> only available to Teacher instance
+// My name is Tom and 1 + 1 is 2.
+
+
+--------------------------------------------------------------------------------------------------------
+--------------------------------------------- this -----------------------------------------------------
+
+let person = {
+    greet: function() {   // hash {greet: function()}  --> person.greet
+        // this == person
+        function otherFunction() {
+            // this == window
+            return this;
+        }
+ 
+        // otherFunction is invoked, returning the functions value of `this`, which is window
+        return otherFunction();
+    }
+};
+ 
+person.greet();
+// window
+
+
+-> NESTED FUNCTIONS:
+    1. level=  this -> object 
+    2. level=  this -> global window 
+
+
+------------------------ Arrow Functions -----------------------
+
+
+let person = {
+    greet: function() {
+        // this == person
+        const otherFunction = () => {
+            // this == person still, due to the arrow function
+            return this;
+        };
+ 
+        // otherFunction is invoked, returning the functions value of `this`, which is person
+        return otherFunction();
+    }
+};
+ 
+person.greet();
+// { greet: [Function: greet] }
+
+
+
+-> NESTED FUNCTIONS:
+    1. level=  this -> object 
+    2. level=  this -> object
+
+
+------------------------ Callbacks -----------------------
+
+
+[1, 2, 3].filter(function(element) {
+    console.log(this);
+    return element % 2 == 0;
+});
+// window
+// window
+// window
+
+
+------------------------ Classes -----------------------
+
+class Person {
+    constructor(name) {
+        this.name;
+    }
+ 
+    greet() {
+        function innerFunction() {
+            return this;              // refers to greet() not Person object
+        }
+        return innerFunction();
+    }
+}
+ 
+
+let sally = new Person('Sally');
+sally.greet();
+// undefined
+
+
+-> NESTED FUNCTIONS:
+    1. level=  this -> object 
+    2. level=  this -> global window 
+
+
+
+- Outside of any function, this refers to the global object. In web browsers, this is the window
+
+- Inside an object method, this refers to the object that received the method call
+
+- Inside a standalone function, even one inside a method, this will default to the global object
+
+- When using strict mode in a standalone function, as we do inside classes, this will be undefined
+
+- Arrow functions dont define their own this like standard functions do.
+
+
+
+
 
 #### Can you give an example of one of the ways that working with this has changed in ES6?
 
 ES6 allows you to use [arrow functions](http://2ality.com/2017/12/alternate-this.html#arrow-functions) which uses the [enclosing lexical scope](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions#No_separate_this). This is usually convenient, but does prevent the caller from controlling context via `.call` or `.apply`—the consequences being that a library such as `jQuery` will not properly bind `this` in your event handler functions. Thus, it's important to keep this in mind when refactoring large legacy applications.
 
-###### References
-
-* https://codeburst.io/the-simple-rules-to-this-in-javascript-35d97f31bde3
-* https://stackoverflow.com/a/3127440/1751946
-
-[[↑] Back to top](#js-questions)
 
 ### Explain how prototypal inheritance works
 
