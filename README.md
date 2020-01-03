@@ -13,7 +13,7 @@
 * [Difference between: `function Person(){}`, `var person = Person()`, and `var person = new Person()`?](#difference-between-function-person-var-person--person-and-var-person--new-person)
 * [What's the difference between `.call` and `.apply`?](#whats-the-difference-between-call-and-apply)
 * [Explain `Function.prototype.bind`.](#explain-functionprototypebind)
-* [What's the difference between `.call` and `.apply`?](#Bind, Call, Apply)
+* [Bind, Call, Apply](#Bind-Call-Apply)
 * [When would you use `document.write()`?](#when-would-you-use-documentwrite)
 * [Explain Ajax in as much detail as possible.](#explain-ajax-in-as-much-detail-as-possible)
 * [What are the advantages and disadvantages of using Ajax?](#what-are-the-advantages-and-disadvantages-of-using-ajax)
