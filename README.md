@@ -1604,7 +1604,8 @@ function reduceToTotal(values,startingPoint= null){
 
 
 // learn 2.
-Using wagesEarnedOnDate, accumulate the value of all dates worked by the employee in the record used as context. Amount should be returned as a number.
+Using wagesEarnedOnDate, accumulate the value of all dates worked by the employee in the record used as context. 
+Amount should be returned as a number.
 
 function calculatePayroll(employees) {
     return employees.reduce((total, e) => total + allWagesFor(e), 0);
