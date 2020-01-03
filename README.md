@@ -1591,8 +1591,7 @@ console.log(array1.reduce(reducer, 5));
 
 
 
-
-// learn primjer
+// learn 1.
 
 function reduceToTotal(values,startingPoint= null){
   const reducer = (accumulator, currentValue) => accumulator + currentValue;
@@ -1601,6 +1600,14 @@ function reduceToTotal(values,startingPoint= null){
   } else {
   return values.reduce(reducer,startingPoint)
   }
+}
+
+
+// learn 2.
+Using wagesEarnedOnDate, accumulate the value of all dates worked by the employee in the record used as context. Amount should be returned as a number.
+
+function calculatePayroll(employees) {
+    return employees.reduce((total, e) => total + allWagesFor(e), 0);
 }
 
 
