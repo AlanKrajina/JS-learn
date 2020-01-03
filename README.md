@@ -82,11 +82,6 @@ Event delegation is a technique involving adding event listeners to a parent ele
 
 - Arrow functions dont define their own this like standard functions do.
 
-- OBJECT CREATION
-- Object Methods
-- classes
-- this 
-
 ## OBJECT CREATION 
 ## Object Methods 
 
