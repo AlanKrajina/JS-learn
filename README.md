@@ -548,16 +548,27 @@ console.log(add.apply(null, [1, 2])); // 3
 
 ##### bind 
 
-This method returns a copy of the function but with the execution context "set" to the argument that's passed to bind. It looks like this: sayHello.bind(greenFrog)("Hello") //=> "Mr. GreenFrog says *Hello* to you all."
+This method returns a copy of the function but with the execution context "set" to the argument that's passed to bind. It looks like this: 
+
+```javascript
+sayHello.bind(greenFrog)("Hello") //=> "Mr. GreenFrog says *Hello* to you all."
+```
 
 ##### call 
 
-This is a method on a function that calls the function, just like (). You provide a new execution context as the first argument, traditionally called thisArg, and the arguments you want to send to the function after the thisArg. An invocation of call looks like: Calculator.sum.call(multilingualMessages, 1, 2)
+This is a method on a function that calls the function, just like (). You provide a new execution context as the first argument, traditionally called thisArg, and the arguments you want to send to the function after the thisArg. An invocation of call looks like:
+
+```javascript
+Calculator.sum.call(multilingualMessages, 1, 2)
+```
 
 ##### apply
 
-This is a method on a function that calls the function, just like (). You provide a new execution context as the first argument, traditionally called thisArg, and the arguments you want to send to the function as an Array after the thisArg. An invocation of apply looks like: Calculator.sum.apply(multilingualMessages, [1, 2])
+This is a method on a function that calls the function, just like (). You provide a new execution context as the first argument, traditionally called thisArg, and the arguments you want to send to the function as an Array after the thisArg. An invocation of apply looks like: 
 
+```javascript
+Calculator.sum.apply(multilingualMessages, [1, 2])
+```
 
 #### .call and .apply 
 ```javascript
