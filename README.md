@@ -352,6 +352,14 @@ greet.apply(sally, ['Terry', 'George']);
 
 ```
 
+```javascript
+let phrase = "I like this brown drink very much, bring me another!"
+intro(asgardianBrothers[0], phrase) //=> Thor Odinsson says: I like this brown drink very much, bring me another!
+
+intro(asgardianBrothers[0], phrase) === introWithContext.call(asgardianBrothers[0], phrase)     //=> true
+intro(asgardianBrothers[0], phrase) === introWithContext.apply(asgardianBrothers[0], [phrase])  //=> true
+```
+
 #### .bind
 
 ```javascript
