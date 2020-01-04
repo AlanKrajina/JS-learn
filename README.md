@@ -298,11 +298,7 @@ console.log(add.apply(null, [1, 2])); // 3
 
 ##### bind 
 
-This method returns a copy of the function but with the execution context "set" to the argument that's passed to bind. It looks like this: 
-
-```javascript
-sayHello.bind(greenFrog)("Hello") //=> "Mr. GreenFrog says *Hello* to you all."
-```
+The bind method returns a function that needs to be called, but wherever the function that bind was called on had a this reference, the this is "hard set" to what was passed into bind.
 
 ```javascript
 
