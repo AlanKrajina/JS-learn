@@ -210,7 +210,7 @@ person.greet();
 
 ```
 
-## Arrow Functions 
+### Arrow Functions 
 
 ```javascript
 
@@ -238,7 +238,7 @@ person.greet();
 
 ```
 
-## Callbacks 
+### Callbacks 
 
 ```javascript
 
@@ -252,7 +252,7 @@ person.greet();
 
 ```
 
-## Classes 
+### Classes 
 ```javascript
 
 class Person {
