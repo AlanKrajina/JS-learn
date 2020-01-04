@@ -54,3 +54,18 @@ findLongestWordLength("The quick brown fox jumped over the lazy dog");
 // findLongestWordLength("What if we try a super-long word such as otorhinolaryngology") should return 19.
 
 ```
+
+### Return Largest Numbers in Arrays
+
+```js
+function largestOfFour(arr) {
+  let newArr;
+  return newArr = arr.map(el=>
+    el.sort(function(a, b){
+    return a - b;
+  }).pop()
+  )
+}
+
+largestOfFour([[4, 5, 1, 3], [13, 27, 18, 26], [32, 35, 37, 39], [1000, 1001, 857, 1]]);
+```
