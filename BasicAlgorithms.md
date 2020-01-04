@@ -51,7 +51,9 @@ function findLongestWordLength(str) {
 
 findLongestWordLength("The quick brown fox jumped over the lazy dog");
 
-// findLongestWordLength("What if we try a super-long word such as otorhinolaryngology") should return 19.
+// findLongestWordLength("What if we try a super-long word such as otorhinolaryngology") 
+
+// 19
 
 ```
 
@@ -68,4 +70,6 @@ function largestOfFour(arr) {
 }
 
 largestOfFour([[4, 5, 1, 3], [13, 27, 18, 26], [32, 35, 37, 39], [1000, 1001, 857, 1]]);
+
+// (4) [5, 27, 39, 1001]
 ```
