@@ -308,17 +308,10 @@ sayHello.bind(greenFrog)("Hello") //=> "Mr. GreenFrog says *Hello* to you all."
 
 This is a method on a function that calls the function, just like (). You provide a new execution context as the first argument, traditionally called thisArg, and the arguments you want to send to the function after the thisArg. An invocation of call looks like:
 
-```javascript
-Calculator.sum.call(multilingualMessages, 1, 2)
-```
 
 ##### apply
 
 This is a method on a function that calls the function, just like (). You provide a new execution context as the first argument, traditionally called thisArg, and the arguments you want to send to the function as an Array after the thisArg. An invocation of apply looks like: 
-
-```javascript
-Calculator.sum.apply(multilingualMessages, [1, 2])
-```
 
 #### .call and .apply 
 ```javascript
@@ -353,6 +346,26 @@ greet.apply(sally, ['Terry', 'George']);
 ```
 
 ```javascript
+
+let asgardianBrothers = [
+  {
+    firstName: "Thor",
+    familyName: "Odinsson"
+  },
+  {
+    firstName: "Loki",
+    familyName: "Laufeysson-Odinsson"
+  }
+]
+ 
+let intro = function(person, line) {
+  return `${person.firstName} ${person.familyName} says: ${line}`
+}
+ 
+let introWithContext = function(line){
+  return `${this.firstName} ${this.familyName} says: ${line}`
+}
+
 let phrase = "I like this brown drink very much, bring me another!"
 intro(asgardianBrothers[0], phrase) //=> Thor Odinsson says: I like this brown drink very much, bring me another!
 
