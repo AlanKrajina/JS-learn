@@ -3,6 +3,9 @@
 
 * [Explain event delegation](#explain-event-delegation)
 * [Explain how `this` works in JavaScript](#explain-how-this-works-in-javascript)
+* [What's the difference between `.call` and `.apply`?](#whats-the-difference-between-call-and-apply)
+* [Bind, Call, Apply](#Bind-Call-Apply)
+* [What is "use strict";? what are the advantages and disadvantages to using it?](#what-is-use-strict-what-are-the-advantages-and-disadvantages-to-using-it)
 * [Explain how prototypal inheritance works](#explain-how-prototypal-inheritance-works)
 * [Explain why the following doesn't work as an IIFE: `function foo(){ }();`. What needs to be changed to properly make it an IIFE?](#explain-why-the-following-doesnt-work-as-an-iife-function-foo--what-needs-to-be-changed-to-properly-make-it-an-iife)
 * [What's the difference between a variable that is: `null`, `undefined` or undeclared? How would you go about checking for any of these states?](#whats-the-difference-between-a-variable-that-is-null-undefined-or-undeclared-how-would-you-go-about-checking-for-any-of-these-states)
@@ -11,9 +14,6 @@
 * [How do you organize your code? (module pattern, classical inheritance?)](#how-do-you-organize-your-code-module-pattern-classical-inheritance)
 * [What's the difference between host objects and native objects?](#whats-the-difference-between-host-objects-and-native-objects)
 * [Difference between: `function Person(){}`, `var person = Person()`, and `var person = new Person()`?](#difference-between-function-person-var-person--person-and-var-person--new-person)
-* [What's the difference between `.call` and `.apply`?](#whats-the-difference-between-call-and-apply)
-* [Bind, Call, Apply](#Bind-Call-Apply)
-* [What is "use strict";? what are the advantages and disadvantages to using it?](#what-is-use-strict-what-are-the-advantages-and-disadvantages-to-using-it)
 * [When would you use `document.write()`?](#when-would-you-use-documentwrite)
 * [Explain Ajax in as much detail as possible.](#explain-ajax-in-as-much-detail-as-possible)
 * [What are the advantages and disadvantages of using Ajax?](#what-are-the-advantages-and-disadvantages-of-using-ajax)
@@ -281,6 +281,151 @@ sally.greet();
 ```
 
 
+### What's the difference between `.call` and `.apply`?
+
+Both `.call` and `.apply` are used to invoke functions and the first parameter will be used as the value of `this` within the function. However, `.call` takes in comma-separated arguments as the next arguments while `.apply` takes in an array of arguments as the next argument. An easy way to remember this is C for `call` and comma-separated and A for `apply` and an array of arguments.
+
+```js
+function add(a, b) {
+  return a + b;
+}
+
+console.log(add.call(null, 1, 2)); // 3
+console.log(add.apply(null, [1, 2])); // 3
+```
+
+## Bind, Call, Apply
+
+##### bind 
+
+This method returns a copy of the function but with the execution context "set" to the argument that's passed to bind. It looks like this: 
+
+```javascript
+sayHello.bind(greenFrog)("Hello") //=> "Mr. GreenFrog says *Hello* to you all."
+```
+
+##### call 
+
+This is a method on a function that calls the function, just like (). You provide a new execution context as the first argument, traditionally called thisArg, and the arguments you want to send to the function after the thisArg. An invocation of call looks like:
+
+```javascript
+Calculator.sum.call(multilingualMessages, 1, 2)
+```
+
+##### apply
+
+This is a method on a function that calls the function, just like (). You provide a new execution context as the first argument, traditionally called thisArg, and the arguments you want to send to the function as an Array after the thisArg. An invocation of apply looks like: 
+
+```javascript
+Calculator.sum.apply(multilingualMessages, [1, 2])
+```
+
+#### .call and .apply 
+```javascript
+
+
+let sally = { name: 'Sally' };
+ 
+function greet(customerOne, customerTwo) {
+    console.log(`Hi ${customerOne} and ${customerTwo}, my name is ${this.name}!`);
+}
+ 
+greet.call(sally, 'Terry', 'George');        // sally -> this
+// Hi Terry and George, my name is Sally!
+
+greet.call(sally);
+// Hi undefined and undefined, my name is Sally!
+
+
+-----------------
+
+The APPLY works similarly to call, except that apply only takes two arguments: 
+- the value of this, 
+- and then an Array of arguments to pass to the function, like so:
+
+
+greet.apply(sally, ['Terry', 'George']);
+// Hi Terry and George, my name is Sally!
+
+
+----> the first argument to call() or apply() is always the value for this <----
+
+```
+
+#### .bind
+
+```javascript
+
+let sally = { name: 'Sally' };
+ 
+function greet(customer) {
+    console.log(`Hi ${customer}, my name is ${this.name}!`);
+}
+ 
+let newGreet = greet.bind(sally); // newGreet is context-bound to sally
+ 
+newGreet('Bob');                // sally je vec sejvano, "Bob" je customer argument
+// Hi Bob, my name is Sally!
+ 
+greet('Bob');                   // sally ovdje nije sejvano, "Bob" je customer argument
+// Hi Bob, my name is !
+
+
+
+- by calling greet.bind(sally), we return a new function that we then assign to the variable newGreet. 
+Invoking newGreet shows that the this object is bound to sally
+
+- Note that the original greet function is unchanged. bind does not change it. 
+Instead, bind copies the function, and sets the copied functions this context to whatever is passed 
+through as an argument.
+
+
+greet.bind(sally)('Bob');
+// Hi Bob, my name is Sally!
+
+But this is just a noisy way of doing the same work of call() or apply().
+
+```
+
+
+### What is `"use strict";`? What are the advantages and disadvantages to using it?
+
+'use strict' is a statement used to enable strict mode to entire scripts or individual functions. Strict mode is a way to opt into a restricted variant of JavaScript.
+
+Advantages:
+
+* Makes it impossible to accidentally create global variables.
+* Makes assignments which would otherwise silently fail to throw an exception.
+* Makes attempts to delete undeletable properties throw (where before the attempt would simply have no effect).
+* Requires that function parameter names be unique.
+* `this` is undefined in the global context.
+* It catches some common coding bloopers, throwing exceptions.
+* It disables features that are confusing or poorly thought out.
+
+Disadvantages:
+
+* Many missing features that some developers might be used to.
+* No more access to `function.caller` and `function.arguments`.
+* Concatenation of scripts written in different strict modes might cause issues.
+
+Overall, I think the benefits outweigh the disadvantages, and I never had to rely on the features that strict mode blocks. I would recommend using strict mode.
+
+```js
+
+function looseyGoosey() {
+  return this
+}
+ 
+function noInferringAllowed() {
+  "use strict"
+  return this
+}
+ 
+looseyGoosey() === window; //=> true
+noInferringAllowed() === undefined //=> true
+```
+
+
 #### Can you give an example of one of the ways that working with this has changed in ES6?
 
 ES6 allows you to use [arrow functions](http://2ality.com/2017/12/alternate-this.html#arrow-functions) which uses the [enclosing lexical scope](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions#No_separate_this). This is usually convenient, but does prevent the caller from controlling context via `.call` or `.apply`—the consequences being that a library such as `jQuery` will not properly bind `this` in your event handler functions. Thus, it's important to keep this in mind when refactoring large legacy applications.
@@ -528,151 +673,6 @@ console.log(person.name); // Uncaught TypeError: Cannot read property 'name' of 
 var person = new Person('John');
 console.log(person); // Person { name: "John" }
 console.log(person.name); // "john"
-```
-
-
-### What's the difference between `.call` and `.apply`?
-
-Both `.call` and `.apply` are used to invoke functions and the first parameter will be used as the value of `this` within the function. However, `.call` takes in comma-separated arguments as the next arguments while `.apply` takes in an array of arguments as the next argument. An easy way to remember this is C for `call` and comma-separated and A for `apply` and an array of arguments.
-
-```js
-function add(a, b) {
-  return a + b;
-}
-
-console.log(add.call(null, 1, 2)); // 3
-console.log(add.apply(null, [1, 2])); // 3
-```
-
-## Bind, Call, Apply
-
-##### bind 
-
-This method returns a copy of the function but with the execution context "set" to the argument that's passed to bind. It looks like this: 
-
-```javascript
-sayHello.bind(greenFrog)("Hello") //=> "Mr. GreenFrog says *Hello* to you all."
-```
-
-##### call 
-
-This is a method on a function that calls the function, just like (). You provide a new execution context as the first argument, traditionally called thisArg, and the arguments you want to send to the function after the thisArg. An invocation of call looks like:
-
-```javascript
-Calculator.sum.call(multilingualMessages, 1, 2)
-```
-
-##### apply
-
-This is a method on a function that calls the function, just like (). You provide a new execution context as the first argument, traditionally called thisArg, and the arguments you want to send to the function as an Array after the thisArg. An invocation of apply looks like: 
-
-```javascript
-Calculator.sum.apply(multilingualMessages, [1, 2])
-```
-
-#### .call and .apply 
-```javascript
-
-
-let sally = { name: 'Sally' };
- 
-function greet(customerOne, customerTwo) {
-    console.log(`Hi ${customerOne} and ${customerTwo}, my name is ${this.name}!`);
-}
- 
-greet.call(sally, 'Terry', 'George');        // sally -> this
-// Hi Terry and George, my name is Sally!
-
-greet.call(sally);
-// Hi undefined and undefined, my name is Sally!
-
-
------------------
-
-The APPLY works similarly to call, except that apply only takes two arguments: 
-- the value of this, 
-- and then an Array of arguments to pass to the function, like so:
-
-
-greet.apply(sally, ['Terry', 'George']);
-// Hi Terry and George, my name is Sally!
-
-
-----> the first argument to call() or apply() is always the value for this <----
-
-```
-
-#### .bind
-
-```javascript
-
-let sally = { name: 'Sally' };
- 
-function greet(customer) {
-    console.log(`Hi ${customer}, my name is ${this.name}!`);
-}
- 
-let newGreet = greet.bind(sally); // newGreet is context-bound to sally
- 
-newGreet('Bob');                // sally je vec sejvano, "Bob" je customer argument
-// Hi Bob, my name is Sally!
- 
-greet('Bob');                   // sally ovdje nije sejvano, "Bob" je customer argument
-// Hi Bob, my name is !
-
-
-
-- by calling greet.bind(sally), we return a new function that we then assign to the variable newGreet. 
-Invoking newGreet shows that the this object is bound to sally
-
-- Note that the original greet function is unchanged. bind does not change it. 
-Instead, bind copies the function, and sets the copied functions this context to whatever is passed 
-through as an argument.
-
-
-greet.bind(sally)('Bob');
-// Hi Bob, my name is Sally!
-
-But this is just a noisy way of doing the same work of call() or apply().
-
-```
-
-
-### What is `"use strict";`? What are the advantages and disadvantages to using it?
-
-'use strict' is a statement used to enable strict mode to entire scripts or individual functions. Strict mode is a way to opt into a restricted variant of JavaScript.
-
-Advantages:
-
-* Makes it impossible to accidentally create global variables.
-* Makes assignments which would otherwise silently fail to throw an exception.
-* Makes attempts to delete undeletable properties throw (where before the attempt would simply have no effect).
-* Requires that function parameter names be unique.
-* `this` is undefined in the global context.
-* It catches some common coding bloopers, throwing exceptions.
-* It disables features that are confusing or poorly thought out.
-
-Disadvantages:
-
-* Many missing features that some developers might be used to.
-* No more access to `function.caller` and `function.arguments`.
-* Concatenation of scripts written in different strict modes might cause issues.
-
-Overall, I think the benefits outweigh the disadvantages, and I never had to rely on the features that strict mode blocks. I would recommend using strict mode.
-
-```js
-
-function looseyGoosey() {
-  return this
-}
- 
-function noInferringAllowed() {
-  "use strict"
-  return this
-}
- 
-looseyGoosey() === window; //=> true
-noInferringAllowed() === undefined //=> true
 ```
 
 
