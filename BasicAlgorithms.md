@@ -36,3 +36,21 @@ function factorialize(num) {
 factorialize(5)
 ```
 
+### Find the Longest Word in a String
+
+```js
+function findLongestWordLength(str) {
+
+  let newStr = str.split(' ').map(el => el.length)
+
+  return newStr.sort(function(a, b){
+    return a - b;
+  }).pop()
+
+}
+
+findLongestWordLength("The quick brown fox jumped over the lazy dog");
+
+// findLongestWordLength("What if we try a super-long word such as otorhinolaryngology") should return 19.
+
+```
