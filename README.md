@@ -304,6 +304,38 @@ This method returns a copy of the function but with the execution context "set" 
 sayHello.bind(greenFrog)("Hello") //=> "Mr. GreenFrog says *Hello* to you all."
 ```
 
+```javascript
+
+let sally = { name: 'Sally' };
+ 
+function greet(customer) {
+    console.log(`Hi ${customer}, my name is ${this.name}!`);
+}
+ 
+let newGreet = greet.bind(sally); // newGreet is context-bound to sally
+ 
+newGreet('Bob');                // sally je vec sejvano, "Bob" je customer argument
+// Hi Bob, my name is Sally!
+ 
+greet('Bob');                   // sally ovdje nije sejvano, "Bob" je customer argument
+// Hi Bob, my name is !
+
+
+
+- by calling greet.bind(sally), we return a new function that we then assign to the variable newGreet. 
+Invoking newGreet shows that the this object is bound to sally
+
+- Note that the original greet function is unchanged. bind does not change it. 
+Instead, bind copies the function, and sets the copied functions this context to whatever is passed 
+through as an argument.
+
+
+greet.bind(sally)('Bob');
+// Hi Bob, my name is Sally!
+
+But this is just a noisy way of doing the same work of call() or apply().
+
+```
 ##### call 
 
 This is a method on a function that calls the function, just like (). You provide a new execution context as the first argument, traditionally called thisArg, and the arguments you want to send to the function after the thisArg. An invocation of call looks like:
@@ -371,41 +403,6 @@ intro(asgardianBrothers[0], phrase) //=> Thor Odinsson says: I like this brown d
 
 intro(asgardianBrothers[0], phrase) === introWithContext.call(asgardianBrothers[0], phrase)     //=> true
 intro(asgardianBrothers[0], phrase) === introWithContext.apply(asgardianBrothers[0], [phrase])  //=> true
-```
-
-#### .bind
-
-```javascript
-
-let sally = { name: 'Sally' };
- 
-function greet(customer) {
-    console.log(`Hi ${customer}, my name is ${this.name}!`);
-}
- 
-let newGreet = greet.bind(sally); // newGreet is context-bound to sally
- 
-newGreet('Bob');                // sally je vec sejvano, "Bob" je customer argument
-// Hi Bob, my name is Sally!
- 
-greet('Bob');                   // sally ovdje nije sejvano, "Bob" je customer argument
-// Hi Bob, my name is !
-
-
-
-- by calling greet.bind(sally), we return a new function that we then assign to the variable newGreet. 
-Invoking newGreet shows that the this object is bound to sally
-
-- Note that the original greet function is unchanged. bind does not change it. 
-Instead, bind copies the function, and sets the copied functions this context to whatever is passed 
-through as an argument.
-
-
-greet.bind(sally)('Bob');
-// Hi Bob, my name is Sally!
-
-But this is just a noisy way of doing the same work of call() or apply().
-
 ```
 
 
