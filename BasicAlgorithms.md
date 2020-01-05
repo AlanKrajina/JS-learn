@@ -130,9 +130,12 @@ function truncateString(str, num) {
    return str.length > num ? str.slice(0,num).concat('...') : str
 }
 
-truncateString("Peter Piper picked a peck of pickled peppers", 11) should return "Peter Piper...".
+truncateString("Peter Piper picked a peck of pickled peppers", 11) 
+// "Peter Piper...".
 
-truncateString("A-tisket a-tasket A green and yellow basket", "A-tisket a-tasket A green and yellow basket".length) should return "A-tisket a-tasket A green and yellow basket".
+truncateString("A-tisket a-tasket A green and yellow basket", "A-tisket a-tasket A green and yellow basket".length) 
+// "A-tisket a-tasket A green and yellow basket".
 
-truncateString("A-tisket a-tasket A green and yellow basket", "A-tisket a-tasket A green and yellow basket".length + 2) should return "A-tisket a-tasket A green and yellow basket".
+truncateString("A-tisket a-tasket A green and yellow basket", "A-tisket a-tasket A green and yellow basket".length + 2) 
+// "A-tisket a-tasket A green and yellow basket".
 ```
