@@ -139,3 +139,21 @@ truncateString("A-tisket a-tasket A green and yellow basket", "A-tisket a-tasket
 truncateString("A-tisket a-tasket A green and yellow basket", "A-tisket a-tasket A green and yellow basket".length + 2) 
 // "A-tisket a-tasket A green and yellow basket".
 ```
+
+### Finders Keepers
+
+Create a function that looks through an array (first argument) and returns the first element in the array that passes a truth test (second argument). If no element passes the test, return undefined.
+
+
+```js
+function findElement(arr, func) {
+
+  return arr.find(el => func(el) === true)
+}
+
+findElement([1, 3, 5, 8, 9, 10], function(num) { return num % 2 === 0; }) 
+// 8
+
+findElement([1, 3, 5, 9], function(num) { return num % 2 === 0; }) 
+// undefined
+```
