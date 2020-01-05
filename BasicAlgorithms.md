@@ -183,3 +183,28 @@ booWho([].slice)
 booWho({ "a": 1 })
 // false
 ```
+
+### Title Case a Sentence
+
+Return the provided string with the first letter of each word capitalized. Make sure the rest of the word is in lower case.
+
+
+```js
+function titleCase(str) {
+
+  let newStr =  str.toLowerCase().split(' ')
+
+  return newStr.map(el=> 
+    el.charAt(0).toUpperCase().concat(el.slice(1))
+    ).join(' ')
+}
+
+titleCase("I'm a little tea pot") 
+// string
+
+titleCase("I'm a little tea pot") 
+// I'm A Little Tea Pot.
+
+titleCase("sHoRt AnD sToUt") 
+// Short And Stout.
+```
