@@ -309,11 +309,11 @@ function mutation(arr) {
     });
 }
 
-Every will basically give you letter by letter to compare, which we do by using indexOf on the first string. 
+// Every will basically give you letter by letter to compare, which we do by using indexOf on the first string. 
 
-indexOf will give you -1 if the current letter is missing. 
+// indexOf will give you -1 if the current letter is missing. 
 
-We check that not to be the case, for if this happens even once every will be false.
+// We check that not to be the case, for if this happens even once every will be false.
 
 
 mutation(["hello", "hey"])
