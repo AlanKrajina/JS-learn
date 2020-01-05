@@ -95,7 +95,7 @@ function confirmEnding(str, target) {
 
   return str.slice(str.length - target.length) === target;
 }
-```js
+```
 
 
 ### Repeat a String Repeat a String
@@ -117,4 +117,4 @@ function repeatStringNumTimes(str, num) {
 repeatStringNumTimes("abc", 3);
 
 // "abcabcabc"
-```js
+```
