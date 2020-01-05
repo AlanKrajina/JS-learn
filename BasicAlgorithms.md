@@ -157,3 +157,29 @@ findElement([1, 3, 5, 8, 9, 10], function(num) { return num % 2 === 0; })
 findElement([1, 3, 5, 9], function(num) { return num % 2 === 0; }) 
 // undefined
 ```
+
+### Boo who
+
+Check if a value is classified as a boolean primitive. Return true or false.
+
+
+```js
+function booWho(bool) {
+  return typeof bool === "boolean" ? true : false
+}
+
+booWho(true) 
+// true
+
+booWho(false)
+// true
+
+booWho([1, 2, 3])
+// false
+
+booWho([].slice)
+// false
+
+booWho({ "a": 1 })
+// false
+```
