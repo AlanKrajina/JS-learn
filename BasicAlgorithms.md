@@ -26,8 +26,8 @@ For example: 5! = 1 * 2 * 3 * 4 * 5 = 120
 
 ```js
 function factorialize(num) {
-    var cnt = 1;
-    for (var i = 1; i <= num ; i++) {
+    let cnt = 1;
+    for (let i = 1; i <= num ; i++) {
         cnt *= i;
     }
     return cnt;
