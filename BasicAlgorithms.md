@@ -337,3 +337,35 @@ mutation(["Alien", "line"])
 mutation(["floor", "for"])
 // true
 ```
+
+### Chunky Monkey
+
+Write a function that splits an array (first argument) into groups the length of size (second argument) and returns them as a two-dimensional array.
+
+```js
+function chunkArrayInGroups(arr, size) {
+  const chunked_arr = [];
+  let index = 0;
+  while (index < arr.length) {
+    chunked_arr.push(arr.slice(index, size + index));
+    index += size;
+  }
+  return chunked_arr;
+}
+
+// Every will basically give you letter by letter to compare, which we do by using indexOf on the first string. 
+
+// indexOf will give you -1 if the current letter is missing. 
+
+// We check that not to be the case, for if this happens even once every will be false.
+
+
+chunkArrayInGroups(["a", "b", "c", "d"], 2) 
+// [["a", "b"], ["c", "d"]].
+
+chunkArrayInGroups([0, 1, 2, 3, 4, 5], 3) 
+// [[0, 1, 2], [3, 4, 5]].
+
+chunkArrayInGroups([0, 1, 2, 3, 4, 5], 2) 
+// [[0, 1], [2, 3], [4, 5]].
+```
