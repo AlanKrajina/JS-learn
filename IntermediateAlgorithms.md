@@ -60,3 +60,44 @@ diffArray([1, 2, 3, 5], [1, 2, 3, 4, 5])
 // ["diorite", "pink wool"].
 
 ```
+
+### Seek and Destroy
+
+You will be provided with an initial array (the first argument in the destroyer function), followed by one or more arguments. 
+
+Remove all elements from the initial array that are of the same value as these arguments.
+
+You have to use the arguments object.
+
+
+```js
+function destroyer(arr) {
+
+  // arr = [ 1, 2, 3, 1, 2, 3 ]
+
+  // console.log(arguments)
+  // [Arguments] { '0': [ 1, 2, 3, 1, 2, 3 ], '1': 2, '2': 3 }
+
+  // convert arguments into array:
+  // let args = Array.prototype.slice.call(arguments);
+  // [ [ 1, 2, 3, 1, 2, 3 ], 2, 3 ]
+  
+  
+  let args = Array.from(arguments).slice(1); // take 2,3 from arguments -> [ 2, 3 ]
+  return arr.filter(val=>
+     !args.includes(val))   // checking each arr value in args array and returning not included value
+}
+
+destroyer([1, 2, 3, 1, 2, 3], 2, 3) 
+// [1, 1]
+
+destroyer([1, 2, 3, 5, 1, 2, 3], 2, 3) 
+// [1, 5, 1]
+
+destroyer([3, 5, 1, 2, 2], 2, 3, 5) 
+// [1]
+
+destroyer([2, 3, 2, 3], 2, 3) 
+// []
+
+```
