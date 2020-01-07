@@ -49,11 +49,22 @@ function findLongestWordLength(str) {
 
 }
 
-findLongestWordLength("The quick brown fox jumped over the lazy dog");
-
-// findLongestWordLength("What if we try a super-long word such as otorhinolaryngology") 
+findLongestWordLength("What if we try a super-long word such as otorhinolaryngology") 
 
 // 19
+
+
+function findLongestWordLength(str) {
+  let newStr = str.split(' ')
+
+  return newStr.sort(function(a, b){
+    return a.length - b.length;
+  }).pop()
+}
+
+findLongestWordLength("The quick brown fox jumped over the lazy dog");
+
+// jumped
 
 ```
 
