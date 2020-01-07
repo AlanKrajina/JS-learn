@@ -1893,6 +1893,12 @@ console.log(`The word "${word}" ${sentence.includes(word)? 'is' : 'is not'} in t
 // expected output: "The word "fox" is in the sentence"
 
 
+function diffArray(arr1, arr2) {
+  return arr1
+    .concat(arr2)
+    .filter(item => !arr1.includes(item) || !arr2.includes(item));
+}
+// difference between 2 arrays
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ---------------------.indexOf()----------------------------
