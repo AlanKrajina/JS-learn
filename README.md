@@ -52,7 +52,9 @@
 * [What are the benefits of using spread syntax and how is it different from rest syntax?](#what-are-the-benefits-of-using-spread-syntax-and-how-is-it-different-from-rest-syntax)
 * [How can you share code between files?](#how-can-you-share-code-between-files)
 * [Why you might want to create static class members?](#why-you-might-want-to-create-static-class-members)
-* [Array and String methods](#array-and-string-methods)
+* [Array methods](#array-methods)
+* [String methods](#string-methods)
+
 
 
 ### Explain event delegation
@@ -1533,11 +1535,9 @@ ES2015 defines a module syntax which aims to replace both AMD and CommonJS. This
 
 Static class members (properties/methods) are not tied to a specific instance of a class and have the same value regardless of which instance is referring to it. Static properties are typically configuration variables and static methods are usually pure utility functions which do not depend on the state of the instance.
 
-## Array and String methods
+## Array methods
 
 ```javascript
-
-________________________________________________Array methods_____________________________________________________
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ----------------------.forEach-----------------------------
@@ -1848,13 +1848,12 @@ var myChildren = myGirls.concat(myBoys);
 
 // myChildren = ["Cecilie", "Lone", "Emil", "Tobias", "Linus"]
 
+```
 
 
+## Array and String methods
 
-
-
-________________________________________________String methods_____________________________________________________
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String
+```js
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ----------------------.charAt()----------------------------
