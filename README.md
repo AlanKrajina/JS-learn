@@ -1851,7 +1851,7 @@ var myChildren = myGirls.concat(myBoys);
 ```
 
 
-## Array and String methods
+## String methods
 
 ```js
 
