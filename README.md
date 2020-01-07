@@ -1762,15 +1762,26 @@ fruits.sort();        // First sort the elements of fruits
 fruits.reverse();     // Then reverse the order of the elements
                       // ["Mango", "Apple", "Orange", "Banana"]
 
+// ES2015
+const primes = [13, 7, 17, 2, 5, 3];
+const array = [5, 6, -1, 1, 3]
+
+primes.sort((a, b) => a - b)
+
+// [ 2, 3, 5, 7, 13, 17 ]
+
+array.sort((a , b) => a - b)
+
+// [ -1, 1, 3, 5, 6 ]
 
 ---------------- .sort() with a callback ------------------
 
 const primes = [13, 7, 17, 2, 5, 3];
 
-const numberSorter = function (num1, num2) {
+const numberSorter = function (num1, num2) {      // ES5
   return num1 - num2;
 };
- 
+
 primes.sort(numberSorter);
 // => [2, 3, 5, 7, 13, 17]
 
