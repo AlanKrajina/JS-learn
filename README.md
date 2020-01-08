@@ -110,7 +110,7 @@ In short, `inheritance` in JavaScript is implemented through the prototype chain
 
 Functions have a prototype property in addition to the __proto__ property. When using a constructor function with `new`, it’s good practice to place methods on the function’s prototype instead of on the object itself. The returned object’s __proto__ will be equal to the function’s prototype so it will inherit all methods on the function’s prototype. This prevents unnecessary memory usage and improves speed.
 
-
+We can check if an object has its own property by using the hasOwnProperty method. We can manually set up inheritance by using `Object.create`.
 
 ### Explain how `this` works in JavaScript
 
