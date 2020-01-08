@@ -20,7 +20,7 @@ dog.sayLegs();
 ### Constructor function with arguments ES6, ES5
 
 ```js
-#### ES6
+ES6
 
 class Person {
   constructor(firstName, lastName, age, eyeColor) {
@@ -34,7 +34,7 @@ class Person {
 }}
 
 
-#### ES5
+ES5
 
 function Person(firstName, lastName, age, eyeColor) {
   this.firstName = firstName; 
@@ -58,9 +58,11 @@ myMother.age
 myMother.changeName("Angie")
 myMother.lastName
 // Angie
+```
 
 #### Verify an Object's Constructor with instanceof
 
+```js
 myMother instanceof Person 
 
 // true
