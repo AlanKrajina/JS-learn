@@ -6,7 +6,7 @@
 * [Scope](#scope)
 * [What is "use strict";? what are the advantages and disadvantages to using it?](#what-is-use-strict-what-are-the-advantages-and-disadvantages-to-using-it)
 * [Explain how prototypal inheritance works](#explain-how-prototypal-inheritance-works)
-* [Difference Between Class & Prototypal Inheritance?](#difference-between-class-prototypal-inheritance)
+* [Difference Between Class and Prototypal Inheritance?](#difference-between-class-and-prototypal-inheritance)
 * [Explain how `this` works in JavaScript](#explain-how-this-works-in-javascript)
 * [What's the difference between `.call` and `.apply`?](#whats-the-difference-between-call-and-apply)
 * [Bind, Call, Apply](#Bind-Call-Apply)
@@ -351,7 +351,7 @@ Functions have a prototype property in addition to the __proto__ property. When 
 We can check if an object has its own property by using the hasOwnProperty method. We can manually set up inheritance by using `Object.create`.
 
 
-### Difference Between Class & Prototypal Inheritance?
+### Difference Between Class and Prototypal Inheritance?
 
 `Class Inheritance`: 
 A class is like a blueprint — a description of the object to be created. 
