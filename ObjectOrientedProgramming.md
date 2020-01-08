@@ -58,4 +58,12 @@ myMother.age
 myMother.changeName("Angie")
 myMother.lastName
 // Angie
+
+#### Verify an Object's Constructor with instanceof
+
+myMother instanceof Person 
+
+// true
+
+
 ```
