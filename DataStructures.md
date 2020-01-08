@@ -177,10 +177,220 @@ There are a few different types of linked lists. But the most popular ones are: 
 
 Main operations on a linked list are: `insert` and `delete`.
 
-`Insert` operation on a singly linked list:
+- add(element) 
+// It adds an element at the end of list.
 
-An insert operation will insert a node into the list. There can be three cases for the insert operation.
+- insertAt(element, index) 
+// It inserts an element at the given index in a list.
 
-- Inserting a new node before the head (at the beginning of the list).
-- Inserting a new node after the tail (i.e. at the end of the list).
-- Inserting a new node in the middle of the list (at a given random position).
+- removeFrom(index) 
+// It removes and returns an element from the list from the specified index
+
+- removeElement(element) 
+// This method removes element from the list. It returns the removed element, or if its not found it returns -1.
+
+```js
+1)
+// User defined class node 
+
+class Node { 
+    // constructor 
+    constructor(element) 
+    { 
+        this.element = element; 
+        this.next = null
+    } 
+} 
+
+2) 
+// linkedlist class 
+
+class LinkedList { 
+    constructor() 
+    { 
+        this.head = null; 
+        this.size = 0; 
+    } 
+  
+    // functions to be implemented:
+      // add(element) 
+      // insertAt(element, location) 
+      // removeFrom(location) 
+      // removeElement(element) 
+  
+    // Helper Methods:
+      // isEmpty 
+      // size_Of_List 
+      // PrintList 
+} 
+```
+
+#### add(element)
+
+```js
+// adds an element at the end 
+// of list 
+
+add(element) 
+{ 
+    // creates a new node 
+    var node = new Node(element); 
+  
+    // to store current node 
+    var current; 
+  
+    // if list is Empty add the 
+    // element and make it head 
+    if (this.head == null) 
+        this.head = node; 
+    else { 
+        current = this.head; 
+  
+        // iterate to the end of the 
+        // list 
+        while (current.next) { 
+            current = current.next; 
+        } 
+  
+        // add node 
+        current.next = node; 
+    } 
+    this.size++; 
+} 
+
+
+In the order to add an element at the end of the list we consider the following :
+
+- If the list is empty then add an element and it will be head
+- If the list is not empty then iterate to the end of the list and add an element at the end of the list
+current is used to iterate through the list after every iteration we update it to be the next of the current node. If next is null(the last element of a list contains null in the next) then we add the element to the list.
+
+```
+
+#### insertAt(element, index)
+
+```js
+// insert element at the position index of the list 
+
+insertAt(element, index) 
+{ 
+    if (index > 0 && index > this.size) 
+        return false; 
+    else { 
+        // creates a new node 
+        var node = new Node(element); 
+        var curr, prev; 
+  
+        curr = this.head; 
+  
+        // add the element to the 
+        // first index 
+        if (index == 0) { 
+            node.next = head; 
+            this.head = node; 
+        } else { 
+            curr = this.head; 
+            var it = 0; 
+  
+            // iterate over the list to find 
+            // the position to insert 
+            while (it < index) { 
+                it++; 
+                prev = curr; 
+                curr = curr.next; 
+            } 
+  
+            // adding an element 
+            node.next = curr; 
+            prev.next = node; 
+        } 
+        this.size++; 
+    } 
+} 
+
+
+In order to add an element at the end of the list we consider three conditions as follows:
+
+- if the index is zero we add an element at the front of the list and make it head
+- If the index is the last position of the list we append the element at the end of the list
+- if the index is inbetween 0 or size – 1 we iterate over to the index and add an element at that index
+In the above method prev holds the previous of current node.
+```
+
+#### removeFrom(index) 
+
+```js
+// removes an element from the specified location 
+
+removeFrom(index) 
+{ 
+    if (index > 0 && index > this.size) 
+        return -1; 
+    else { 
+        var curr, prev, it = 0; 
+        curr = this.head; 
+        prev = curr; 
+  
+        // deleting first element 
+        if (index == = 0) { 
+            this.head = curr.next; 
+        } else { 
+            // iterate over the list to the 
+            // position to removce an element 
+            while (it < index) { 
+                it++; 
+                prev = curr; 
+                curr = curr.next; 
+            } 
+  
+            // remove the element 
+            prev.next = curr.next; 
+        } 
+        this.size--; 
+  
+        // return the remove element 
+        return curr.element; 
+    } 
+} 
+
+In order to remove an element from the list we consider three condition:
+
+- If the index is 0 then we remove head and make next node head of the list
+- if the index is size – 1 then we remove the last element form the list and make prev the last element
+- if its in between 0 to size – 1 we remove the element by using prev and current node
+
+```
+
+#### removeElement(element)
+
+```js
+// removes a given element from the list 
+
+removeElement(element) 
+{ 
+    var current = this.head; 
+    var prev = null; 
+  
+    // iterate over the list 
+    while (current != null) { 
+        // comparing element with current 
+        // element if found then remove the 
+        // and return true 
+        if (current.element == = element) { 
+            if (prev == null) { 
+                this.head = current.next; 
+            } else { 
+                prev.next = current.next; 
+            } 
+            this.size--; 
+            return current.element; 
+        } 
+        prev = current; 
+        current = current.next; 
+    } 
+    return -1; 
+} 
+
+The above method is just a modification of removeFrom(index), as it searches for an element and removes it, rather than removing from a specified location
+```
+
