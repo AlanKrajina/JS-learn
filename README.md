@@ -64,11 +64,11 @@ The latest ECMAScript standard defines 8 data types:
 
 7 data types that are primitives:
 - `Boolean`
--`Null`
+- `Null`
 - `Undefined`
 - `Number`
 - `BigInt`
--`String`
+- `String`
 - `Symbol`
 - and `Object`
 
