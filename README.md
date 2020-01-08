@@ -11,10 +11,10 @@
 * [What's the difference between `.call` and `.apply`?](#whats-the-difference-between-call-and-apply)
 * [Bind, Call, Apply](#Bind-Call-Apply)
 * [Module](#Module)
+* [What is a closure, and how/why would you use one?](#what-is-a-closure-and-howwhy-would-you-use-one)
 * [Explain event delegation](#explain-event-delegation)
 * [Explain why the following doesn't work as an IIFE: `function foo(){ }();`. What needs to be changed to properly make it an IIFE?](#explain-why-the-following-doesnt-work-as-an-iife-function-foo--what-needs-to-be-changed-to-properly-make-it-an-iife)
 * [What's the difference between a variable that is: `null`, `undefined` or undeclared? How would you go about checking for any of these states?](#whats-the-difference-between-a-variable-that-is-null-undefined-or-undeclared-how-would-you-go-about-checking-for-any-of-these-states)
-* [What is a closure, and how/why would you use one?](#what-is-a-closure-and-howwhy-would-you-use-one)
 * [What's a typical use case for anonymous functions?](#whats-a-typical-use-case-for-anonymous-functions)
 * [How do you organize your code? (module pattern, classical inheritance?)](#how-do-you-organize-your-code-module-pattern-classical-inheritance)
 * [What's the difference between host objects and native objects?](#whats-the-difference-between-host-objects-and-native-objects)
@@ -732,6 +732,49 @@ https://www.freecodecamp.org/news/javascript-modules-a-beginner-s-guide-783f7d7a
 3) `Reusability`
 
 
+### What is a closure, and how/why would you use one?
+
+A closure is the combination of a function and the lexical environment within which that function was declared. The word "lexical" refers to the fact that lexical scoping uses the location where a variable is declared within the source code to determine where that variable is available. Closures are functions that have access to the outer (enclosing) function's variables—scope chain even after the outer function has returned.
+
+```js
+const newTaxFunction = function (countryName, taxRate, ...exemptItems) {
+  return function (item, priceInCents) {
+    const formattedPrice = '$' + (priceInCents / 100).toFixed(2);
+    const exempt = exemptItems.indexOf(item) > -1;
+    const taxDue = exempt ? 0 : priceInCents * taxRate / 100;
+    const formattedTaxDue = '$' + taxDue.toFixed(2);
+ 
+    console.log(`In ${countryName}, ${item} costs ${formattedPrice}.`);
+    console.log('That item', exempt ? 'is' : 'is not', 'exempt from taxation.');
+    console.log(`The total tax due is: ${formattedTaxDue}.`);
+  };
+};
+
+
+
+
+const franceTax = newTaxFunction('France', 0.15, 'wine', 'macaron', 'baguette', 'croissant');
+ 
+const canadaTax = newTaxFunction('Canada', 0.125, 'maple syrup', 'poutine', 'kindness');
+ 
+const mexicoTax = newTaxFunction('Mexico', 0.05, 'queso', 'futbol', 'tequila', 'avocado');
+ 
+canadaTax('poutine', 599);
+// LOG: In Canada, poutine costs $5.99.
+// LOG: That item is exempt from taxation.
+// LOG: The total tax due is: $0.00.
+ 
+canadaTax('futbol', 1999);
+// LOG: In Canada, futbol costs $19.99.
+// LOG: That item is not exempt from taxation.
+// LOG: The total tax due is: $2.50.
+ 
+mexicoTax('Big Mac', 199);
+// LOG: In Mexico, Big Mac costs $1.99.
+// LOG: That item is not exempt from taxation.
+// LOG: The total tax due is: $0.10.
+```
+
 ### Explain event delegation
 
 Event delegation is a technique involving adding event listeners to a parent element instead of adding them to the descendant elements. The listener will fire whenever the event is triggered on the descendant elements due to event bubbling up the DOM. The benefits of this technique are:
@@ -801,49 +844,6 @@ console.log(foo == undefined); // true. Wrong, don't use this to check!
 
 As a personal habit, I never leave my variables undeclared or unassigned. I will explicitly assign `null` to them after declaring if I don't intend to use it yet. If you use a linter in your workflow, it will usually also be able to check that you are not referencing undeclared variables.
 
-
-### What is a closure, and how/why would you use one?
-
-A closure is the combination of a function and the lexical environment within which that function was declared. The word "lexical" refers to the fact that lexical scoping uses the location where a variable is declared within the source code to determine where that variable is available. Closures are functions that have access to the outer (enclosing) function's variables—scope chain even after the outer function has returned.
-
-```js
-const newTaxFunction = function (countryName, taxRate, ...exemptItems) {
-  return function (item, priceInCents) {
-    const formattedPrice = '$' + (priceInCents / 100).toFixed(2);
-    const exempt = exemptItems.indexOf(item) > -1;
-    const taxDue = exempt ? 0 : priceInCents * taxRate / 100;
-    const formattedTaxDue = '$' + taxDue.toFixed(2);
- 
-    console.log(`In ${countryName}, ${item} costs ${formattedPrice}.`);
-    console.log('That item', exempt ? 'is' : 'is not', 'exempt from taxation.');
-    console.log(`The total tax due is: ${formattedTaxDue}.`);
-  };
-};
-
-
-
-
-const franceTax = newTaxFunction('France', 0.15, 'wine', 'macaron', 'baguette', 'croissant');
- 
-const canadaTax = newTaxFunction('Canada', 0.125, 'maple syrup', 'poutine', 'kindness');
- 
-const mexicoTax = newTaxFunction('Mexico', 0.05, 'queso', 'futbol', 'tequila', 'avocado');
- 
-canadaTax('poutine', 599);
-// LOG: In Canada, poutine costs $5.99.
-// LOG: That item is exempt from taxation.
-// LOG: The total tax due is: $0.00.
- 
-canadaTax('futbol', 1999);
-// LOG: In Canada, futbol costs $19.99.
-// LOG: That item is not exempt from taxation.
-// LOG: The total tax due is: $2.50.
- 
-mexicoTax('Big Mac', 199);
-// LOG: In Mexico, Big Mac costs $1.99.
-// LOG: That item is not exempt from taxation.
-// LOG: The total tax due is: $0.10.
-```
 
 ### What's a typical use case for anonymous functions?
 
