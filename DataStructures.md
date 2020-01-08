@@ -22,58 +22,54 @@ Arguably the most important Stack in JavaScript is the `call stack` where we pus
 
 Programmatically, it’s just an `array` with two principled operations: `push` and `pop`. 
 
-`Push` adds elements to the top of the array, while `Pop` removes them from the same location. In other words, Stacks follow the “Last In, First Out” protocol (LIFO).
-Below is an example of a Stack in code. Notice that we can reverse the order of the stack: the bottom becomes the top and the top becomes the bottom. As such, we can use the array’s unshift and shift methods in place of push and pop, respectively.
+`Push` adds elements to the top of the array, while `Pop` removes them from the same location. 
+
+In other words, Stacks follow the “Last In, First Out” protocol (LIFO).
 
 
-#### Push
 ```javascript
 
-Adds an element to the stack.
-// This method adds an element at the top of the stack.
+class BookStack {
+  constructor() {
+    this.stack = [];               // define a class BookStack and give it a constructor method that has one property
+  }
 
-// push function: 
+  push(item) {
+    return this.stack.push(item);  // add the item to the end of the array The array.push() method returns the new length array.
+  }
 
-push(element) 
-{ 
-    // push element into the items 
-    this.items.push(element); 
-} 
+  pop() {
+    return this.stack.pop();       // remove the last item in the array, array.pop() method returns the item which was added,                                              // or undefined if the array is now empty
+  }
+
+  peek() {
+    return this.stack[this.length - 1]; // we want to return, or peek at, the last item in the stack
+  }
+
+  get length() {                     // return length
+    return this.stack.length;
+  }
+
+  isEmpty() {                        // return true if there are no items in the stack. So if the length is zero, return true.
+    return this.length === 0;
+  }
+}
+
+RESULT:
+
+let myBookStack = new BookStack();
+myBookStack.push('Oathbringer');
+myBookStack.push('The Stand');
+console.log(myBookStack.length); // 2
+console.log(myBookStack.peek()); // The Stand
+myBookStack.pop();
+console.log(myBookStack.length); // 1
+console.log(myBookStack.peek()); // Oathbringer
+console.log(myBookStack.isEmpty()); // false
+myBookStack.pop();
+console.log(myBookStack.isEmpty()); // true
+
+
 ```
 
-#### Pop()
-```javascript
 
-Removes an element from the stack, if the function is call on an empty stack it indicates “Underflow”.
-// This method returns the topmost element of stack and removes it. Return underflow when called on an empty stack.
-
-
-// pop function:
-
-pop() 
-{ 
-    // return top most element in the stack 
-    // and removes it from the stack 
-    // Underflow if stack is empty 
-    if (this.items.length == 0) 
-        return "Underflow"; 
-    return this.items.pop(); 
-} 
-
-```
-
-#### Peek()
-```javascript
-
-Returns the top most elements in the stack, but doesn’t delete it.
-// Return the topmost element without removing it from the stack.
-
-// peek function:
-
-peek() 
-{ 
-    // return the top most element from the stack 
-    // but does'nt delete it. 
-    return this.items[this.items.length - 1]; 
-} 
-```
