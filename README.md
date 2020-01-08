@@ -736,6 +736,9 @@ https://www.freecodecamp.org/news/javascript-modules-a-beginner-s-guide-783f7d7a
 
 A closure is the combination of a function and the lexical environment within which that function was declared. The word "lexical" refers to the fact that lexical scoping uses the location where a variable is declared within the source code to determine where that variable is available. Closures are functions that have access to the outer (enclosing) function's variables—scope chain even after the outer function has returned.
 
+Closure is a locally declared variable related to a function which stays in memory when the function has returned.
+
+
 ```js
 const newTaxFunction = function (countryName, taxRate, ...exemptItems) {
   return function (item, priceInCents) {
