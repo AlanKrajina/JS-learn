@@ -28,16 +28,13 @@
 * [Difference between document `load` event and document `DOMContentLoaded` event?](#difference-between-document-load-event-and-document-domcontentloaded-event)
 * [What is the difference between `==` and `===`?](#what-is-the-difference-between--and-)
 * [Explain the same-origin policy with regards to JavaScript.](#explain-the-same-origin-policy-with-regards-to-javascript)
-* [Make this work: `duplicate([1,2,3,4,5]); // [1,2,3,4,5,1,2,3,4,5]`](#make-this-work)
 * [Why is it called a Ternary expression, what does the word "Ternary" indicate?](#why-is-it-called-a-ternary-expression-what-does-the-word-ternary-indicate)
-* [Create a for loop that iterates up to 100 while outputting "fizz" at multiples of 3, "buzz" at multiples of 5 and "fizzbuzz" at multiples of 3 and 5](#create-a-for-loop-that-iterates-up-to-100-while-outputting-fizz-at-multiples-of-3-buzz-at-multiples-of-5-and-fizzbuzz-at-multiples-of-3-and-5)
 * [Why would you use something like the `load` event? Does this event have disadvantages? Do you know any alternatives, and why would you use those?](#why-would-you-use-something-like-the-load-event-does-this-event-have-disadvantages-do-you-know-any-alternatives-and-why-would-you-use-those)
 * [Explain what a single page app is and how to make one SEO-friendly.](#explain-what-a-single-page-app-is-and-how-to-make-one-seo-friendly)
 * [What is the extent of your experience with Promises and/or their polyfills?](#what-is-the-extent-of-your-experience-with-promises-andor-their-polyfills)
 * [What are the pros and cons of using Promises instead of callbacks?](#what-are-the-pros-and-cons-of-using-promises-instead-of-callbacks)
 * [What are some of the advantages/disadvantages of writing JavaScript code in a language that compiles to JavaScript?](#what-are-some-of-the-advantagesdisadvantages-of-writing-javascript-code-in-a-language-that-compiles-to-javascript)
 * [What tools and techniques do you use debugging JavaScript code?](#what-tools-and-techniques-do-you-use-for-debugging-javascript-code)
-* [What language constructions do you use for iterating over object properties and array items?](#what-language-constructions-do-you-use-for-iterating-over-object-properties-and-array-items)
 * [Explain the difference between mutable and immutable objects.](#explain-the-difference-between-mutable-and-immutable-objects)
 * [Explain the difference between synchronous and asynchronous functions.](#explain-the-difference-between-synchronous-and-asynchronous-functions)
 * [What is event loop? What is the difference between call stack and task queue?](#what-is-event-loop-what-is-the-difference-between-call-stack-and-task-queue)
@@ -49,10 +46,9 @@
 * [What is the definition of a higher-order function?](#what-is-the-definition-of-a-higher-order-function)
 * [Can you give an example for destructuring an object or an array?](#can-you-give-an-example-for-destructuring-an-object-or-an-array)
 * [ES6 Template Literals offer a lot of flexibility in generating strings, can you give an example?](#es6-template-literals-offer-a-lot-of-flexibility-in-generating-strings-can-you-give-an-example)
-* [Can you give an example of a curry function and why this syntax offers an advantage?](#can-you-give-an-example-of-a-curry-function-and-why-this-syntax-offers-an-advantage)
 * [What are the benefits of using spread syntax and how is it different from rest syntax?](#what-are-the-benefits-of-using-spread-syntax-and-how-is-it-different-from-rest-syntax)
 * [How can you share code between files?](#how-can-you-share-code-between-files)
-* [Why you might want to create static class members?](#why-you-might-want-to-create-static-class-members)
+* [Object iteration](#object-iteration)
 * [Array methods](#array-methods)
 * [String methods](#string-methods)
 
@@ -998,47 +994,9 @@ console.log(a == undefined); // true
 The same-origin policy prevents JavaScript from making requests across domain boundaries. An origin is defined as a combination of URI scheme, hostname, and port number. This policy prevents a malicious script on one page from obtaining access to sensitive data on another web page through that page's Document Object Model.
 
 
-### Make this work:
-
-```js
-duplicate([1, 2, 3, 4, 5]); // [1,2,3,4,5,1,2,3,4,5]
-```
-
-```js
-function duplicate(arr) {
-  return arr.concat(arr);
-}
-
-duplicate([1, 2, 3, 4, 5]); // [1,2,3,4,5,1,2,3,4,5]
-```
-
-Or with ES6:
-
-```js
-const duplicate = (arr) => [...arr, ...arr];
-
-duplicate([1, 2, 3, 4, 5]); // [1,2,3,4,5,1,2,3,4,5] 
-```
-
-
 ### Why is it called a Ternary expression, what does the word "Ternary" indicate?
 
 "Ternary" indicates three, and a ternary expression accepts three operands, the test condition, the "then" expression and the "else" expression. Ternary expressions are not specific to JavaScript and I'm not sure why it is even in this list.
-
-
-### Create a for loop that iterates up to `100` while outputting **"fizz"** at multiples of `3`, **"buzz"** at multiples of `5` and **"fizzbuzz"** at multiples of `3` and `5`.
-
-
-```js
-for (let i = 1; i <= 100; i++) {
-  let f = i % 3 == 0,
-    b = i % 5 == 0;
-  console.log(f ? (b ? 'FizzBuzz' : 'Fizz') : b ? 'Buzz' : i);
-}
-```
-
-I would not advise you to write the above during interviews though. Just stick with the long but clear approach. For more wacky versions of FizzBuzz, check out the reference link below.
-
 
 
 ### Why would you use something like the `load` event? Does this event have disadvantages? Do you know any alternatives, and why would you use those?
@@ -1129,13 +1087,6 @@ Practically, ES2015 has vastly improved JavaScript and made it much nicer to wri
   * [Chrome Devtools](https://hackernoon.com/twelve-fancy-chrome-devtools-tips-dc1e39d10d9d)
   * `debugger` statement
   * Good old `console.log` debugging
-
-
-### What language constructions do you use for iterating over object properties?
-
-* `for-in` loops - `for (var property in obj) { console.log(property); }`. However, this will also iterate through its inherited properties, and you will add an `obj.hasOwnProperty(property)` check before using it.
-* `Object.keys()` - `Object.keys(obj).forEach(function (property) { ... })`. `Object.keys()` is a static method that will lists all enumerable properties of the object that you pass it.
-* `Object.getOwnPropertyNames()` - `Object.getOwnPropertyNames(obj).forEach(function (property) { ... })`. `Object.getOwnPropertyNames()` is a static method that will lists all enumerable and non-enumerable properties of the object that you pass it.
 
 
 ### Explain the difference between mutable and immutable objects.
@@ -1575,38 +1526,6 @@ document.body.innerHTML = `
 **Note that your code may be susceptible to XSS by using `.innerHTML`. Sanitize your data before displaying it if it came from a user!**
 
 
-### Can you give an example of a curry function and why this syntax offers an advantage?
-
-Currying is a pattern where a function with more than one parameter is broken into multiple functions that, when called in series, will accumulate all of the required parameters one at a time. This technique can be useful for making code written in a functional style easier to read and compose. It's important to note that for a function to be curried, it needs to start out as one function, then broken out into a sequence of functions that each accepts one parameter.
-
-```js
-function curry(fn) {
-  if (fn.length === 0) {
-    return fn;
-  }
-
-  function _curried(depth, args) {
-    return function(newArgument) {
-      if (depth - 1 === 0) {
-        return fn(...args, newArgument);
-      }
-      return _curried(depth - 1, [...args, newArgument]);
-    };
-  }
-
-  return _curried(fn.length, []);
-}
-
-function add(a, b) {
-  return a + b;
-}
-
-var curriedAdd = curry(add);
-var addFive = curriedAdd(5);
-
-var result = [0, 1, 2, 3, 4, 5].map(addFive); // [5, 6, 7, 8, 9, 10]
-```
-
 
 ### What are the benefits of using spread syntax and how is it different from rest syntax?
 
@@ -1658,10 +1577,47 @@ On the server (Node.js), the common way has been to use CommonJS. Each file is t
 ES2015 defines a module syntax which aims to replace both AMD and CommonJS. This will eventually be supported in both browser and Node environments.
 
 
+### Object iteration
 
-### Why you might want to create static class members?
+For most objects,  `for .. in` :
 
-Static class members (properties/methods) are not tied to a specific instance of a class and have the same value regardless of which instance is referring to it. Static properties are typically configuration variables and static methods are usually pure utility functions which do not depend on the state of the instance.
+```js
+for (let key in yourobject) {
+  console.log(key, yourobject[key]);
+}
+```
+
+With ES6, if you need both `keys` and `values` simultaneously, do:
+
+```js
+for (let [key, value] of Object.entries(yourobject)) {
+    console.log(key, value);
+}
+```
+
+To avoid logging inherited properties, check with `hasOwnProperty` :
+
+```js
+for (let key in yourobject) {
+   if (yourobject.hasOwnProperty(key)) {
+      console.log(key, yourobject[key]);
+   }
+}
+```
+
+Iterate on properties by index: yourobject[keys[i]]
+
+```js
+
+let keys = [];
+for (let key in yourobject) {      
+    if (yourobject.hasOwnProperty(key)) keys.push(key);
+}
+ 
+for (let i=300; i < keys.length && i < 600; i++) { 
+   console.log(keys[i], yourobject[keys[i]]);
+} 
+```
 
 ## Array methods
 
