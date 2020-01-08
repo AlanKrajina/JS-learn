@@ -56,7 +56,6 @@ myMother.age
 // 48
 
 myMother.changeName("Angie")
-
 myMother.lastName
-"Angie"
+// Angie
 ```
