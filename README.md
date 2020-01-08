@@ -131,7 +131,7 @@ console.log(bar); // [Function: bar]
 - Lexical Scope
 - Scope chain
 
-##### Global scope
+#### Global scope
 
 ```js
 var carName = "Volvo";
@@ -145,7 +145,7 @@ function myFunction() {
 }
 ```
 
-##### Local scope
+#### Local scope
 
 ```js
 // code here can NOT use carName
@@ -158,7 +158,7 @@ function myFunction() {
 }
 ```
 
-##### Function Scope
+#### Function Scope
 
 Function scope means that parameters and variables defined in a function are visible everywhere within the function, but are not visible outside of the function.
 
@@ -180,7 +180,7 @@ doSomething();
 }
 ```
 
-##### Block Scope
+#### Block Scope
 
 In contrast, the var declaration has no block scope.
 
@@ -206,7 +206,7 @@ myVar
 }
 ```
 
-##### Lexical Scope
+#### Lexical Scope
 
 Lexical scope is the ability of the inner function to access the outer scope in which it is defined.
 
@@ -234,7 +234,7 @@ The local function scope of autorun() is the lexical scope of the log() function
 // 1
 ```
 
-##### Scope Chain
+#### Scope Chain
 
 Every scope has a link to the parent scope. 
 
