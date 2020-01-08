@@ -137,3 +137,50 @@ console.log(myMovieQueue.peek()); // Lisa
 
 
 ```
+
+
+## Linked List
+
+Like arrays, `Linked Lists` store data elements in sequential order. 
+
+Instead of keeping indexes, `linked lists` hold pointers to other elements. 
+
+The first node is called the `head` while the last node is called the `tail`. 
+
+In a singly-linked list, each node has only one pointer to the next node. In a doubly-linked list, a pointer to the previous node is also kept. Therefore, we can also start from the tail and walk “backwards” toward the head.
+
+Like arrays, `linked lists` can operate as `stacks`. It’s as simple as having the head be the only place for insertion and removal. 
+
+`Linked lists` can also operate as `queues`. This can be achieved with a doubly-linked list, where insertion occurs at the tail and removal occurs at the head, or vice versa. 
+
+For large numbers of elements, this way of implementing queues is more performant than using arrays because `shift` and `unshift` operations at the beginning of arrays require linear time to re-index every subsequent element.
+
+`Linked lists` are useful on both the client and server. On the client, state management libraries like `Redux` structure its middleware logic in a linked-list fashion. When `actions` are dispatched, they are piped from one middleware to the next until all is visited before reaching the `reducers`. On the server, web frameworks like `Express` also structure its middleware logic in a similar fashion. When a request is received, it is piped from one middleware to the next until a response is issued.
+
+#### Another advantage of a linked list
+
+In contrast to an array, which stores data contiguously in memory, a linked list can easily insert or remove nodes from the list without reorganization of the entire data structure.
+
+#### Few drawbacks:
+
+Random access of data elements is not allowed. Nodes must be accessed sequentially starting from the first one. Therefore, search operation is slow on a linked list.
+
+It uses more memory than arrays because of the storage used by their pointers.
+
+### Types of Linked lists
+
+There are a few different types of linked lists. But the most popular ones are: `singly`, `doubly` and `circular`.
+
+#### Singly linked list
+
+![Singly](https://miro.medium.com/max/1369/1*Ftrp2Eg3-AuDpWa5Pe1fUQ.png)
+
+Main operations on a linked list are: `insert` and `delete`.
+
+`Insert` operation on a singly linked list:
+
+An insert operation will insert a node into the list. There can be three cases for the insert operation.
+
+- Inserting a new node before the head (at the beginning of the list).
+- Inserting a new node after the tail (i.e. at the end of the list).
+- Inserting a new node in the middle of the list (at a given random position).
