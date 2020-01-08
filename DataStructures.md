@@ -76,6 +76,8 @@ console.log(myBookStack.isEmpty()); // true
 
 A queue is similar to a stack in structure and methods, however the paradigm is different. 
 
+Programmatically, Queues are just arrays with two primary operations: `unshift` and `pop`.
+
 Queues use the “first-in-first-out” or “FIFO” method. This can be thought of like a queue, or line, of people waiting to buy movie tickets.
 
 The person who’s been waiting the longest in line gets served before the person who just joined.
