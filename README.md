@@ -1,12 +1,13 @@
 ## JS Questions - updated
 
 
-* [Explain event delegation](#explain-event-delegation)
+* [Data types](#data-types)
 * [Explain how prototypal inheritance works](#explain-how-prototypal-inheritance-works)
 * [Explain how `this` works in JavaScript](#explain-how-this-works-in-javascript)
 * [What's the difference between `.call` and `.apply`?](#whats-the-difference-between-call-and-apply)
 * [Bind, Call, Apply](#Bind-Call-Apply)
 * [What is "use strict";? what are the advantages and disadvantages to using it?](#what-is-use-strict-what-are-the-advantages-and-disadvantages-to-using-it)
+* [Explain event delegation](#explain-event-delegation)
 * [Explain why the following doesn't work as an IIFE: `function foo(){ }();`. What needs to be changed to properly make it an IIFE?](#explain-why-the-following-doesnt-work-as-an-iife-function-foo--what-needs-to-be-changed-to-properly-make-it-an-iife)
 * [What's the difference between a variable that is: `null`, `undefined` or undeclared? How would you go about checking for any of these states?](#whats-the-difference-between-a-variable-that-is-null-undefined-or-undeclared-how-would-you-go-about-checking-for-any-of-these-states)
 * [What is a closure, and how/why would you use one?](#what-is-a-closure-and-howwhy-would-you-use-one)
@@ -57,13 +58,19 @@
 
 
 
-### Explain event delegation
+### Data types
 
-Event delegation is a technique involving adding event listeners to a parent element instead of adding them to the descendant elements. The listener will fire whenever the event is triggered on the descendant elements due to event bubbling up the DOM. The benefits of this technique are:
+The latest ECMAScript standard defines 8 data types:
 
-* Memory footprint goes down because only one single handler is needed on the parent element, rather than having to attach event handlers on each descendant.
-* There is no need to unbind the handler from elements that are removed and to bind the event for new elements.
-
+7 data types that are primitives:
+- `Boolean`
+ -`Null`
+- `Undefined`
+- `Number`
+- `BigInt`
+ -`String`
+- `Symbol`
+and `Object`
 
 ### Explain how prototypal inheritance works
 
@@ -480,6 +487,14 @@ function noInferringAllowed() {
 looseyGoosey() === window; //=> true
 noInferringAllowed() === undefined //=> true
 ```
+
+
+### Explain event delegation
+
+Event delegation is a technique involving adding event listeners to a parent element instead of adding them to the descendant elements. The listener will fire whenever the event is triggered on the descendant elements due to event bubbling up the DOM. The benefits of this technique are:
+
+* Memory footprint goes down because only one single handler is needed on the parent element, rather than having to attach event handlers on each descendant.
+* There is no need to unbind the handler from elements that are removed and to bind the event for new elements.
 
 
 #### Can you give an example of one of the ways that working with this has changed in ES6?
