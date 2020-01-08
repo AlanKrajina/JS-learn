@@ -263,7 +263,8 @@ In the order to add an element at the end of the list we consider the following 
 
 - If the list is empty then add an element and it will be head
 - If the list is not empty then iterate to the end of the list and add an element at the end of the list
-current is used to iterate through the list after every iteration we update it to be the next of the current node. If next is null(the last element of a list contains null in the next) then we add the element to the list.
+`current` is used to iterate through the list after every iteration we update it to be the next of the current node. 
+If next is null(the last element of a list contains null in the next) then we add the element to the list.
 
 ```
 
