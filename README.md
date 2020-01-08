@@ -4,11 +4,11 @@
 * [Data types](#data-types)
 * [Hoisting](#hoisting)
 * [Scope](#scope)
+* [What is "use strict";? what are the advantages and disadvantages to using it?](#what-is-use-strict-what-are-the-advantages-and-disadvantages-to-using-it)
 * [Explain how prototypal inheritance works](#explain-how-prototypal-inheritance-works)
 * [Explain how `this` works in JavaScript](#explain-how-this-works-in-javascript)
 * [What's the difference between `.call` and `.apply`?](#whats-the-difference-between-call-and-apply)
 * [Bind, Call, Apply](#Bind-Call-Apply)
-* [What is "use strict";? what are the advantages and disadvantages to using it?](#what-is-use-strict-what-are-the-advantages-and-disadvantages-to-using-it)
 * [Explain event delegation](#explain-event-delegation)
 * [Explain why the following doesn't work as an IIFE: `function foo(){ }();`. What needs to be changed to properly make it an IIFE?](#explain-why-the-following-doesnt-work-as-an-iife-function-foo--what-needs-to-be-changed-to-properly-make-it-an-iife)
 * [What's the difference between a variable that is: `null`, `undefined` or undeclared? How would you go about checking for any of these states?](#whats-the-difference-between-a-variable-that-is-null-undefined-or-undeclared-how-would-you-go-about-checking-for-any-of-these-states)
@@ -124,7 +124,186 @@ console.log(bar); // [Function: bar]
 
 ### Scope
 
+- Global scope
+- Local scope
+- Function Scope
+- Block Scope
+- Lexical Scope
+- Scope chain
 
+##### Global scope
+
+```js
+var carName = "Volvo";
+
+// code here can use carName
+
+function myFunction() {
+
+  // code here can also use carName
+
+}
+```
+
+##### Local scope
+
+```js
+// code here can NOT use carName
+
+function myFunction() {
+  var carName = "Volvo";
+
+  // code here CAN use carName
+
+}
+```
+
+##### Function Scope
+
+Function scope means that parameters and variables defined in a function are visible everywhere within the function, but are not visible outside of the function.
+
+```js
+function doSomething(){
+  console.log(x);
+  var x = 1;
+}
+doSomething(); //undefined
+
+
+function doSomething(){
+  console.log(x);
+  let x = 1;
+}
+doSomething();
+//Uncaught ReferenceError: x is not defined
+
+}
+```
+
+##### Block Scope
+
+In contrast, the var declaration has no block scope.
+
+Variables declared with let and const can have block scope. They can only be accessed in the block in which they are defined.
+
+```js
+if(true){
+    var myVar = 1        // var
+    }
+
+myVar
+// 1
+
+
+if(true){
+    let myVar = 1       // let
+    }
+
+myVar
+// VM637:1 Uncaught ReferenceError: myVar is not defined
+//     at <anonymous>:1:1
+
+}
+```
+
+##### Lexical Scope
+
+Lexical scope is the ability of the inner function to access the outer scope in which it is defined.
+
+The log function is a closure. It refers the x variable from its parent function autorun(), not the one from the run() function.
+
+The closure function has access to the scope in which it was created, not the scope in which it was executed.
+
+The local function scope of autorun() is the lexical scope of the log() function.
+
+```js
+(function autorun(){
+    let x = 1;
+    function log(){
+      console.log(x);
+    };
+    
+    function run(fn){
+      let x = 100;
+      fn();
+    }
+    
+    run(log);//1
+})();
+
+// 1
+```
+
+##### Scope Chain
+
+Every scope has a link to the parent scope. 
+
+When a variable is used, JavaScript looks down the scope chain until it either finds the requested variable or until it reaches the global scope, which is the end of the scope chain.
+
+```js
+let x0 = 0;
+(function autorun1(){
+ let x1 = 1;
+  
+ (function autorun2(){
+   let x2 = 2;
+  
+   (function autorun3(){
+     let x3 = 3;
+      
+     console.log(x0 + " " + x1 + " " + x2 + " " + x3);//0 1 2 3
+    })();
+  })();
+})();
+```
+
+Variables defined in `global scope` are available everywhere in the application.
+
+In a module, a variable declared outside any function is hidden and not available to other modules unless it is explicitly exported.
+
+Function scope means that parameters and variables defined in a function are visible everywhere within the function
+
+Variables declared with let and const have block scope. var doesn’t have block scope.
+
+`In "Strict Mode", undeclared variables are not automatically global.`
+
+
+### What is `"use strict";`? What are the advantages and disadvantages to using it?
+
+'use strict' is a statement used to enable strict mode to entire scripts or individual functions. Strict mode is a way to opt into a restricted variant of JavaScript.
+
+Advantages:
+
+* Makes it impossible to accidentally create global variables.
+* Makes assignments which would otherwise silently fail to throw an exception.
+* Makes attempts to delete undeletable properties throw (where before the attempt would simply have no effect).
+* Requires that function parameter names be unique.
+* `this` is undefined in the global context.
+* It catches some common coding bloopers, throwing exceptions.
+* It disables features that are confusing or poorly thought out.
+
+Disadvantages:
+
+* Many missing features that some developers might be used to.
+* No more access to `function.caller` and `function.arguments`.
+* Concatenation of scripts written in different strict modes might cause issues.
+
+Overall, I think the benefits outweigh the disadvantages, and I never had to rely on the features that strict mode blocks. I would recommend using strict mode.
+
+```js
+
+function looseyGoosey() {
+  return this
+}
+ 
+function noInferringAllowed() {
+  "use strict"
+  return this
+}
+ 
+looseyGoosey() === window; //=> true
+noInferringAllowed() === undefined //=> true
+```
 
 ### Explain how prototypal inheritance works
 
@@ -502,44 +681,6 @@ intro(asgardianBrothers[0], phrase) //=> Thor Odinsson says: I like this brown d
 
 intro(asgardianBrothers[0], phrase) === introWithContext.call(asgardianBrothers[0], phrase)     //=> true
 intro(asgardianBrothers[0], phrase) === introWithContext.apply(asgardianBrothers[0], [phrase])  //=> true
-```
-
-
-### What is `"use strict";`? What are the advantages and disadvantages to using it?
-
-'use strict' is a statement used to enable strict mode to entire scripts or individual functions. Strict mode is a way to opt into a restricted variant of JavaScript.
-
-Advantages:
-
-* Makes it impossible to accidentally create global variables.
-* Makes assignments which would otherwise silently fail to throw an exception.
-* Makes attempts to delete undeletable properties throw (where before the attempt would simply have no effect).
-* Requires that function parameter names be unique.
-* `this` is undefined in the global context.
-* It catches some common coding bloopers, throwing exceptions.
-* It disables features that are confusing or poorly thought out.
-
-Disadvantages:
-
-* Many missing features that some developers might be used to.
-* No more access to `function.caller` and `function.arguments`.
-* Concatenation of scripts written in different strict modes might cause issues.
-
-Overall, I think the benefits outweigh the disadvantages, and I never had to rely on the features that strict mode blocks. I would recommend using strict mode.
-
-```js
-
-function looseyGoosey() {
-  return this
-}
- 
-function noInferringAllowed() {
-  "use strict"
-  return this
-}
- 
-looseyGoosey() === window; //=> true
-noInferringAllowed() === undefined //=> true
 ```
 
 
