@@ -2,11 +2,11 @@
 
 
 * [Explain event delegation](#explain-event-delegation)
+* [Explain how prototypal inheritance works](#explain-how-prototypal-inheritance-works)
 * [Explain how `this` works in JavaScript](#explain-how-this-works-in-javascript)
 * [What's the difference between `.call` and `.apply`?](#whats-the-difference-between-call-and-apply)
 * [Bind, Call, Apply](#Bind-Call-Apply)
 * [What is "use strict";? what are the advantages and disadvantages to using it?](#what-is-use-strict-what-are-the-advantages-and-disadvantages-to-using-it)
-* [Explain how prototypal inheritance works](#explain-how-prototypal-inheritance-works)
 * [Explain why the following doesn't work as an IIFE: `function foo(){ }();`. What needs to be changed to properly make it an IIFE?](#explain-why-the-following-doesnt-work-as-an-iife-function-foo--what-needs-to-be-changed-to-properly-make-it-an-iife)
 * [What's the difference between a variable that is: `null`, `undefined` or undeclared? How would you go about checking for any of these states?](#whats-the-difference-between-a-variable-that-is-null-undefined-or-undeclared-how-would-you-go-about-checking-for-any-of-these-states)
 * [What is a closure, and how/why would you use one?](#what-is-a-closure-and-howwhy-would-you-use-one)
@@ -64,6 +64,48 @@ Event delegation is a technique involving adding event listeners to a parent ele
 * Memory footprint goes down because only one single handler is needed on the parent element, rather than having to attach event handlers on each descendant.
 * There is no need to unbind the handler from elements that are removed and to bind the event for new elements.
 
+
+### Explain how prototypal inheritance works
+
+`Inheritance` refers to an object’s ability to access methods and other properties from another object. 
+Objects can inherit things from other objects. 
+Inheritance in JavaScript works through something called `prototype`s and this form of inheritance is often called `prototypal inheritance`.
+
+#### Example of Prototypal Inheritance
+
+
+```javascript
+function User(name, email) {
+  this.name = name;
+  this.email = email;
+}
+ 
+User.prototype.sayHello = function() {               // prototype of a constructor function
+  console.log(`Hello everybody, my name is ${this.name}`);
+};
+ 
+let sarah = new User('sarah', 'sarah@example.com');
+let lauren = new User('Lauren', 'lauren@example.com');
+ 
+sarah.sayHello(); //=> // "Hello everybody, my name is sarah!"
+lauren.sayHello(); //=> // "Hello everybody, my name is Lauren!"
+```
+
+Things to note are:
+
+The prototype is just a JavaScript Object.
+```js
+User.prototype;
+// {sayHello: ƒ, constructor: ƒ}
+
+typeof User.prototype;
+// object
+```
+To prove the efficiency of sharing methods via prototype:
+
+```js
+lauren.sayHello === sarah.sayHello; //=> true
+```
 
 ### Explain how `this` works in JavaScript
 
@@ -445,83 +487,6 @@ noInferringAllowed() === undefined //=> true
 #### Can you give an example of one of the ways that working with this has changed in ES6?
 
 ES6 allows you to use [arrow functions](http://2ality.com/2017/12/alternate-this.html#arrow-functions) which uses the [enclosing lexical scope](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions#No_separate_this). This is usually convenient, but does prevent the caller from controlling context via `.call` or `.apply`—the consequences being that a library such as `jQuery` will not properly bind `this` in your event handler functions. Thus, it's important to keep this in mind when refactoring large legacy applications.
-
-
-### Explain how prototypal inheritance works
-
-This is an extremely common JavaScript interview question. All JavaScript objects have a `prototype` property, that is a reference to another object. When a property is accessed on an object and if the property is not found on that object, the JavaScript engine looks at the object's `prototype`, and the `prototype`'s `prototype` and so on, until it finds the property defined on one of the `prototype`s or until it reaches the end of the prototype chain. This behavior simulates classical inheritance, but it is really more of [delegation than inheritance](https://davidwalsh.name/javascript-objects).
-
-#### Example of Prototypal Inheritance
-
-We already have a build-in `Object.create`, but if you were to provide a polyfill for it, that might look like:
-
-```javascript
-if (typeof Object.create !== 'function') {
-  Object.create = function (parent) {
-    function Tmp() {}
-    Tmp.prototype = parent;
-    return new Tmp();
-  };
-}
-
-const Parent = function() {
-  this.name = "Parent";
-}
-
-Parent.prototype.greet = function() { console.log("hello from Parent"); }
-
-const child = Object.create(Parent.prototype);
-
-child.cry = function() {
-  console.log("waaaaaahhhh!");
-}
-
-child.cry();
-// Outputs: waaaaaahhhh!
-
-child.greet();
-// Outputs: hello from Parent
-```
-
-Things to note are:
-
-* `.greet` is not defined on the _child_, so the engine goes up the prototype chain and finds `.greet` off the inherited from _Parent_.
-* We need to call `Object.create` in one of following ways for the prototype methods to be inherited:
-  * Object.create(Parent.prototype);
-  * Object.create(new Parent(null));
-  * Object.create(objLiteral);
-  * Currently, `child.constructor` is pointing to the `Parent`:
-
-```javascript
-child.constructor
-ƒ () {
-  this.name = "Parent";
-}
-child.constructor.name
-"Parent"
-```
-  * If we'd like to correct this, one option would be to do:
-
-```javascript
-function Child() {
-  Parent.call(this);
-  this.name = 'child';
-}
-
-Child.prototype = Parent.prototype;
-Child.prototype.constructor = Child;
-
-const c = new Child();
-
-c.cry();
-// Outputs: waaaaaahhhh!
-
-c.greet();
-// Outputs: hello from Parent
-
-c.constructor.name;
-// Outputs: "Child"
-```
 
 
 ### Explain why the following doesn't work as an IIFE: `function foo(){ }();`. What needs to be changed to properly make it an IIFE?
