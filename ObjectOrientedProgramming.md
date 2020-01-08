@@ -1,5 +1,6 @@
-* [Convert Celsius to Fahrenheit](#Convert-Celsius-to-Fahrenheit)
-
+* [Create a Method on an Object using `this`](#Create-a-Method-on-an-Object-using-`this`)
+* [Constructor function with arguments ES6, ES5](#Constructor-function-with-arguments-ES6,-ES5)
+* [Verify an Object's Constructor with instanceof](#Verify-an-Object's-Constructor-with-instanceof)
 
 
 ### Create a Method on an Object using `this`
@@ -66,6 +67,4 @@ myMother.lastName
 myMother instanceof Person 
 
 // true
-
-
 ```
