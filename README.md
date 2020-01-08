@@ -6,9 +6,11 @@
 * [Scope](#scope)
 * [What is "use strict";? what are the advantages and disadvantages to using it?](#what-is-use-strict-what-are-the-advantages-and-disadvantages-to-using-it)
 * [Explain how prototypal inheritance works](#explain-how-prototypal-inheritance-works)
+* [Difference Between Class & Prototypal Inheritance?](#difference-between-class-prototypal-inheritance)
 * [Explain how `this` works in JavaScript](#explain-how-this-works-in-javascript)
 * [What's the difference between `.call` and `.apply`?](#whats-the-difference-between-call-and-apply)
 * [Bind, Call, Apply](#Bind-Call-Apply)
+* [Module](#Module)
 * [Explain event delegation](#explain-event-delegation)
 * [Explain why the following doesn't work as an IIFE: `function foo(){ }();`. What needs to be changed to properly make it an IIFE?](#explain-why-the-following-doesnt-work-as-an-iife-function-foo--what-needs-to-be-changed-to-properly-make-it-an-iife)
 * [What's the difference between a variable that is: `null`, `undefined` or undeclared? How would you go about checking for any of these states?](#whats-the-difference-between-a-variable-that-is-null-undefined-or-undeclared-how-would-you-go-about-checking-for-any-of-these-states)
@@ -315,8 +317,8 @@ function User(name, email) {
   this.name = name;
   this.email = email;
 }
- 
-User.prototype.sayHello = function() {               // prototype of a constructor function
+  
+User.prototype.sayHello = function() {                      // prototype of a constructor function
   console.log(`Hello everybody, my name is ${this.name}`);
 };
  
@@ -347,6 +349,38 @@ In short, `inheritance` in JavaScript is implemented through the prototype chain
 Functions have a prototype property in addition to the __proto__ property. When using a constructor function with `new`, it’s good practice to place methods on the function’s prototype instead of on the object itself. The returned object’s __proto__ will be equal to the function’s prototype so it will inherit all methods on the function’s prototype. This prevents unnecessary memory usage and improves speed.
 
 We can check if an object has its own property by using the hasOwnProperty method. We can manually set up inheritance by using `Object.create`.
+
+
+### Difference Between Class & Prototypal Inheritance?
+
+`Class Inheritance`: 
+A class is like a blueprint — a description of the object to be created. 
+Classes inherit from classes and create subclass relationships: hierarchical class taxonomies.
+
+```js
+class Shoe{
+   ...
+}
+
+class Boot extends Shoe{
+   ...
+}
+
+let hikingShoe = new Boot(..)
+```
+
+
+`Prototypal Inheritance`: 
+A prototype is a working object instance. Objects inherit directly from other objects.
+
+```js
+as above in Example of Prototypal Inheritance
+```
+
+The difference between `classical inheritance` and `prototypal inheritance` is that `classical` inheritance is limited to classes inheriting from other classes while `prototypal` inheritance supports the cloning of any object using an object linking mechanism.
+
+![difference](https://res.cloudinary.com/practicaldev/image/fetch/s--P-uVQjti--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://thepracticaldev.s3.amazonaws.com/i/ii4vwgaxg6jyt8e19zpd.png)
+
 
 ### Explain how `this` works in JavaScript
 
@@ -678,6 +712,24 @@ intro(asgardianBrothers[0], phrase) //=> Thor Odinsson says: I like this brown d
 intro(asgardianBrothers[0], phrase) === introWithContext.call(asgardianBrothers[0], phrase)     //=> true
 intro(asgardianBrothers[0], phrase) === introWithContext.apply(asgardianBrothers[0], [phrase])  //=> true
 ```
+
+
+### Module
+
+Module is a collection of components. If we have multiple components that communicate, or simply must be shown together in order to form an integrated whole, then you most likely need a module.
+
+A component may be a variable, function, class and so forth. In other words, everything that can be exported by the export statement is a component (or you can call it a block, a unit etc).
+
+More:
+https://www.freecodecamp.org/news/javascript-modules-a-beginner-s-guide-783f7d7a5fcc/
+
+#### Why use modules?
+
+1) `Maintainability`: By definition, a module is self-contained. A well-designed module aims to lessen the dependencies on parts of the codebase as much as possible, so that it can grow and improve independently. Updating a single module is much easier when the module is decoupled from other pieces of code.
+
+2) `Namespacing`: In JavaScript, variables outside the scope of a top-level function are global (meaning, everyone can access them). Because of this, it’s common to have “namespace pollution”, where completely unrelated code shares global variables.
+
+3) `Reusability`
 
 
 ### Explain event delegation
