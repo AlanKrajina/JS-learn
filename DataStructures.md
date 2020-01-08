@@ -11,3 +11,58 @@ In terms of complexity,
 In terms of efficiency, 
 - Linked Lists are most optimal for recording and storing of data, 
 - Hash Tables are most performant for searching and retrieving of data.
+
+## Stack
+
+
+Arguably the most important Stack in JavaScript is the `call stack` where we push in the scope of a function whenever we execute it.
+
+Programmatically, it’s just an `array` with two principled operations: `push` and `pop`. 
+
+`Push` adds elements to the top of the array, while `Pop` removes them from the same location. In other words, Stacks follow the “Last In, First Out” protocol (LIFO).
+Below is an example of a Stack in code. Notice that we can reverse the order of the stack: the bottom becomes the top and the top becomes the bottom. As such, we can use the array’s unshift and shift methods in place of push and pop, respectively.
+
+
+#### Stacks
+```javascript
+
+Push: Adds an element to the stack
+// This method adds an element at the top of the stack.
+
+// push function: 
+
+push(element) 
+{ 
+    // push element into the items 
+    this.items.push(element); 
+} 
+
+
+Pop() : Removes an element from the stack, if the function is call on an empty stack it indicates “Underflow”
+// This method returns the topmost element of stack and removes it. Return underflow when called on an empty stack.
+
+
+// pop function:
+
+pop() 
+{ 
+    // return top most element in the stack 
+    // and removes it from the stack 
+    // Underflow if stack is empty 
+    if (this.items.length == 0) 
+        return "Underflow"; 
+    return this.items.pop(); 
+} 
+
+
+Peek() : returns the top most elements in the stack, but doesn’t delete it.
+// Return the topmost element without removing it from the stack.
+
+// peek function:
+
+peek() 
+{ 
+    // return the top most element from the stack 
+    // but does'nt delete it. 
+    return this.items[this.items.length - 1]; 
+} 
