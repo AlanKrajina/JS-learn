@@ -1,6 +1,6 @@
-* [Create a Method on an Object using `this`](#Create-a-Method-on-an-Object-using-`this`)
+* [Create a Method on an Object using `this`](#create-a-method-on-an-object-using-`this`)
 * [Constructor function with arguments ES6, ES5](#Constructor-function-with-arguments-ES6,ES5)
-* [Verify an Object's Constructor with instanceof](#Verify-an-Object's-Constructor-with-instanceof)
+* [Verify an Object's Constructor with instanceof](#verify-an-object's-constructor-with-instanceof)
 
 
 ### Create a Method on an Object using `this`
