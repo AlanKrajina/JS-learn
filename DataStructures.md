@@ -85,8 +85,11 @@ The person who’s been waiting the longest in line gets served before the perso
 Queues leverage the following methods:
 
 `enqueue(item)`: Add an item to the top of the queue
+
 `dequeue()`: Remove the top item from the queue
+
 `peek()`: Return the item at the top of the queue
+
 `isEmpty()`: Returns true if the queue is empty
 
 ```javascript
