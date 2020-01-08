@@ -1,3 +1,21 @@
+* [Convert Celsius to Fahrenheit](#Convert-Celsius-to-Fahrenheit)
+* [Data types](#data-types)
+* [Data types](#data-types)
+* [Data types](#data-types)
+* [Data types](#data-types)
+* [Data types](#data-types)
+* [Data types](#data-types)
+* [Data types](#data-types)
+* [Data types](#data-types)
+* [Data types](#data-types)
+* [Data types](#data-types)
+* [Data types](#data-types)
+* [Data types](#data-types)
+* [Data types](#data-types)
+* [Data types](#data-types)
+* [Data types](#data-types)
+
+
 ### Convert Celsius to Fahrenheit
 
 ```js
