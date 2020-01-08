@@ -2,6 +2,8 @@
 
 
 * [Data types](#data-types)
+* [Hoisting](#hoisting)
+* [Scope](#scope)
 * [Explain how prototypal inheritance works](#explain-how-prototypal-inheritance-works)
 * [Explain how `this` works in JavaScript](#explain-how-this-works-in-javascript)
 * [What's the difference between `.call` and `.apply`?](#whats-the-difference-between-call-and-apply)
@@ -20,7 +22,6 @@
 * [What are the advantages and disadvantages of using Ajax?](#what-are-the-advantages-and-disadvantages-of-using-ajax)
 * [Explain how JSONP works (and how it's not really Ajax).](#explain-how-jsonp-works-and-how-its-not-really-ajax)
 * [Have you ever used JavaScript templating? If so, what libraries have you used?](#have-you-ever-used-javascript-templating-if-so-what-libraries-have-you-used)
-* [Explain "hoisting".](#explain-hoisting)
 * [Describe event bubbling.](#describe-event-bubbling)
 * [What's the difference between an "attribute" and a "property"?](#whats-the-difference-between-an-attribute-and-a-property)
 * [Why is extending built-in JavaScript objects not a good idea?](#why-is-extending-built-in-javascript-objects-not-a-good-idea)
@@ -30,7 +31,6 @@
 * [Make this work: `duplicate([1,2,3,4,5]); // [1,2,3,4,5,1,2,3,4,5]`](#make-this-work)
 * [Why is it called a Ternary expression, what does the word "Ternary" indicate?](#why-is-it-called-a-ternary-expression-what-does-the-word-ternary-indicate)
 * [Create a for loop that iterates up to 100 while outputting "fizz" at multiples of 3, "buzz" at multiples of 5 and "fizzbuzz" at multiples of 3 and 5](#create-a-for-loop-that-iterates-up-to-100-while-outputting-fizz-at-multiples-of-3-buzz-at-multiples-of-5-and-fizzbuzz-at-multiples-of-3-and-5)
-* [Why is it, in general, a good idea to leave the global scope of a website as-is and never touch it?](#why-is-it-in-general-a-good-idea-to-leave-the-global-scope-of-a-website-as-is-and-never-touch-it)
 * [Why would you use something like the `load` event? Does this event have disadvantages? Do you know any alternatives, and why would you use those?](#why-would-you-use-something-like-the-load-event-does-this-event-have-disadvantages-do-you-know-any-alternatives-and-why-would-you-use-those)
 * [Explain what a single page app is and how to make one SEO-friendly.](#explain-what-a-single-page-app-is-and-how-to-make-one-seo-friendly)
 * [What is the extent of your experience with Promises and/or their polyfills?](#what-is-the-extent-of-your-experience-with-promises-andor-their-polyfills)
@@ -71,6 +71,60 @@ The latest ECMAScript standard defines 8 data types:
 - `String`
 - `Symbol`
 - and `Object`
+
+
+### Hoisting
+
+Hoisting is a term used to explain the behavior of variable declarations in your code. Variables declared or initialized with the `var` keyword will have their declaration "moved" up to the top of the current scope, which we refer to as hoisting. However, only the declaration is hoisted, the assignment (if there is one), will stay where it is.
+
+Note that the declaration is not actually moved - the JavaScript engine parses the declarations during compilation and becomes aware of declarations and their scopes. It is just easier to understand this behavior by visualizing the declarations as being hoisted to the top of their scope. Let's explain with a few examples.
+
+```js
+// var declarations are hoisted.
+
+console.log(foo); // undefined
+
+var foo = 1;
+console.log(foo); // 1
+
+// let/const declarations are NOT hoisted.
+
+console.log(bar); // ReferenceError: bar is not defined
+
+let bar = 2;
+console.log(bar); // 2
+```
+
+Function declarations have the body hoisted while the function expressions (written in the form of variable declarations) only has the variable declaration hoisted.
+
+```js
+// Function Declaration - HOISTED
+
+console.log(foo); // [Function: foo]
+
+foo(); // 'FOOOOO'
+
+function foo() {
+  console.log('FOOOOO');
+}
+console.log(foo); // [Function: foo]
+
+
+// Function Expression - NOT HOISTED
+
+console.log(bar); // undefined
+
+bar(); // Uncaught TypeError: bar is not a function
+
+var bar = function() {
+  console.log('BARRRR');
+};
+console.log(bar); // [Function: bar]
+```
+
+### Scope
+
+
 
 ### Explain how prototypal inheritance works
 
@@ -739,46 +793,6 @@ const template = `<div>My name is: ${name}</div>`;
 However, do be aware of a potential XSS in the above approach as the contents are not escaped for you, unlike in templating libraries.
 
 
-### Explain "hoisting".
-
-Hoisting is a term used to explain the behavior of variable declarations in your code. Variables declared or initialized with the `var` keyword will have their declaration "moved" up to the top of the current scope, which we refer to as hoisting. However, only the declaration is hoisted, the assignment (if there is one), will stay where it is.
-
-Note that the declaration is not actually moved - the JavaScript engine parses the declarations during compilation and becomes aware of declarations and their scopes. It is just easier to understand this behavior by visualizing the declarations as being hoisted to the top of their scope. Let's explain with a few examples.
-
-```js
-// var declarations are hoisted.
-console.log(foo); // undefined
-var foo = 1;
-console.log(foo); // 1
-
-// let/const declarations are NOT hoisted.
-console.log(bar); // ReferenceError: bar is not defined
-let bar = 2;
-console.log(bar); // 2
-```
-
-Function declarations have the body hoisted while the function expressions (written in the form of variable declarations) only has the variable declaration hoisted.
-
-```js
-// Function Declaration
-console.log(foo); // [Function: foo]
-foo(); // 'FOOOOO'
-function foo() {
-  console.log('FOOOOO');
-}
-console.log(foo); // [Function: foo]
-
-// Function Expression
-console.log(bar); // undefined
-bar(); // Uncaught TypeError: bar is not a function
-var bar = function() {
-  console.log('BARRRR');
-};
-console.log(bar); // [Function: bar]
-```
-
-[[↑] Back to top](#js-questions)
-
 ### Describe event bubbling.
 
 When an event triggers on a DOM element, it will attempt to handle the event if there is a listener attached, then the event is bubbled up to its parent and the same thing happens. This bubbling occurs up the element's ancestors all the way to the `document`. Event bubbling is the mechanism behind event delegation.
@@ -865,7 +879,6 @@ const duplicate = (arr) => [...arr, ...arr];
 duplicate([1, 2, 3, 4, 5]); // [1,2,3,4,5,1,2,3,4,5] 
 ```
 
-[[↑] Back to top](#js-questions)
 
 ### Why is it called a Ternary expression, what does the word "Ternary" indicate?
 
@@ -885,10 +898,6 @@ for (let i = 1; i <= 100; i++) {
 
 I would not advise you to write the above during interviews though. Just stick with the long but clear approach. For more wacky versions of FizzBuzz, check out the reference link below.
 
-
-### Why is it, in general, a good idea to leave the global scope of a website as-is and never touch it?
-
-Every script has access to the global scope, and if everyone uses the global namespace to define their variables, collisions will likely occur. Use the module pattern (IIFEs) to encapsulate your variables within a local namespace.
 
 
 ### Why would you use something like the `load` event? Does this event have disadvantages? Do you know any alternatives, and why would you use those?
