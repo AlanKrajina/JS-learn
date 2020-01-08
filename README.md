@@ -750,15 +750,15 @@ const newTaxFunction = function (countryName, taxRate, ...exemptItems) {
   };
 };
 
-
-
+// Generate the closure
 
 const franceTax = newTaxFunction('France', 0.15, 'wine', 'macaron', 'baguette', 'croissant');
- 
 const canadaTax = newTaxFunction('Canada', 0.125, 'maple syrup', 'poutine', 'kindness');
- 
 const mexicoTax = newTaxFunction('Mexico', 0.05, 'queso', 'futbol', 'tequila', 'avocado');
- 
+
+
+// Use the closure
+
 canadaTax('poutine', 599);
 // LOG: In Canada, poutine costs $5.99.
 // LOG: That item is exempt from taxation.
