@@ -98,3 +98,17 @@ for(let key in beagle){  // iterator
 console.log(ownProps); // prints ["name"]
 console.log(prototypeProps); // prints ["numLegs"]
 ```
+
+### Set prototype with multiple object properties   
+
+```js
+Bird.prototype = {
+  numLegs: 2, 
+  eat: function() {
+    console.log("nom nom nom");
+  },
+  describe: function() {
+    console.log("My name is " + this.name);
+  }
+};
+```
