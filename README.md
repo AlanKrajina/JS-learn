@@ -6,6 +6,7 @@
 * [Scope](#scope)
 * [What is "use strict";? what are the advantages and disadvantages to using it?](#what-is-use-strict-what-are-the-advantages-and-disadvantages-to-using-it)
 * [Explain how prototypal inheritance works](#explain-how-prototypal-inheritance-works)
+* [Prototype Chain](#prototype-chain)
 * [Difference Between Class and Prototypal Inheritance?](#difference-between-class-and-prototypal-inheritance)
 * [Explain how `this` works in JavaScript](#explain-how-this-works-in-javascript)
 * [What's the difference between `.call` and `.apply`?](#whats-the-difference-between-call-and-apply)
@@ -344,11 +345,58 @@ To prove the efficiency of sharing methods via prototype:
 ```js
 lauren.sayHello === sarah.sayHello; //=> true
 ```
-In short, `inheritance` in JavaScript is implemented through the prototype chain. Every normally created object, array, and function has a prototype chain of __proto__ properties ending with Object.prototype at the top. This is why they’re all considered first-class objects in JavaScript.
+In short, `inheritance` in JavaScript is implemented through the `prototype chain`. Every normally created object, array, and function has a `prototype chain` of __proto__ properties ending with Object.prototype at the top. This is why they’re all considered first-class objects in JavaScript.
 
 Functions have a prototype property in addition to the __proto__ property. When using a constructor function with `new`, it’s good practice to place methods on the function’s prototype instead of on the object itself. The returned object’s __proto__ will be equal to the function’s prototype so it will inherit all methods on the function’s prototype. This prevents unnecessary memory usage and improves speed.
 
 We can check if an object has its own property by using the hasOwnProperty method. We can manually set up inheritance by using `Object.create`.
+
+
+### Prototype Chain
+
+All objects in JavaScript (with a few exceptions) have a `prototype`. Also, an object’s prototype itself is an `object`.
+```js
+
+class Dog {
+  constructor(name){
+    this.name = name;
+  }
+}
+
+typeof Dog.prototype; // => object
+```
+
+Because a prototype is an object, a prototype can have its own prototype! 
+In this case, the prototype of Dog.prototype is Object.prototype:
+
+```js
+Object.prototype.isPrototypeOf(Dog.prototype);
+
+// returns true
+```
+
+How is this useful? You may recall the hasOwnProperty method from a previous challenge:
+```js
+
+let duck = new Bird("Donald");
+duck.hasOwnProperty("name"); // => true
+```
+
+The `hasOwnProperty` method is defined in `Object.prototype`, which can be accessed by `Bird.prototype`, which can then be accessed by `duck`. 
+
+This is an example of the `prototype chain`. 
+
+In this prototype chain, 
+
+`Bird` is the `supertype` for `duck`, 
+
+while `duck` is the `subtype`. 
+
+`Object` is a `supertype` for both `Bird` and `duck`. 
+
+`Object` is a `supertype` for all objects in JavaScript. 
+
+Therefore, any object can use the `hasOwnProperty` method.
 
 
 ### Difference Between Class and Prototypal Inheritance?
