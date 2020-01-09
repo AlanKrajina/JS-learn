@@ -1,14 +1,14 @@
-* [Create a Method on an Object using `this`](#create-a-method-on-an-object-using-`this`)
+* [Create a Method on an Object using `this`](#create-a-method-on-an-object-using-this)
 * [Constructor function with arguments ES6, ES5](#Constructor-function-with-arguments-ES6,ES5)
-* [Verify an Object's Constructor with instanceof](#verify-an-object's-constructor-with-instanceof)
-* [Iterate Over All Properties (own & prototype)](#Iterate-Over-All-Properties-(own-&-prototype))
+* [Verify an Object's Constructor with instanceof](#verify-an-objects-constructor-with-instanceof)
+* [Iterate Over All Properties (own & prototype)](#Iterate-Over-All-Properties-(own-prototype))
 * [Set prototype with multiple object properties ](#set-prototype-with-multiple-object-properties)
 * [Prototype Chain](#Prototype-Chain)
-* [Use Inheritance So You Don't Repeat Yourself ](#Use Inheritance So You Don't Repeat Yourself)
-* [Inherit Behaviors from a Supertype & Set the Child's Prototype to an Instance of the Parent](#Inherit Behaviors from a Supertype & Set the Child's Prototype to an Instance of the Parent)
-* [Add Methods After Inheritance](#Add Methods After Inheritance)
-* [Use a Mixin to Add Common Behavior Between Unrelated Objects](#Use a Mixin to Add Common Behavior Between Unrelated Objects)
-* [Use Closure to Protect Properties Within an Object from Being Modified Externally](#Use Closure to Protect Properties Within an Object from Being Modified Externally)
+* [Use Inheritance So You Don't Repeat Yourself ](#Use-Inheritance-So-You-Dont-Repeat-Yourself)
+* [Inherit Behaviors from a Supertype & Set the Child's Prototype to an Instance of the Parent](#Inherit-Behaviors-from-a-Supertype-Set-the-Child's-Prototype-to-an-Instance-of-the-Parent)
+* [Add Methods After Inheritance](#Add-Methods-After-Inheritance)
+* [Use a Mixin to Add Common Behavior Between Unrelated Objects](#Use-a-Mixin-to-Add-Common-Behavior-Between-Unrelated-Objects)
+* [Use Closure to Protect Properties Within an Object from Being Modified Externally](#Use-Closure-to-Protect-Properties-Within-an-Object-from-Being-Modified-Externally)
 
 
 ### Create a Method on an Object using `this`
