@@ -13,6 +13,10 @@
 * [Bind, Call, Apply](#Bind-Call-Apply)
 * [Module](#Module)
 * [What is a closure, and how/why would you use one?](#what-is-a-closure-and-howwhy-would-you-use-one)
+* [Name two programming paradigms important for JavaScript app developers](#name-two-programming-paradigms-important-for-JavaScript-app-developers)
+* [What is functional programming?](#What-is-functional-programming)
+* [What are the pros and cons of functional programming vs object-oriented programming?](#What-are-the-pros-and-cons-of-functional-programming-vs-object-oriented-programming)
+* [What are two-way data binding and one-way data flow, and how are they different?](#What-are-two-way-data-binding-and-one-way-data-flow-and-how-are-they-different)
 * [Explain event delegation](#explain-event-delegation)
 * [Explain why the following doesn't work as an IIFE: `function foo(){ }();`. What needs to be changed to properly make it an IIFE?](#explain-why-the-following-doesnt-work-as-an-iife-function-foo--what-needs-to-be-changed-to-properly-make-it-an-iife)
 * [What's the difference between a variable that is: `null`, `undefined` or undeclared? How would you go about checking for any of these states?](#whats-the-difference-between-a-variable-that-is-null-undefined-or-undeclared-how-would-you-go-about-checking-for-any-of-these-states)
@@ -418,6 +422,7 @@ Object.prototype.isPrototypeOf(Dog.prototype);  // => true
 `Class Inheritance`: 
 A class is like a blueprint — a description of the object to be created. 
 Classes inherit from classes and create subclass relationships: hierarchical class taxonomies.
+Instances are typically instantiated via constructor functions with the `new` keyword. Class inheritance may or may not use the `class` keyword from ES6.
 
 ```js
 class Shoe{
@@ -433,7 +438,9 @@ let hikingShoe = new Boot(..)
 
 
 `Prototypal Inheritance`: 
-A prototype is a working object instance. Objects inherit directly from other objects.
+Instances inherit directly from other objects. Instances are typically instantiated via factory functions or `Object.create()`.
+
+Instances may be composed from many different objects, allowing for easy selective inheritance.
 
 ```js
 as above in Example of Prototypal Inheritance
@@ -443,6 +450,19 @@ The difference between `classical inheritance` and `prototypal inheritance` is t
 
 ![difference](https://res.cloudinary.com/practicaldev/image/fetch/s--P-uVQjti--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://thepracticaldev.s3.amazonaws.com/i/ii4vwgaxg6jyt8e19zpd.png)
 
+
+##### When is classical inheritance an appropriate choice?
+
+- Rarely, almost never, or never.
+- A single level is sometimes OK, from a framework base-class such as React.Component.
+- “Favor object composition over class inheritance.”
+
+
+##### When is prototypal inheritance an appropriate choice?
+
+- In situations where modules or functional programming don’t provide an obvious solution.
+- When you need to compose objects from multiple sources. (mixins)
+- Any time you need inheritance.
 
 ### Explain how `this` works in JavaScript
 
@@ -839,6 +859,48 @@ mexicoTax('Big Mac', 199);
 // LOG: That item is not exempt from taxation.
 // LOG: The total tax due is: $0.10.
 ```
+
+### Name two programming paradigms important for JavaScript app developers
+
+- Prototypal inheritance (also: prototypes, OLOO).
+- Functional programming (also: closures, first class functions, lambdas).
+
+
+### What is functional programming?
+
+Functional programming is a programming paradigm — a style of building the structure and elements of computer programs — that treats computation as the evaluation of mathematical functions and avoids changing-state and mutable data 
+
+- Pure functions
+- Immutability
+- Function composition
+- Recursion
+- Higher-order functions
+- Currying
+
+
+### What are the pros and cons of functional programming vs object-oriented programming?
+
+##### OOP Pros: 
+It’s easy to understand the basic concept of objects and easy to interpret the meaning of method calls. OOP tends to use an imperative style rather than a declarative style, which reads like a straight-forward set of instructions for the computer to follow.
+
+##### OOP Cons: 
+OOP Typically depends on shared state. Objects and behaviors are typically tacked together on the same entity, which may be accessed at random by any number of functions with non-deterministic order, which may lead to undesirable behavior such as race conditions
+
+##### FP Pros: 
+Using the functional paradigm, programmers avoid any shared state or side-effects, which eliminates bugs caused by multiple functions competing for the same resources. With features such as the availability of point-free style (aka tacit programming), functions tend to be radically simplified and easily recomposed for more generally reusable code compared to OOP.
+
+##### FP Cons: 
+Over exploitation of FP features such as point-free style and large compositions can potentially reduce readability because the resulting code is often more abstractly specified, more terse, and less concrete.
+
+
+### What are two-way data binding and one-way data flow, and how are they different?
+
+`Two way data binding` means that UI fields are bound to model data dynamically such that when a UI field changes, the model data changes with it and vice-versa.
+
+`One way data flow` means that the model is the single source of truth. Changes in the UI trigger messages that signal user intent to the model (or “store” in React). Only the model has the access to change the app’s state. The effect is that data always flows in a single direction, which makes it easier to understand.
+
+One way data flows are deterministic, whereas two-way binding can cause side-effects which are harder to follow and understand.
+
 
 ### Explain event delegation
 
