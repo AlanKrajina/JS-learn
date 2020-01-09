@@ -212,10 +212,10 @@ Bear.prototype = {
 };
 ```
 
-The code can be edited to follow the DRY principle by creating a supertype (or parent) called Animal:
+The code can be edited to follow the DRY principle by creating a `SUPERTYPE` (or parent) called Animal:
 
 ```js
-function Animal() { };
+function Animal() { };   // or class
 
 Animal.prototype = {
   constructor: Animal, 
@@ -237,3 +237,23 @@ Bear.prototype = {
 };
 ```
 
+### Inherit Behaviors from a Supertype & Set the Child's Prototype to an Instance of the Parent
+
+```js
+function Animal() {}   // or class
+
+Animal.prototype = {
+  constructor: Animal,
+  eat: function() {
+    console.log("nom nom nom");
+  }
+};
+
+function Dog() {}   // or class
+
+Dog.prototype = Object.create(Animal.prototype);  //  Dog now includes all the key "ingredients" from Animal. 
+
+let beagle = new Dog();                           // beagle inherits all of Animal's properties, including the eat method.
+
+beagle.eat(); // Should print "nom nom nom"
+```
