@@ -68,3 +68,33 @@ myMother instanceof Person
 
 // true
 ```
+
+### Iterate Over All Properties (own & prototype)
+
+```js
+class Dog {
+  constructor(name){
+    this.name = name;
+}
+}
+
+Dog.prototype.numLegs = 4;
+
+let beagle = new Dog("Snoopy");
+
+let ownProps = [];
+let prototypeProps = [];
+
+// Add your code below this line
+
+for(let key in beagle){  // iterator
+  if (beagle.hasOwnProperty(key)){
+    ownProps.push(key)
+  } else {
+    prototypeProps.push(key)
+  }
+}
+
+console.log(ownProps); // prints ["name"]
+console.log(prototypeProps); // prints ["numLegs"]
+```
