@@ -87,7 +87,7 @@ let prototypeProps = [];
 
 // Add your code below this line
 
-for(let key in beagle){  // iterator
+for(let key in beagle){                          // object iterator
   if (beagle.hasOwnProperty(key)){
     ownProps.push(key)
   } else {
@@ -97,6 +97,10 @@ for(let key in beagle){  // iterator
 
 console.log(ownProps); // prints ["name"]
 console.log(prototypeProps); // prints ["numLegs"]
+
+
+Dog.prototype.isPrototypeOf(beagle);            // checking property
+// returns true
 ```
 
 ### Set prototype with multiple object properties   
