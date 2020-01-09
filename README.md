@@ -398,6 +398,20 @@ while `duck` is the `subtype`.
 
 Therefore, any object can use the `hasOwnProperty` method.
 
+```js
+class Dog {
+  constructor(name){
+    this.name = name;
+  }
+}
+
+let beagle = new Dog("Snoopy");
+
+Dog.prototype.isPrototypeOf(beagle);  // => true
+
+Object.prototype.isPrototypeOf(Dog.prototype);  // => true
+```
+
 
 ### Difference Between Class and Prototypal Inheritance?
 
