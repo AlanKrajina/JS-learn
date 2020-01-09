@@ -289,3 +289,13 @@ let beagle = new Dog();                            // instance of a Dog created
 beagle.eat(); // Should print "nom nom nom"
 beagle.bark(); // Should print "Woof!"
 ```
+
+Override Inherited Methods
+
+```js
+// Dog.eat() overrides Animal.eat()
+
+Dog.prototype.eat = function() {
+  return "peck peck peck";
+};
+```
