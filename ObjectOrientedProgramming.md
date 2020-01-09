@@ -177,3 +177,63 @@ Dog.prototype.isPrototypeOf(beagle);  // => true
 
 Object.prototype.isPrototypeOf(Dog.prototype);  // => true
 ```
+
+
+### Use Inheritance So You Don't Repeat Yourself 
+
+Notice in the example below that the `eat` method is shared by Cat and Bear:
+
+```js
+class Cat {
+  constructor(name){
+    this.name = name;
+  }
+}
+
+Cat.prototype = {
+  constructor: Cat,
+  eat: function() {
+    console.log("My name is " + this.name);
+  }
+};
+
+
+class Bear {
+  constructor(name){
+    this.name = name;
+  }
+}
+
+Bear.prototype = {
+  constructor: Bear,
+  eat: function() {
+    console.log("My name is " + this.name);
+  }
+};
+```
+
+The code can be edited to follow the DRY principle by creating a supertype (or parent) called Animal:
+
+```js
+function Animal() { };
+
+Animal.prototype = {
+  constructor: Animal, 
+  eat: function() {
+    console.log("My name is " + this.name);
+  }
+};
+```
+
+Since Animal includes the describe method, you can remove it from Bird and Bear:
+
+```js
+Cat.prototype = {
+  constructor: Bird
+};
+
+Bear.prototype = {
+  constructor: Dog
+};
+```
+
