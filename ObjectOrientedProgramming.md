@@ -1,6 +1,14 @@
 * [Create a Method on an Object using `this`](#create-a-method-on-an-object-using-`this`)
 * [Constructor function with arguments ES6, ES5](#Constructor-function-with-arguments-ES6,ES5)
 * [Verify an Object's Constructor with instanceof](#verify-an-object's-constructor-with-instanceof)
+* [Iterate Over All Properties (own & prototype)](#Iterate Over All Properties (own & prototype))
+* [Set prototype with multiple object properties ](#set-prototype-with-multiple-object-properties)
+* [Prototype Chain](#Prototype Chain)
+* [Use Inheritance So You Don't Repeat Yourself ](#Use Inheritance So You Don't Repeat Yourself)
+* [Inherit Behaviors from a Supertype & Set the Child's Prototype to an Instance of the Parent](#Inherit Behaviors from a Supertype & Set the Child's Prototype to an Instance of the Parent)
+* [Add Methods After Inheritance](#Add Methods After Inheritance)
+* [Use a Mixin to Add Common Behavior Between Unrelated Objects](#Use a Mixin to Add Common Behavior Between Unrelated Objects)
+* [Use Closure to Protect Properties Within an Object from Being Modified Externally](#Use Closure to Protect Properties Within an Object from Being Modified Externally)
 
 
 ### Create a Method on an Object using `this`
@@ -299,3 +307,62 @@ Dog.prototype.eat = function() {
   return "peck peck peck";
 };
 ```
+
+### Use a Mixin to Add Common Behavior Between Unrelated Objects
+
+Cases when inheritance is not the best solution.
+
+```js
+let bird = {
+  name: "Donald",
+  numLegs: 2
+};
+
+let boat = {
+  name: "Warrior",
+  type: "race-boat"
+};
+
+
+let glideMixin = function(obj) {
+  obj.glide = function() {           // same function that objects share
+    console.log("Gliding!");
+  };
+};
+
+glideMixin(bird);
+glideMixin(boat);
+
+bird.glide()
+// Gliding!
+
+boat.glide()
+// Gliding!
+```
+
+
+### Use Closure to Protect Properties Within an Object from Being Modified Externally
+
+```js
+bird.name = "Duffy";
+```
+
+Any part of your code can easily change the name of bird to any value. Think about things like passwords and bank accounts being easily changeable by any part of your codebase. That could cause a lot of issues.
+
+The simplest way to make this public property private is by creating a `variable` within the `constructor function`. This changes the `scope` of that variable to be within the constructor function versus available globally. 
+
+This way, the variable can only be accessed and changed by methods also within the constructor function.
+
+```js
+class Bird {
+  constructor(){
+    let weight = 15;
+    this.getWeight = () => weight;   
+  }
+}
+
+let ducky = new Bird();
+ducky.getWeight(); // returns 15
+```
+
+
