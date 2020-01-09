@@ -257,3 +257,35 @@ let beagle = new Dog();                           // beagle inherits all of Anim
 
 beagle.eat(); // Should print "nom nom nom"
 ```
+
+
+### Add Methods After Inheritance
+
+```js
+class Animal {
+    constructor(){
+    }
+}
+
+Animal.prototype.eat = function() {
+  console.log("nom nom nom");
+};
+
+class Dog {
+    constructor(){
+    }
+}
+
+Dog.prototype = Object.create(Animal.prototype);   // Dog inherits from Animal
+Dog.prototype.constructor = Dog;
+
+Dog.prototype.bark = function() {                  // Dog creates additional function
+  console.log("Woof woof!");
+};
+
+
+let beagle = new Dog();                            // instance of a Dog created
+
+beagle.eat(); // Should print "nom nom nom"
+beagle.bark(); // Should print "Woof!"
+```
