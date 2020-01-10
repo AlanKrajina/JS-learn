@@ -114,7 +114,7 @@ For example, if the first argument is [{ first: "Romeo", last: "Montague" }, { f
 ```js
 function whatIsInAName(collection, source) {
 
-  let srcKeys = Object.keys(source);
+  let srcKeys = Object.keys(source);  // ["apple", "bat"]
 
   // filter the collection
   return collection.filter(obj => {
