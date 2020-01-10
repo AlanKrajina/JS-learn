@@ -117,12 +117,12 @@ function whatIsInAName(collection, source) {
   let srcKeys = Object.keys(source);
 
   // filter the collection
-  return collection.filter(function(obj) {
+  return collection.filter(obj => {
     return srcKeys
-      .map(function(key) {
+      .map(key => {
         return obj.hasOwnProperty(key) && obj[key] === source[key];
       })
-      .reduce(function(a, b) {
+      .reduce((a,b) => {
         return a && b;
       });
   });
