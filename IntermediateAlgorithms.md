@@ -112,7 +112,21 @@ For example, if the first argument is [{ first: "Romeo", last: "Montague" }, { f
 
 
 ```js
+function whatIsInAName(collection, source) {
 
+  let srcKeys = Object.keys(source);
+
+  // filter the collection
+  return collection.filter(function(obj) {
+    return srcKeys
+      .map(function(key) {
+        return obj.hasOwnProperty(key) && obj[key] === source[key];
+      })
+      .reduce(function(a, b) {
+        return a && b;
+      });
+  });
+}
 
 
 whatIsInAName([{ first: "Romeo", last: "Montague" }, { first: "Mercutio", last: null }, { first: "Tybalt", last: "Capulet" }], { last: "Capulet" }) 
