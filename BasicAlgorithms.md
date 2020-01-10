@@ -76,7 +76,7 @@ function findLongestWordLength(str) {
   let newStr = str.split(' ')
 
   return newStr.sort(function(a, b){
-    return a.length - b.length;
+    return a - b;
   }).pop()
 }
 
