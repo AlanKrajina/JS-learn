@@ -1800,7 +1800,7 @@ for (let i=300; i < keys.length && i < 600; i++) {
 
 ### Iterate through an array of objects
 
-1. Just loop through an array
+##### 1. Just loop through an array
 
 ```js
 const myArray = [{x:100}, {x:200}, {x:300}];
@@ -1814,7 +1814,7 @@ myArray.forEach((element, index, array) => {
 
 Note: Array.prototype.forEach() is not a functional way strictly speaking, as the function it takes as the input parameter is not supposed to return a value, which thus cannot be regarded as a pure function.
 
-2. Check if any of the elements in an array pass a test
+##### 2. Check if any of the elements in an array pass a test
 
 ```js
 const people = [
@@ -1829,7 +1829,7 @@ console.log(anyAdult);
 // true
 ```
 
-3. Transform to a new array
+##### 3. Transform to a new array
 
 ```js
 const myArray = [{x:100}, {x:200}, {x:300}];
@@ -1841,7 +1841,7 @@ console.log(newArray);
 
 Note: The map() method creates a new array with the results of calling a provided function on every element in the calling array.
 
-4. Sum up a particular property, and calculate its average
+##### 4. Sum up a particular property, and calculate its average
 
 ```js
 const myArray = [{x:100}, {x:200}, {x:300}];
@@ -1855,7 +1855,7 @@ console.log(average);
 // 200
 ```
 
-5. Create a new array based on the original but without modifying it
+##### 5. Create a new array based on the original but without modifying it
 
 ```js
 const myArray = [{x:100}, {x:200}, {x:300}];
@@ -1873,7 +1873,7 @@ console.log(newArray);
 // [200, 400, 600]
 ```
 
-6. Count the number of each category
+##### 6. Count the number of each category
 
 ```js
 const people = [
@@ -1899,7 +1899,7 @@ console.log(groupInfo);
 // {A: 3, C: 1, B: 2}
 ```
 
-7. Retrieve a subset of an array based on particular criteria
+##### 7. Retrieve a subset of an array based on particular criteria
 
 ```js
 const myArray = [{x:100}, {x:200}, {x:300}];
@@ -1911,7 +1911,7 @@ console.log(newArray);
 
 Note: The filter() method creates a new array with all elements that pass the test implemented by the provided function.
 
-8. Sort an array
+##### 8. Sort an array
 
 ```js
 const people = [
@@ -1928,7 +1928,7 @@ let sortByAge = people.sort(function (p1, p2) {
 console.log(sortByAge);
 ```
 
-9. Find an element in an array
+##### 9. Find an element in an array
 
 ```js
 const people = [ {name: "john", age:23},
