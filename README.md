@@ -2526,5 +2526,31 @@ console.log(typeof undeclaredVariable);
 // expected output: "undefined";
 
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-----------------------ITERATION --------------------------
+
+// With ES6
+
+var some = 'uololooo';
+
+[...some ].forEach(c => console.log(c))
+
+u
+o
+l
+o
+.
+.
+
+// ES5 without the for loop:
+text.split('').forEach(function(c) {
+    console.log(c);
+});
+
+// regular
+for (var i = 0; i < str.length; i++) {
+  console.log(str.charAt(i));
+}
+
 ```
 
