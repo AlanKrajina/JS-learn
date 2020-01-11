@@ -692,7 +692,7 @@ console.log(add.apply(null, [1, 2])); // 3
 
 ##### bind 
 
-The bind method returns a function that needs to be called, but wherever the function that bind was called on had a this reference, the this is "hard set" to what was passed into bind.
+The bind method returns a function that needs to be called, but wherever the function that `bind` was called on had a `this` reference, the `this` is "hard set" to what was passed into `bind`.
 
 ```javascript
 
