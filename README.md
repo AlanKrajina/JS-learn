@@ -13,6 +13,7 @@
 * [Bind, Call, Apply](#Bind-Call-Apply)
 * [Module](#Module)
 * [What is a closure, and how/why would you use one?](#what-is-a-closure-and-howwhy-would-you-use-one)
+* [Callbacks](#callbacks)
 * [Name two programming paradigms important for JavaScript app developers](#name-two-programming-paradigms-important-for-JavaScript-app-developers)
 * [What is functional programming?](#What-is-functional-programming)
 * [What are the pros and cons of functional programming vs object-oriented programming?](#What-are-the-pros-and-cons-of-functional-programming-vs-object-oriented-programming)
@@ -816,9 +817,9 @@ https://www.freecodecamp.org/news/javascript-modules-a-beginner-s-guide-783f7d7a
 
 ### What is a closure, and how/why would you use one?
 
-A closure is the combination of a function and the lexical environment within which that function was declared. The word "lexical" refers to the fact that lexical scoping uses the location where a variable is declared within the source code to determine where that variable is available. Closures are functions that have access to the outer (enclosing) function's variables—scope chain even after the outer function has returned.
+A closure is the combination of a function and the lexical environment within which that function was declared. The word `lexical` refers to the fact that lexical scoping uses the location where a variable is declared within the source code to determine where that variable is available. 
 
-Closure is a locally declared variable related to a function which stays in memory when the function has returned.
+`Closures` are functions that have access to the outer (enclosing) function's variables—scope chain even after the outer function has returned.
 
 
 ```js
@@ -879,6 +880,37 @@ closure(2)                // calls with arguments for inner function
 - any function where you are using a variable outside scope are closures
 - lexical scoping - looks outside to find variable value
 - "Closures are nothing but FUNCTIONS WITH PRESERVED DATA"
+
+
+### Callbacks 
+
+A callback function is a function passed into another function as an argument, which is then invoked inside the outer function to complete some kind of routine or action.
+
+```javascript
+function greeting(name) {
+  alert('Hello ' + name);
+}
+
+function processUserInput(callback) {
+  var name = prompt('Please enter your name.');
+  callback(name);
+}
+
+processUserInput(greeting);
+
+```
+React:
+```javascript
+  handleOnChange(event) {                // callback funtion
+    this.setState({
+      text: event.target.value
+    });
+  }
+
+
+  onChange={event => this.handleOnChange(event)} />
+
+```
 
 
 ### Name two programming paradigms important for JavaScript app developers
