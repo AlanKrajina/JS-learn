@@ -21,6 +21,8 @@
 * [What are the differences between ES6 class and ES5 function constructors?](#what-are-the-differences-between-es6-class-and-es5-function-constructors)
 * [What advantage is there for using the arrow syntax for a method in a constructor?](#what-advantage-is-there-for-using-the-arrow-syntax-for-a-method-in-a-constructor)
 * [What is the definition of a higher-order function?](#what-is-the-definition-of-a-higher-order-function)
+* [Promises?](#promises)
+* [What are the pros and cons of using Promises instead of callbacks?](#what-are-the-pros-and-cons-of-using-promises-instead-of-callbacks)
 * [What are two-way data binding and one-way data flow, and how are they different?](#What-are-two-way-data-binding-and-one-way-data-flow-and-how-are-they-different)
 * [Explain event delegation](#explain-event-delegation)
 * [Explain why the following doesn't work as an IIFE: `function foo(){ }();`. What needs to be changed to properly make it an IIFE?](#explain-why-the-following-doesnt-work-as-an-iife-function-foo--what-needs-to-be-changed-to-properly-make-it-an-iife)
@@ -43,8 +45,6 @@
 * [Why is it called a Ternary expression, what does the word "Ternary" indicate?](#why-is-it-called-a-ternary-expression-what-does-the-word-ternary-indicate)
 * [Why would you use something like the `load` event? Does this event have disadvantages? Do you know any alternatives, and why would you use those?](#why-would-you-use-something-like-the-load-event-does-this-event-have-disadvantages-do-you-know-any-alternatives-and-why-would-you-use-those)
 * [Explain what a single page app is and how to make one SEO-friendly.](#explain-what-a-single-page-app-is-and-how-to-make-one-seo-friendly)
-* [What is the extent of your experience with Promises and/or their polyfills?](#what-is-the-extent-of-your-experience-with-promises-andor-their-polyfills)
-* [What are the pros and cons of using Promises instead of callbacks?](#what-are-the-pros-and-cons-of-using-promises-instead-of-callbacks)
 * [What are some of the advantages/disadvantages of writing JavaScript code in a language that compiles to JavaScript?](#what-are-some-of-the-advantagesdisadvantages-of-writing-javascript-code-in-a-language-that-compiles-to-javascript)
 * [What tools and techniques do you use debugging JavaScript code?](#what-tools-and-techniques-do-you-use-for-debugging-javascript-code)
 * [Explain the difference between mutable and immutable objects.](#explain-the-difference-between-mutable-and-immutable-objects)
@@ -1170,6 +1170,91 @@ const transformNamesToUppercase = function(names) {
 transformNamesToUppercase(names); // ['IRISH', 'DAISY', 'ANNA']
 ```
 
+### Promises?
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
+
+A promise is an object that may produce a single value sometime in the future: either a resolved value or a reason that it's not resolved (e.g., a network error occurred). 
+
+A promise may be in one of 3 possible states: `fulfilled`, `rejected`, or `pending`. 
+
+Promise users can attach callbacks to handle the fulfilled value or the reason for rejection.
+
+Create a promise:
+```js
+const myFirstPromise = new Promise((resolve, reject) => {
+  // do something asynchronous which eventually calls either:
+  //
+  //   resolve(someValue)        // fulfilled
+  // or
+  //   reject("failure reason")  // rejected
+});
+```
+
+To provide a function with promise functionality, simply have it return a promise:
+```js
+function myAsyncFunction(url) {
+  return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest() 
+    xhr.open("GET", url) 
+    xhr.onload = () => resolve(xhr.responseText) 
+    xhr.onerror = () => reject(xhr.statusText) 
+    xhr.send() 
+  });
+}
+```
+
+Redux promise:
+
+```js
+// asynchronous action creators
+
+export const login = (credentials) => {     
+    return dispatch => {                    
+        return fetch("http://localhost:3001/api/v1/login", {
+          credentials: "include",
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(credentials)
+        })                               
+        .then(r => r.json())
+        .then(response => {                  // promise
+          if (response.error) { 
+            alert(response.error)
+          } else {
+            dispatch(setCurrentUser(response.data)) 
+            dispatch(getMyComments())   
+          }
+        })
+        .catch(console.log)
+    }
+  }
+  ```
+
+![promises](https://media.prod.mdn.mozit.cloud/attachments/2018/04/18/15911/32e79f722e83940fdaea297acdb5df92/promises.png)
+
+
+### What are the pros and cons of using Promises instead of callbacks?
+
+**Pros**
+
+* Avoid callback hell which can be unreadable.
+* Makes it easy to write sequential asynchronous code that is readable with `.then()`.
+* Makes it easy to write parallel asynchronous code with `Promise.all()`.
+* With promises, these scenarios which are present in callbacks-only coding, will not happen:
+  * Call the callback too early
+  * Call the callback too late (or never)
+  * Call the callback too few or too many times
+  * Fail to pass along any necessary environment/parameters
+  * Swallow any errors/exceptions that may happen
+
+**Cons**
+
+* Slightly more complex code (debatable).
+* In older browsers where ES2015 is not supported, you need to load a polyfill in order to use it.
+
 
 ### What are two-way data binding and one-way data flow, and how are they different?
 
@@ -1481,33 +1566,6 @@ The downsides:
 * Heavier initial page load due to the loading of framework, app code, and assets required for multiple pages.
 * There's an additional step to be done on your server which is to configure it to route all requests to a single entry point and allow client-side routing to take over from there.
 * SPAs are reliant on JavaScript to render content, but not all search engines execute JavaScript during crawling, and they may see empty content on your page. This inadvertently hurts the Search Engine Optimization (SEO) of your app. However, most of the time, when you are building apps, SEO is not the most important factor, as not all the content needs to be indexable by search engines. To overcome this, you can either server-side render your app or use services such as [Prerender](https://prerender.io/) to "render your javascript in a browser, save the static HTML, and return that to the crawlers".
-
-
-### What is the extent of your experience with Promises and/or their polyfills?
-
-Possess working knowledge of it. A promise is an object that may produce a single value sometime in the future: either a resolved value or a reason that it's not resolved (e.g., a network error occurred). A promise may be in one of 3 possible states: fulfilled, rejected, or pending. Promise users can attach callbacks to handle the fulfilled value or the reason for rejection.
-
-Some common polyfills are `$.deferred`, Q and Bluebird but not all of them comply with the specification. ES2015 supports Promises out of the box and polyfills are typically not needed these days.
-
-
-### What are the pros and cons of using Promises instead of callbacks?
-
-**Pros**
-
-* Avoid callback hell which can be unreadable.
-* Makes it easy to write sequential asynchronous code that is readable with `.then()`.
-* Makes it easy to write parallel asynchronous code with `Promise.all()`.
-* With promises, these scenarios which are present in callbacks-only coding, will not happen:
-  * Call the callback too early
-  * Call the callback too late (or never)
-  * Call the callback too few or too many times
-  * Fail to pass along any necessary environment/parameters
-  * Swallow any errors/exceptions that may happen
-
-**Cons**
-
-* Slightly more complex code (debatable).
-* In older browsers where ES2015 is not supported, you need to load a polyfill in order to use it.
 
 
 ### What are some of the advantages/disadvantages of writing JavaScript code in a language that compiles to JavaScript?
