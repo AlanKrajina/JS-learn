@@ -501,7 +501,7 @@ lauren.sayHello()
 // "Hello everybody, my name is lauren!"
 ```
 
-### classes 
+#### classes 
 ```javascript
 
 class User {
@@ -605,7 +605,7 @@ person.greet();
 
 ```
 
-### Arrow Functions 
+#### Arrow Functions 
 
 ```javascript
 
@@ -633,7 +633,7 @@ person.greet();
 
 ```
 
-### Callbacks 
+#### Callback
 
 ```javascript
 
@@ -647,7 +647,7 @@ person.greet();
 
 ```
 
-### Classes 
+#### Classes 
 ```javascript
 
 class Person {
