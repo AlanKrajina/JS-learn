@@ -20,6 +20,7 @@
 * [What are the pros and cons of functional programming vs object-oriented programming?](#What-are-the-pros-and-cons-of-functional-programming-vs-object-oriented-programming)
 * [What are the differences between ES6 class and ES5 function constructors?](#what-are-the-differences-between-es6-class-and-es5-function-constructors)
 * [What advantage is there for using the arrow syntax for a method in a constructor?](#what-advantage-is-there-for-using-the-arrow-syntax-for-a-method-in-a-constructor)
+* [What is the definition of a higher-order function?](#what-is-the-definition-of-a-higher-order-function)
 * [What are two-way data binding and one-way data flow, and how are they different?](#What-are-two-way-data-binding-and-one-way-data-flow-and-how-are-they-different)
 * [Explain event delegation](#explain-event-delegation)
 * [Explain why the following doesn't work as an IIFE: `function foo(){ }();`. What needs to be changed to properly make it an IIFE?](#explain-why-the-following-doesnt-work-as-an-iife-function-foo--what-needs-to-be-changed-to-properly-make-it-an-iife)
@@ -51,7 +52,6 @@
 * [What is event loop? What is the difference between call stack and task queue?](#what-is-event-loop-what-is-the-difference-between-call-stack-and-task-queue)
 * [Explain the differences on the usage of `foo` between `function foo() {}` and `var foo = function() {}`](#explain-the-differences-on-the-usage-of-foo-between-function-foo--and-var-foo--function-)
 * [What are the differences between variables created using `let`, `var` or `const`?](#what-are-the-differences-between-variables-created-using-let-var-or-const)
-* [What is the definition of a higher-order function?](#what-is-the-definition-of-a-higher-order-function)
 * [Can you give an example for destructuring an object or an array?](#can-you-give-an-example-for-destructuring-an-object-or-an-array)
 * [ES6 Template Literals offer a lot of flexibility in generating strings, can you give an example?](#es6-template-literals-offer-a-lot-of-flexibility-in-generating-strings-can-you-give-an-example)
 * [What are the benefits of using spread syntax and how is it different from rest syntax?](#what-are-the-benefits-of-using-spread-syntax-and-how-is-it-different-from-rest-syntax)
@@ -1136,6 +1136,41 @@ The main takeaway here is that `this` can be changed for a normal function, but 
 This can be particularly helpful in React class components. If you define a class method for something such as a click handler using a normal function, and then you pass that click handler down into a child component as a prop, you will need to also bind `this` in the constructor of the parent component. If you instead use an arrow function, there is no need to also bind "this", as the method will automatically get its "this" value from its enclosing lexical context. (See this article for an excellent demonstration and sample code: https://medium.com/@machnicki/handle-events-in-react-with-arrow-functions-ede88184bbb)
 
 
+### What is the definition of a higher-order function?
+
+A higher-order function is any function that takes one or more functions as arguments, which it uses to operate on some data, and/or returns a function as a result. Higher-order functions are meant to abstract some operation that is performed repeatedly. The classic example of this is `map`, which takes an array and a function as arguments. `map` then uses this function to transform each item in the array, returning a new array with the transformed data. Other popular examples in JavaScript are `forEach`, `filter`, and `reduce`. A higher-order function doesn't just need to be manipulating arrays as there are many use cases for returning a function from another function. `Function.prototype.bind` is one such example in JavaScript.
+
+**Map**
+
+Let say we have an array of names which we need to transform each string to uppercase.
+
+```js
+const names = ['irish', 'daisy', 'anna'];
+```
+
+The imperative way will be as such:
+
+```js
+const transformNamesToUppercase = function(names) {
+  const results = [];
+  for (let i = 0; i < names.length; i++) {
+    results.push(names[i].toUpperCase());
+  }
+  return results;
+};
+transformNamesToUppercase(names); // ['IRISH', 'DAISY', 'ANNA']
+```
+
+Use `.map(transformerFn)` makes the code shorter and more declarative.
+
+```js
+const transformNamesToUppercase = function(names) {
+  return names.map(name => name.toUpperCase());
+};
+transformNamesToUppercase(names); // ['IRISH', 'DAISY', 'ANNA']
+```
+
+
 ### What are two-way data binding and one-way data flow, and how are they different?
 
 `Two way data binding` means that UI fields are bound to model data dynamically such that when a UI field changes, the model data changes with it and vice-versa.
@@ -1720,40 +1755,6 @@ foo = 'bar';
 // This causes an exception.
 const baz = 'baz';
 baz = 'qux';
-```
-
-### What is the definition of a higher-order function?
-
-A higher-order function is any function that takes one or more functions as arguments, which it uses to operate on some data, and/or returns a function as a result. Higher-order functions are meant to abstract some operation that is performed repeatedly. The classic example of this is `map`, which takes an array and a function as arguments. `map` then uses this function to transform each item in the array, returning a new array with the transformed data. Other popular examples in JavaScript are `forEach`, `filter`, and `reduce`. A higher-order function doesn't just need to be manipulating arrays as there are many use cases for returning a function from another function. `Function.prototype.bind` is one such example in JavaScript.
-
-**Map**
-
-Let say we have an array of names which we need to transform each string to uppercase.
-
-```js
-const names = ['irish', 'daisy', 'anna'];
-```
-
-The imperative way will be as such:
-
-```js
-const transformNamesToUppercase = function(names) {
-  const results = [];
-  for (let i = 0; i < names.length; i++) {
-    results.push(names[i].toUpperCase());
-  }
-  return results;
-};
-transformNamesToUppercase(names); // ['IRISH', 'DAISY', 'ANNA']
-```
-
-Use `.map(transformerFn)` makes the code shorter and more declarative.
-
-```js
-const transformNamesToUppercase = function(names) {
-  return names.map(name => name.toUpperCase());
-};
-transformNamesToUppercase(names); // ['IRISH', 'DAISY', 'ANNA']
 ```
 
 
