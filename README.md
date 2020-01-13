@@ -860,6 +860,27 @@ mexicoTax('Big Mac', 199);
 // LOG: The total tax due is: $0.10.
 ```
 
+Example 2.
+
+```js
+function adder(firstDigit){
+  let x = firstDigit;
+  return function adder2(secondDigit){
+    return x + secondDigit
+  }
+}
+
+
+let closure = adder(1)    // closes outer function
+
+closure(2)                // calls with arguments for inner function
+```
+
+- any function where you are using a variable outside scope are closures
+- lexical scoping - looks outside to find variable value
+- "Closures are nothing but FUNCTIONS WITH PRESERVED DATA"
+
+
 ### Name two programming paradigms important for JavaScript app developers
 
 - Prototypal inheritance (also: prototypes, OLOO).
