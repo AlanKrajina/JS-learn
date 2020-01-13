@@ -16,6 +16,7 @@
 * [Callbacks](#callbacks)
 * [Name two programming paradigms important for JavaScript app developers](#name-two-programming-paradigms-important-for-JavaScript-app-developers)
 * [What is functional programming?](#What-is-functional-programming)
+* [What is object oriented programming?](#What-is-object-oriented-programming)
 * [What are the pros and cons of functional programming vs object-oriented programming?](#What-are-the-pros-and-cons-of-functional-programming-vs-object-oriented-programming)
 * [What are two-way data binding and one-way data flow, and how are they different?](#What-are-two-way-data-binding-and-one-way-data-flow-and-how-are-they-different)
 * [Explain event delegation](#explain-event-delegation)
@@ -929,6 +930,110 @@ Functional programming is a programming paradigm — a style of building the str
 - Recursion
 - Higher-order functions
 - Currying
+
+
+### What is object oriented programming?
+
+Features or mechanisms which makes a Language Object Oriented like:
+
+##### Object:
+- using an Object Literal:
+
+```js
+//Defining object 
+let person = { 
+    first_name:'Mukul', 
+    last_name: 'Latiyan', 
+  
+    //method 
+    getFunction : function(){ 
+        return (`The name of the person is  
+          ${person.first_name} ${person.last_name}`) 
+    }, 
+    //object within object 
+    phone_number : { 
+        mobile:'12345', 
+        landline:'6789'
+    } 
+} 
+console.log(person.getFunction());  
+console.log(person.phone_number.landline); 
+```
+
+- using an Object Constructor:
+
+```js
+//using a constructor 
+function person(first_name,last_name){ 
+   this.first_name = first_name; 
+   this.last_name = last_name; 
+} 
+//creating new instances of person object 
+let person1 = new person('Mukul','Latiyan'); 
+let person2 = new person('Rahul','Avasthi'); 
+  
+console.log(person1.first_name); 
+console.log(`${person2.first_name} ${person2.last_name}`);
+```
+
+- using Object.create() method
+
+```js
+const Book = { 
+   summary : function() { 
+      console.log(`${this.title} is written by ${this.author}.`)
+   }
+}
+const book1 = Object.create(Book);   
+
+book1.author = "Paulo Coelho";
+book1.title = "Hippie";
+
+console.log(book1.summary());
+> Hippie is written by Paulo Coelho.
+```
+
+##### Classes & Inheritance
+// blueprint of an object
+
+```js
+class Book {
+   constructor(name) {
+      this.name = name
+   }
+}
+
+Book.prototype.sayTitle = function() {                   
+  console.log(`Title of the book is ${this.name}`);
+};
+
+const book = new Book("The Alchemist");
+
+book.sayTitle()
+
+// Title of the book is The Alchemist
+```
+
+##### Encapsulation
+
+- The process of wrapping `property` and `function` within a single unit is known as `encapsulation`.
+- In the code the `title` and the `author` are only visible inside the scope of the function `Book` and the method summary is visible to the caller of `Book`. So the `title` and the `author` are `encapsulated` inside `Book`.
+
+```js
+const Book = function(t, a) {
+   let title = t; 
+   let author = a; 
+   
+   return {
+      summary : function() { 
+        console.log(`${title} written by ${author}.`);
+      } 
+   }
+}
+const book1 = new Book('Hippie', 'Paulo Coelho');
+book1.summary();
+> Hippie written by Paulo Coelho.
+```
 
 
 ### What are the pros and cons of functional programming vs object-oriented programming?
