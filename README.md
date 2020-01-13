@@ -18,6 +18,8 @@
 * [What is functional programming?](#What-is-functional-programming)
 * [What is object oriented programming?](#What-is-object-oriented-programming)
 * [What are the pros and cons of functional programming vs object-oriented programming?](#What-are-the-pros-and-cons-of-functional-programming-vs-object-oriented-programming)
+* [What are the differences between ES6 class and ES5 function constructors?](#what-are-the-differences-between-es6-class-and-es5-function-constructors)
+* [What advantage is there for using the arrow syntax for a method in a constructor?](#what-advantage-is-there-for-using-the-arrow-syntax-for-a-method-in-a-constructor)
 * [What are two-way data binding and one-way data flow, and how are they different?](#What-are-two-way-data-binding-and-one-way-data-flow-and-how-are-they-different)
 * [Explain event delegation](#explain-event-delegation)
 * [Explain why the following doesn't work as an IIFE: `function foo(){ }();`. What needs to be changed to properly make it an IIFE?](#explain-why-the-following-doesnt-work-as-an-iife-function-foo--what-needs-to-be-changed-to-properly-make-it-an-iife)
@@ -49,9 +51,6 @@
 * [What is event loop? What is the difference between call stack and task queue?](#what-is-event-loop-what-is-the-difference-between-call-stack-and-task-queue)
 * [Explain the differences on the usage of `foo` between `function foo() {}` and `var foo = function() {}`](#explain-the-differences-on-the-usage-of-foo-between-function-foo--and-var-foo--function-)
 * [What are the differences between variables created using `let`, `var` or `const`?](#what-are-the-differences-between-variables-created-using-let-var-or-const)
-* [What are the differences between ES6 class and ES5 function constructors?](#what-are-the-differences-between-es6-class-and-es5-function-constructors)
-* [Can you offer a use case for the new arrow => function syntax? How does this new syntax differ from other functions?](#can-you-offer-a-use-case-for-the-new-arrow--function-syntax-how-does-this-new-syntax-differ-from-other-functions)
-* [What advantage is there for using the arrow syntax for a method in a constructor?](#what-advantage-is-there-for-using-the-arrow-syntax-for-a-method-in-a-constructor)
 * [What is the definition of a higher-order function?](#what-is-the-definition-of-a-higher-order-function)
 * [Can you give an example for destructuring an object or an array?](#can-you-give-an-example-for-destructuring-an-object-or-an-array)
 * [ES6 Template Literals offer a lot of flexibility in generating strings, can you give an example?](#es6-template-literals-offer-a-lot-of-flexibility-in-generating-strings-can-you-give-an-example)
@@ -1051,6 +1050,92 @@ Using the functional paradigm, programmers avoid any shared state or side-effect
 Over exploitation of FP features such as point-free style and large compositions can potentially reduce readability because the resulting code is often more abstractly specified, more terse, and less concrete.
 
 
+### What are the differences between ES6 class and ES5 function constructors?
+
+Let's first look at example of each:
+
+```js
+// ES5 Function Constructor
+function Person(name) {
+  this.name = name;
+}
+
+// ES6 Class
+class Person {
+  constructor(name) {
+    this.name = name;
+  }
+}
+```
+
+For simple constructors, they look pretty similar.
+
+The main difference in the constructor comes when using inheritance. If we want to create a `Student` class that subclasses `Person` and add a `studentId` field, this is what we have to do in addition to the above.
+
+```js
+// ES5 Function Constructor
+function Student(name, studentId) {
+  // Call constructor of superclass to initialize superclass-derived members.
+  Person.call(this, name);
+
+  // Initialize subclass's own members.
+  this.studentId = studentId;
+}
+
+Student.prototype = Object.create(Person.prototype);
+Student.prototype.constructor = Student;
+
+// ES6 Class
+class Student extends Person {
+  constructor(name, studentId) {
+    super(name);
+    this.studentId = studentId;
+  }
+}
+```
+
+It's much more verbose to use inheritance in ES5 and the ES6 version is easier to understand and remember.
+
+
+### What advantage is there for using the arrow syntax for a method in a constructor?
+
+The main advantage of using an arrow function as a method inside a constructor is that the value of `this` gets set at the time of the function creation and can't change after that. So, when the constructor is used to create a new object, `this` will always refer to that object. For example, let's say we have a `Person` constructor that takes a first name as an argument has two methods to `console.log` that name, one as a regular function and one as an arrow function:
+
+```js
+const Person = function(firstName) {
+  this.firstName = firstName;
+  this.sayName1 = function() { console.log(this.firstName); };
+  this.sayName2 = () => { console.log(this.firstName); };
+};
+
+const john = new Person('John');
+const dave = new Person('Dave');
+
+john.sayName1(); // John
+john.sayName2(); // John
+
+// The regular function can have its 'this' value changed, but the arrow function cannot
+john.sayName1.call(dave); // Dave (because "this" is now the dave object)
+john.sayName2.call(dave); // John
+
+john.sayName1.apply(dave); // Dave (because 'this' is now the dave object)
+john.sayName2.apply(dave); // John
+
+john.sayName1.bind(dave)(); // Dave (because 'this' is now the dave object)
+john.sayName2.bind(dave)(); // John
+
+var sayNameFromWindow1 = john.sayName1;
+sayNameFromWindow1(); // undefined (because 'this' is now the window object)
+
+var sayNameFromWindow2 = john.sayName2;
+sayNameFromWindow2(); // John
+```
+
+The main takeaway here is that `this` can be changed for a normal function, but the context always stays the same for an arrow function. So even if you are passing around your arrow function to different parts of your application, you wouldn't have to worry about the context changing.
+
+This can be particularly helpful in React class components. If you define a class method for something such as a click handler using a normal function, and then you pass that click handler down into a child component as a prop, you will need to also bind `this` in the constructor of the parent component. If you instead use an arrow function, there is no need to also bind "this", as the method will automatically get its "this" value from its enclosing lexical context. (See this article for an excellent demonstration and sample code: https://medium.com/@machnicki/handle-events-in-react-with-arrow-functions-ede88184bbb)
+
+
 ### What are two-way data binding and one-way data flow, and how are they different?
 
 `Two way data binding` means that UI fields are bound to model data dynamically such that when a UI field changes, the model data changes with it and vice-versa.
@@ -1636,98 +1721,6 @@ foo = 'bar';
 const baz = 'baz';
 baz = 'qux';
 ```
-
-
-### What are the differences between ES6 class and ES5 function constructors?
-
-Let's first look at example of each:
-
-```js
-// ES5 Function Constructor
-function Person(name) {
-  this.name = name;
-}
-
-// ES6 Class
-class Person {
-  constructor(name) {
-    this.name = name;
-  }
-}
-```
-
-For simple constructors, they look pretty similar.
-
-The main difference in the constructor comes when using inheritance. If we want to create a `Student` class that subclasses `Person` and add a `studentId` field, this is what we have to do in addition to the above.
-
-```js
-// ES5 Function Constructor
-function Student(name, studentId) {
-  // Call constructor of superclass to initialize superclass-derived members.
-  Person.call(this, name);
-
-  // Initialize subclass's own members.
-  this.studentId = studentId;
-}
-
-Student.prototype = Object.create(Person.prototype);
-Student.prototype.constructor = Student;
-
-// ES6 Class
-class Student extends Person {
-  constructor(name, studentId) {
-    super(name);
-    this.studentId = studentId;
-  }
-}
-```
-
-It's much more verbose to use inheritance in ES5 and the ES6 version is easier to understand and remember.
-
-
-### Can you offer a use case for the new arrow => function syntax? How does this new syntax differ from other functions?
-
-One obvious benefit of arrow functions is to simplify the syntax needed to create functions, without a need for the `function` keyword. The `this` within arrow functions is also bound to the enclosing scope which is different compared to regular functions where the `this` is determined by the object calling it. Lexically-scoped `this` is useful when invoking callbacks especially in React components.
-
-
-### What advantage is there for using the arrow syntax for a method in a constructor?
-
-The main advantage of using an arrow function as a method inside a constructor is that the value of `this` gets set at the time of the function creation and can't change after that. So, when the constructor is used to create a new object, `this` will always refer to that object. For example, let's say we have a `Person` constructor that takes a first name as an argument has two methods to `console.log` that name, one as a regular function and one as an arrow function:
-
-```js
-const Person = function(firstName) {
-  this.firstName = firstName;
-  this.sayName1 = function() { console.log(this.firstName); };
-  this.sayName2 = () => { console.log(this.firstName); };
-};
-
-const john = new Person('John');
-const dave = new Person('Dave');
-
-john.sayName1(); // John
-john.sayName2(); // John
-
-// The regular function can have its 'this' value changed, but the arrow function cannot
-john.sayName1.call(dave); // Dave (because "this" is now the dave object)
-john.sayName2.call(dave); // John
-
-john.sayName1.apply(dave); // Dave (because 'this' is now the dave object)
-john.sayName2.apply(dave); // John
-
-john.sayName1.bind(dave)(); // Dave (because 'this' is now the dave object)
-john.sayName2.bind(dave)(); // John
-
-var sayNameFromWindow1 = john.sayName1;
-sayNameFromWindow1(); // undefined (because 'this' is now the window object)
-
-var sayNameFromWindow2 = john.sayName2;
-sayNameFromWindow2(); // John
-```
-
-The main takeaway here is that `this` can be changed for a normal function, but the context always stays the same for an arrow function. So even if you are passing around your arrow function to different parts of your application, you wouldn't have to worry about the context changing.
-
-This can be particularly helpful in React class components. If you define a class method for something such as a click handler using a normal function, and then you pass that click handler down into a child component as a prop, you will need to also bind `this` in the constructor of the parent component. If you instead use an arrow function, there is no need to also bind "this", as the method will automatically get its "this" value from its enclosing lexical context. (See this article for an excellent demonstration and sample code: https://medium.com/@machnicki/handle-events-in-react-with-arrow-functions-ede88184bbb)
-
 
 ### What is the definition of a higher-order function?
 
