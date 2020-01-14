@@ -421,6 +421,10 @@ Object.prototype.isPrototypeOf(Dog.prototype);  // => true
 ### Difference Between Class and Prototypal Inheritance?
 
 `Class Inheritance`: 
+- instances inherit from classes
+
+- The `extends` keyword
+
 A class is like a blueprint — a description of the object to be created. 
 Classes inherit from classes and create subclass relationships: hierarchical class taxonomies.
 Instances are typically instantiated via constructor functions with the `new` keyword. Class inheritance may or may not use the `class` keyword from ES6.
@@ -439,7 +443,9 @@ let hikingShoe = new Boot(..)
 
 
 `Prototypal Inheritance`: 
-Instances inherit directly from other objects. Instances are typically instantiated via factory functions or `Object.create()`.
+- instances inherit directly from other objects. 
+
+Instances are typically instantiated via factory functions or `Object.create()`.
 
 Instances may be composed from many different objects, allowing for easy selective inheritance.
 
@@ -921,6 +927,7 @@ React:
 
 ### What is functional programming?
 
+Functional programming produces programs by composing mathematical functions and avoids shared state & mutable data.
 Functional programming is a programming paradigm — a style of building the structure and elements of computer programs — that treats computation as the evaluation of mathematical functions and avoids changing-state and mutable data 
 
 - Pure functions
