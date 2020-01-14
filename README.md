@@ -56,6 +56,7 @@
 * [ES6 Template Literals offer a lot of flexibility in generating strings, can you give an example?](#es6-template-literals-offer-a-lot-of-flexibility-in-generating-strings-can-you-give-an-example)
 * [What are the benefits of using spread syntax and how is it different from rest syntax?](#what-are-the-benefits-of-using-spread-syntax-and-how-is-it-different-from-rest-syntax)
 * [How can you share code between files?](#how-can-you-share-code-between-files)
+* [Big O](#big-o)
 * [Object iteration](#object-iteration)
 * [Array methods](#array-methods)
 * [String methods](#string-methods)
@@ -1971,6 +1972,90 @@ On the client (browser environment), as long as the variables/functions are decl
 On the server (Node.js), the common way has been to use CommonJS. Each file is treated as a module and it can export variables and functions by attaching them to the `module.exports` object.
 
 ES2015 defines a module syntax which aims to replace both AMD and CommonJS. This will eventually be supported in both browser and Node environments.
+
+
+### Big O
+
+- mathematical notation we use to find out how long an algorithm takes to run (speed) and amount of memory it uses
+
+- good code:
+1. readable
+2. scalable -> big O allows to measure scalability of code (how efficient it is)
+            -> speed + memory
+
+
+![Big O](https://res.cloudinary.com/practicaldev/image/fetch/s--0mOYX8w0--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://thepracticaldev.s3.amazonaws.com/i/r38ytuycnzi6hd8dnevh.png)
+
+
+_____Example with measuring time:_____
+
+- ELEMENTS - our input(fish array) 
+     -> as they increase how many more OPERATIONS we have to do to get our result (number of loops)
+     -> this is called ALGORITHMIC efficiency
+
+
+```js
+const fish = ['dory', 'bruce', 'marlin', 'nemo'];
+
+function findNemo2(fish) {
+  let t0 = performance.now();               // time checker
+  for (let i = 0; i < fish.length; i++) {
+    if (fish[i] === 'nemo') {
+      console.log('Found NEMO!');
+    }
+  }
+  let t1 = performance.now();               // time checker
+  console.log("Call to find Nemo took " + (t1 - t0) + " milliseconds.");
+}
+
+findNemo2(fish)
+
+```
+
+#### Big O Cheat Sheet
+
+##### Big O's
+
+**O(1)** Constant- no loops
+**O(log N)** Logarithmic- usually searching algorithms have log n if they are sorted (Binary Search)
+**O(n)** Linear- for loops, while loops through n items
+**O(n log(n))** Log Liniear- usually sorting operations
+**O(n^2)** Quadratic- every element in a collection needs to be compared to ever other element. Two
+nested loops
+**O(2^n)** Exponential- recursive algorithms that solves a problem of size N
+**O(n!)** Factorial- you are adding a loop for every element
+
+- Iterating through half a collection is still **O(n)**
+- Two separate collections: **O(a * b)**
+
+##### What can cause time in a function?
+
+Operations **(+, -, *, /)**
+Comparisons **(<, >, ==)**
+Looping **(for, while)**
+Outside Function call **(function())**
+
+##### BookRule 
+
+**Rule 1:** Always worst Case
+**Rule 2:** Remove Constants
+**Rule 3:** Different inputs should have different variables. **O(a+b)**. A and B arrays nested would be **O(a*b)**
+
++ for steps in order
+* for nested steps
+
+**Rule 4:** Drop Non-dominant terms
+
+##### What causes Space complexity?
+
+- Variables
+- Data Structures
+- Function Call
+- Allocations
+
+
+
+
 
 
 ### Object iteration
