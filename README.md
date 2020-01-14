@@ -1980,49 +1980,30 @@ ES2015 defines a module syntax which aims to replace both AMD and CommonJS. This
 
 - good code:
 1. readable
-2. scalable -> big O allows to measure scalability of code (how efficient it is)
-            -> speed + memory
+2. scalable 
+- big O allows to measure scalability of code (how efficient it is)
+- speed + memory
 
 
 ![Big O](https://res.cloudinary.com/practicaldev/image/fetch/s--0mOYX8w0--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://thepracticaldev.s3.amazonaws.com/i/r38ytuycnzi6hd8dnevh.png)
 
-
-_____Example with measuring time:_____
-
-- ELEMENTS - our input(fish array) 
-     -> as they increase how many more OPERATIONS we have to do to get our result (number of loops)
-     -> this is called ALGORITHMIC efficiency
-
-
-```js
-const fish = ['dory', 'bruce', 'marlin', 'nemo'];
-
-function findNemo2(fish) {
-  let t0 = performance.now();               // time checker
-  for (let i = 0; i < fish.length; i++) {
-    if (fish[i] === 'nemo') {
-      console.log('Found NEMO!');
-    }
-  }
-  let t1 = performance.now();               // time checker
-  console.log("Call to find Nemo took " + (t1 - t0) + " milliseconds.");
-}
-
-findNemo2(fish)
-
-```
 
 #### Big O Cheat Sheet
 
 ##### Big O's
 
 **O(1)** Constant- no loops
+
 **O(log N)** Logarithmic- usually searching algorithms have log n if they are sorted (Binary Search)
+
 **O(n)** Linear- for loops, while loops through n items
+
 **O(n log(n))** Log Liniear- usually sorting operations
-**O(n^2)** Quadratic- every element in a collection needs to be compared to ever other element. Two
-nested loops
+
+**O(n^2)** Quadratic- every element in a collection needs to be compared to ever other element. Two nested loops
+
 **O(2^n)** Exponential- recursive algorithms that solves a problem of size N
+
 **O(n!)** Factorial- you are adding a loop for every element
 
 - Iterating through half a collection is still **O(n)**
@@ -2030,19 +2011,21 @@ nested loops
 
 ##### What can cause time in a function?
 
-Operations **(+, -, *, /)**
-Comparisons **(<, >, ==)**
-Looping **(for, while)**
-Outside Function call **(function())**
+**Operations** (+, -, *, /)
+
+**Comparisons** (<, >, ==)
+
+**Looping** (for, while)
+
+**Outside Function call** (function())
 
 ##### BookRule 
 
 **Rule 1:** Always worst Case
-**Rule 2:** Remove Constants
-**Rule 3:** Different inputs should have different variables. **O(a+b)**. A and B arrays nested would be **O(a*b)**
 
-+ for steps in order
-* for nested steps
+**Rule 2:** Remove Constants
+
+**Rule 3:** Different inputs should have different variables. **O(a+b)**. A and B arrays nested would be **O(a*b)**
 
 **Rule 4:** Drop Non-dominant terms
 
