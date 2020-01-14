@@ -1988,28 +1988,26 @@ ES2015 defines a module syntax which aims to replace both AMD and CommonJS. This
 ![Big O](https://res.cloudinary.com/practicaldev/image/fetch/s--0mOYX8w0--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://thepracticaldev.s3.amazonaws.com/i/r38ytuycnzi6hd8dnevh.png)
 
 
-#### Big O Cheat Sheet
+#### Big O's
 
-##### Big O's
+**O(1)** *Constant*- no loops
 
-**O(1)** Constant- no loops
+**O(log N)** *Logarithmic*- usually searching algorithms have log n if they are sorted (Binary Search)
 
-**O(log N)** Logarithmic- usually searching algorithms have log n if they are sorted (Binary Search)
+**O(n)** *Linear*- for loops, while loops through n items
 
-**O(n)** Linear- for loops, while loops through n items
+**O(n log(n))** *Log Liniear*- usually sorting operations
 
-**O(n log(n))** Log Liniear- usually sorting operations
+**O(n^2)** *Quadratic*- every element in a collection needs to be compared to ever other element. Two nested loops
 
-**O(n^2)** Quadratic- every element in a collection needs to be compared to ever other element. Two nested loops
+**O(2^n)** *Exponential*- recursive algorithms that solves a problem of size N
 
-**O(2^n)** Exponential- recursive algorithms that solves a problem of size N
-
-**O(n!)** Factorial- you are adding a loop for every element
+**O(n!)** *Factorial*- you are adding a loop for every element
 
 - Iterating through half a collection is still **O(n)**
 - Two separate collections: **O(a * b)**
 
-##### What can cause time in a function?
+#### *What can cause time in a function?*
 
 **Operations** (+, -, *, /)
 
@@ -2019,7 +2017,7 @@ ES2015 defines a module syntax which aims to replace both AMD and CommonJS. This
 
 **Outside Function call** (function())
 
-##### BookRule 
+#### *BookRule* 
 
 **Rule 1:** Always worst Case
 
@@ -2029,7 +2027,7 @@ ES2015 defines a module syntax which aims to replace both AMD and CommonJS. This
 
 **Rule 4:** Drop Non-dominant terms
 
-##### What causes Space complexity?
+##### *What causes Space complexity?*
 
 - Variables
 - Data Structures
@@ -2037,8 +2035,282 @@ ES2015 defines a module syntax which aims to replace both AMD and CommonJS. This
 - Allocations
 
 
+_______________________ O(n) ________________________ 
+
+- LINEAR
+- as the number of elements increase so does the number of operations (linearly)
+- for loops, while loops through n items
+
+- 4 items in array
+- 4 operations (is this === 'nemo'?)
+
+```js
+const fish = ['dory', 'bruce', 'marlin', 'nemo'];
+
+function findNemo2(fish) {
+  for (let i = 0; i < fish.length; i++) {
+    if (fish[i] === 'nemo') {
+      console.log('Found NEMO!');
+    }
+  }
+}
+
+findNemo2(fish)
+
+// it takes linear time to find nemo
+// big 0 depends on number of inputs n
+// n -> number of inputs
+
+-> O(n)
+
+op
+|
+|      *
+|    *
+|  *
+|   
+-------------el
+```
+
+example 2.
+
+```js
+function funChallenge(input) {
+  let a = 10;                                // O(1)     not changing
+  a = 50 + 3;                                // O(1)
+
+  for (let i = 0; i < input.length; i++) {   // O(n)    n->input
+    anotherFunction();                       // O(n)
+    let stranger = true;                     // O(n)
+    a++;                                     // O(n)
+  }
+  return a;                                  // O(1)
+}
 
 
+RESULT:
+
+-> 3 + n + n + n + n
+
+-> BIG O(3 + 4n)
+
+
+OR simplifying:
+
+
+-> BIG O(n)     // following 4 rules
+
+```
+
+_______________________ O(1) ________________________ 
+
+- CONSTANT TIME
+- no loops
+- algorithm will run the SAME (once in example), regardless of how many elements there are 
+
+
+```js
+function compressFirstBox(boxes){
+   console.log(boxes[0])           // O(1)
+}
+
+
+op
+|
+|      
+|    
+|  *******
+|   
+-------------el
+
+- number of operations stay the same
+
+```
+example 2.
+
+```js
+const boxes = [0,1,2,3,4,5]
+
+    function logFirstTwoBox(boxes){
+      console.log(boxes[0]);         // O(1)
+      console.log(boxes[1])          // O(1)
+    }
+
+logFirstTwoBox(boxes)              // in total -> O(2)  (2->number of operations)
+// 0, 1                            // in other words it is called O(1) - constant time
+
+```
+
+_______________________ O(n^2) ________________________ 
+
+
+```js
+//Log all pairs of array
+
+const boxes = ['a', 'b', 'c', 'd', 'e'];
+
+function logAllPairsOfArray(array) {
+  for (let i = 0; i < array.length; i++) {       // O(n)
+    for (let j = 0; j < array.length; j++) {       // O(n) NESTED
+      console.log(array[i], array[j])
+    }
+  }
+}
+
+logAllPairsOfArray(boxes)
+
+
+-> O(n^2)    // nested so multiply
+
+
+Big-O Complexity Chart - horrible
+
+```
+
+_______________________ O(n!) ________________________ 
+
+- adding nested loop for every input (n)
+
+```js
+// where n is the argument to the function:
+
+void nFacRuntimeFunc(int n) {
+  for(int i=0; i<n; i++) {
+    nFacRuntimeFunc(n-1);
+  }
+}
+```
+
+#### 4 Rules
+
+*Rule 1*: Worst Case
+
+*Rule 2*: Remove Constants
+
+*Rule 3*: Different terms for inputs
+
+*Rule 4*: Drop Non Dominants
+
+
+__________1. Worst Case__________
+
+- always think about this when calculating Big O 
+
+```js
+const everyone = ['dory', 'bruce', 'marlin', 'gill', 'bloat', 'nigel', 'squirt', 'darla', 'hank', 'nemo'];
+
+-> "worst case" here is that 'nemo' is at the end of array -> iteration through all elements in array
+
+- if 'nemo' was first in array -> O(1)
+
+
+function findNemo2(fish) {
+  for (let i = 0; i < fish.length; i++) {
+    if (fish[i] === 'nemo') {
+      console.log('Found NEMO!');
+      break;                       // stoping iteration on true
+    }
+  }
+}
+
+findNemo2(fish)
+```
+
+
+__________2. Remove Constants__________
+
+```js
+function printFirstItemThenFirstHalfThenSayHi100Times(items) {
+    console.log(items[0]);                          // n = 1
+
+    var middleIndex = Math.floor(items.length / 2);
+    var index = 0;
+
+    while (index < middleIndex) {                   // n/2
+        console.log(items[index]);
+        index++;
+    }
+
+    for (var i = 0; i < 100; i++) {                 // n = 100
+        console.log('hi');
+    }
+}
+
+
+--> O(1 + n/2 + 100) - big O 
+--> O(n/2 + 1)       
+
+- we only care about items on the CHART
+-> removed constants 
+----> O(n)    BIG O
+```
+
+
+example 2.
+```js
+    function compressBoxesTwice(boxes){
+
+      boxes.forEach(box => console.log(box));  // O(n)
+
+      boxes.forEach(box => console.log(box));  // O(n)
+
+    }
+
+-> O(2n)
+
+-> removed constants
+----> O(n)    BIG O
+
+- line in graph increases LINEAR
+```
+
+
+__________3. Different terms for inputs__________
+
+
+```js
+    function compressBoxesTwice(boxes , boxes2){   // different terms for inputs
+
+      boxes.forEach(box => console.log(box));  // O(n)
+
+      boxes2.forEach(box => console.log(box));  // O(n)
+
+    }
+
+
+-> O(n + n)    // not nested so plus
+```
+
+
+__________4. Drop Non Dominants__________
+
+```js
+function printAllNumbersThenAllPairSums(numbers) {
+
+  console.log('these are the numbers:');
+  numbers.forEach(function(number) {
+    console.log(number);
+  });
+
+  console.log('and these are their sums:');
+  numbers.forEach(function(firstNumber) {
+    numbers.forEach(function(secondNumber) {
+      console.log(firstNumber + secondNumber);
+    });
+  });
+}
+
+printAllNumbersThenAllPairSums([1,2,3,4,5])
+
+
+O(n + n^2)
+
+-> drop Non Dominants:
+
+-----> O(n^2)
+
+- n^2 more important than n
+```
 
 
 ### Object iteration
