@@ -14,7 +14,7 @@
 * [Where do I Belong](#Where-do-I-Belong)
 * [Mutations](#Mutations)
 * [Chunky Monkey](#Chunky-Monkey)
-
+* [Check Palindrome](#Check-Palindrome)
 
 ### Convert Celsius to Fahrenheit
 
@@ -391,4 +391,46 @@ chunkArrayInGroups([0, 1, 2, 3, 4, 5], 3)
 
 chunkArrayInGroups([0, 1, 2, 3, 4, 5], 2) 
 // [[0, 1], [2, 3], [4, 5]].
+```
+
+### Check Palindrome
+
+Return true if the given string is a palindrome. Otherwise, return false.
+
+A palindrome is a word or sentence that’s spelled the same way both forward and backward, ignoring punctuation, case, and spacing.
+
+```js
+function palindrome(str) {
+  // Step 1. Lowercase the string and use the RegExp to remove unwanted characters from it
+  var re = /[\W_]/g; // or var re = /[^A-Za-z0-9]/g;
+  
+  var lowRegStr = str.toLowerCase().replace(re, '');
+  // str.toLowerCase() = "A man, a plan, a canal. Panama".toLowerCase() = "a man, a plan, a canal. panama"
+  // str.replace(/[\W_]/g, '') = "a man, a plan, a canal. panama".replace(/[\W_]/g, '') = "amanaplanacanalpanama"
+  // var lowRegStr = "amanaplanacanalpanama";
+     
+  // Step 2. Use the same chaining methods with built-in functions from the previous article 'Three Ways to Reverse a String in JavaScript'
+  var reverseStr = lowRegStr.split('').reverse().join(''); 
+  // lowRegStr.split('') = "amanaplanacanalpanama".split('') = ["a", "m", "a", "n", "a", "p", "l", "a", "n", "a", "c", "a", "n", "a", "l", "p", "a", "n", "a", "m", "a"]
+  // ["a", "m", "a", "n", "a", "p", "l", "a", "n", "a", "c", "a", "n", "a", "l", "p", "a", "n", "a", "m", "a"].reverse() = ["a", "m", "a", "n", "a", "p", "l", "a", "n", "a", "c", "a", "n", "a", "l", "p", "a", "n", "a", "m", "a"]
+  // ["a", "m", "a", "n", "a", "p", "l", "a", "n", "a", "c", "a", "n", "a", "l", "p", "a", "n", "a", "m", "a"].join('') = "amanaplanacanalpanama"
+  // So, "amanaplanacanalpanama".split('').reverse().join('') = "amanaplanacanalpanama";
+  // And, var reverseStr = "amanaplanacanalpanama";
+   
+  // Step 3. Check if reverseStr is strictly equals to lowRegStr and return a Boolean
+  return reverseStr === lowRegStr; // "amanaplanacanalpanama" === "amanaplanacanalpanama"? => true
+}
+ 
+palindrome("A man, a plan, a canal. Panama");
+
+
+palindrome(“race car”) should return true
+palindrome(“not a palindrome”) should return false
+palindrome(“A man, a plan, a canal. Panama”) should return true
+palindrome(“never odd or even”) should return true
+palindrome(“nope”) should return false
+palindrome(“almostomla”) should return false
+palindrome(“My age is 0, 0 si ega ym.”) should return true
+palindrome(“1 eye for of 1 eye.”) should return false
+palindrome(“0_0 (: /-\ :) 0–0”) should return true
 ```
