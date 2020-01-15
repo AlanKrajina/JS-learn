@@ -24,6 +24,7 @@
 * [Promises?](#promises)
 * [What are the pros and cons of using Promises instead of callbacks?](#what-are-the-pros-and-cons-of-using-promises-instead-of-callbacks)
 * [What are two-way data binding and one-way data flow, and how are they different?](#What-are-two-way-data-binding-and-one-way-data-flow-and-how-are-they-different)
+* [Design Patterns](#design-patterns)
 * [Explain event delegation](#explain-event-delegation)
 * [Explain why the following doesn't work as an IIFE: `function foo(){ }();`. What needs to be changed to properly make it an IIFE?](#explain-why-the-following-doesnt-work-as-an-iife-function-foo--what-needs-to-be-changed-to-properly-make-it-an-iife)
 * [What's the difference between a variable that is: `null`, `undefined` or undeclared? How would you go about checking for any of these states?](#whats-the-difference-between-a-variable-that-is-null-undefined-or-undeclared-how-would-you-go-about-checking-for-any-of-these-states)
@@ -1273,6 +1274,39 @@ export const login = (credentials) => {
 One way data flows are deterministic, whereas two-way binding can cause side-effects which are harder to follow and understand.
 
 
+### Design Patterns
+
+Design patterns are reusable solutions to commonly occurring problems in software design.
+
+Reusing design patterns can speed up the software development process by providing us with tested and proven solutions to common development problems while ensuring that we write readable, reusable and maintainable codes.
+
+Design patterns can be categorized into `creational patterns`, `structural patterns`, and b`ehavioral patterns`.
+
+#### Creational Pattern
+Creational patterns focus on optimizing new object creation so as to suit the situation we are working it. The basic method for object creation might add some design complexities so these patterns help to remove such complexities.
+
+- Constructor pattern
+- Module pattern
+- Singleton pattern
+- Factory pattern
+- Prototype pattern
+
+#### Structural Pattern
+Structural patterns are concerned with how objects are made up and simplify relationships between different objects. These patterns ensure that objects are structured in a manner that when one part of the system changes, the entire structure of the system doesn't need to do the same.
+
+Decorator
+- Facade
+- Flyweight
+
+#### Behavioural Pattern
+Behavioral design patterns are concerned with the assignment of responsibilities between objects and how objects communicate.
+
+- Mediator
+- Observer
+- Command
+
+https://www.javascriptjanuary.com/blog/writing-maintainable-and-readable-javascript-design-patterns
+
 ### Explain event delegation
 
 Event delegation is a technique involving adding event listeners to a parent element instead of adding them to the descendant elements. The listener will fire whenever the event is triggered on the descendant elements due to event bubbling up the DOM. The benefits of this technique are:
@@ -1978,9 +2012,9 @@ ES2015 defines a module syntax which aims to replace both AMD and CommonJS. This
 
 - mathematical notation we use to find out how long an algorithm takes to run (speed) and amount of memory it uses
 
-- good code:
+Good code:
 1. readable
-2. scalable 
+2. scalable:
 - big O allows to measure scalability of code (how efficient it is)
 - speed + memory
 
@@ -1988,7 +2022,7 @@ ES2015 defines a module syntax which aims to replace both AMD and CommonJS. This
 ![Big O](https://res.cloudinary.com/practicaldev/image/fetch/s--0mOYX8w0--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://thepracticaldev.s3.amazonaws.com/i/r38ytuycnzi6hd8dnevh.png)
 
 
-#### Big O's
+#### *Big O's
 
 **O(1)** *Constant*- no loops
 
@@ -2035,7 +2069,7 @@ ES2015 defines a module syntax which aims to replace both AMD and CommonJS. This
 - Allocations
 
 
-_______________________ O(n) ________________________ 
+#### _______________________ O(n) ________________________ 
 
 - LINEAR
 - as the number of elements increase so does the number of operations (linearly)
@@ -2102,7 +2136,7 @@ OR simplifying:
 
 ```
 
-_______________________ O(1) ________________________ 
+#### _______________________ O(1) ________________________ 
 
 - CONSTANT TIME
 - no loops
@@ -2141,7 +2175,7 @@ logFirstTwoBox(boxes)              // in total -> O(2)  (2->number of operations
 
 ```
 
-_______________________ O(n^2) ________________________ 
+#### _______________________ O(n^2) ________________________ 
 
 
 ```js
@@ -2167,7 +2201,7 @@ Big-O Complexity Chart - horrible
 
 ```
 
-_______________________ O(n!) ________________________ 
+#### _______________________ O(n!) ________________________ 
 
 - adding nested loop for every input (n)
 
