@@ -42,6 +42,7 @@
 * [Why is extending built-in JavaScript objects not a good idea?](#why-is-extending-built-in-javascript-objects-not-a-good-idea)
 * [Difference between document `load` event and document `DOMContentLoaded` event?](#difference-between-document-load-event-and-document-domcontentloaded-event)
 * [What is the difference between `==` and `===`?](#what-is-the-difference-between--and-)
+* [NaN](#nan)
 * [Explain the same-origin policy with regards to JavaScript.](#explain-the-same-origin-policy-with-regards-to-javascript)
 * [Why is it called a Ternary expression, what does the word "Ternary" indicate?](#why-is-it-called-a-ternary-expression-what-does-the-word-ternary-indicate)
 * [Why would you use something like the `load` event? Does this event have disadvantages? Do you know any alternatives, and why would you use those?](#why-would-you-use-something-like-the-load-event-does-this-event-have-disadvantages-do-you-know-any-alternatives-and-why-would-you-use-those)
@@ -1589,6 +1590,24 @@ console.log(a == null); // true
 console.log(a == undefined); // true
 ```
 
+### NaN
+
+The NaN property represents "Not-a-Number" value. This property indicates that a value is not a legal number.
+
+```js
+isNaN(NaN);       // true
+isNaN(undefined); // true
+isNaN({});        // true
+
+isNaN(true);      // false
+isNaN(null);      // false
+isNaN(37);        // false
+
+
+// This is a false positive and the reason why isNaN is not entirely reliable
+isNaN('blabla');   // true: "blabla" is converted to a number. 
+                   // Parsing this as a number fails and returns NaN
+```
 
 ### Explain the same-origin policy with regards to JavaScript.
 
