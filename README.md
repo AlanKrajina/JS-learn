@@ -933,12 +933,22 @@ Functional programming produces programs by composing mathematical functions and
 Functional programming is a programming paradigm — a style of building the structure and elements of computer programs — that treats computation as the evaluation of mathematical functions and avoids changing-state and mutable data 
 
 - Pure functions
-- Immutability
-- Function composition
-- Recursion
-- Higher-order functions
-- Currying
+*Given the same input, will always return the same output. Produces no side effects.*
 
+- Immutability
+*Object whose state cannot be modified after it is created. Examples of native JavaScript values that are immutable are numbers and strings. Examples of native JavaScript values that are mutable include objects, arrays, functions, classes, sets, and maps.*
+
+- Function composition
+*Process of combining two or more functions to produce a new function.*
+
+- Recursion
+*Technique for iterating over an operation by having a function call itself repeatedly until it arrives at a result.*
+
+- Higher-order functions
+*Functions that take other functions as arguments or return functions as their results. Taking an other function as an argument is often referred as a callback function, because it is called back by the higher-order function.*
+
+- Currying
+*Technique of evaluating function with multiple arguments , into sequence of function with single argument. ... Currying helps you to avoid passing the same variable again and again. It helps to create a higher order function.*
 
 ### What is object oriented programming?
 
