@@ -829,6 +829,7 @@ A closure is the combination of a function and the lexical environment within wh
 
 `Closures` are functions that have access to the outer (enclosing) function's variables—scope chain even after the outer function has returned.
 
+One drawback to using closures is that they can lead to over-consumption of memory, and possibly memory leaks if not handled properly.
 
 ```js
 const newTaxFunction = function (countryName, taxRate, ...exemptItems) {
