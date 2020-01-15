@@ -15,6 +15,8 @@
 * [Mutations](#Mutations)
 * [Chunky Monkey](#Chunky-Monkey)
 * [Check Palindrome](#Check-Palindrome)
+* [Count number of same characters](#Count-number-of-same-characters)
+
 
 ### Convert Celsius to Fahrenheit
 
@@ -433,4 +435,20 @@ palindrome(“almostomla”) should return false
 palindrome(“My age is 0, 0 si ega ym.”) should return true
 palindrome(“1 eye for of 1 eye.”) should return false
 palindrome(“0_0 (: /-\ :) 0–0”) should return true
+```
+
+### Count number of same characters
+
+```js
+var string = 'alan'
+var char = 'a'
+
+function count(string,char){
+    let counter = 0;
+    [...string].forEach(el=> el === char? counter += 1 : null) 
+    return counter
+}
+
+count(string,char)
+//2
 ```
