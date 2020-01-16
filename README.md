@@ -2661,6 +2661,8 @@ console.log(array1.reduce(reducer, 5));
 [10, 20, 30, 40].reduce(function(memo, i) { return memo + i }) //=> 100
 [10, 20, 30, 40].reduce(function(memo, i) { return memo + i }, 100) //=> 200
 
+[10, 20, 30, 40].reduce((memo, i) =>  memo + i ) //=> 100
+
 
 
 // learn 1.
