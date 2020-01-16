@@ -17,6 +17,7 @@
 * [Check Palindrome](#Check-Palindrome)
 * [Count number of same characters](#Count-number-of-same-characters)
 * [Find Duplicates](#Find-duplicates)
+* [FizzBuzz](#fizzbuzz)
 
 
 ### Convert Celsius to Fahrenheit
@@ -480,4 +481,41 @@ console.log( findDuplicates([]) ); // []
 console.log( findDuplicates([1, 1, 1]) ); // [1]
 console.log( findDuplicates([1, 2, 3, 1, 2, 1]) ); // [1, 2]
 
+```
+
+### FizzBuzz
+
+```js
+for (let i=1; i <= 20; i++)
+{
+    if (i % 15 == 0)
+        console.log("FizzBuzz");
+    else if (i % 3 == 0)
+        console.log("Fizz");
+    else if (i % 5 == 0)
+        console.log("Buzz");
+    else
+        console.log(i);
+}
+
+1
+2
+Fizz
+4
+Buzz
+Fizz
+7
+8
+Fizz
+Buzz
+11
+Fizz
+13
+14
+FizzBuzz
+16
+17
+Fizz
+19
+Buzz
 ```
