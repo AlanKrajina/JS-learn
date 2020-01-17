@@ -61,6 +61,7 @@
 * [Nodejs](#nodejs)
 * [Big O](#big-o)
 * [Object iteration](#object-iteration)
+* [Object methods](#object-methods)
 * [Array methods](#array-methods)
 * [String methods](#string-methods)
 
