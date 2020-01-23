@@ -489,7 +489,7 @@ The difference between `classical inheritance` and `prototypal inheritance` is t
 
 - Arrow functions dont define their own this like standard functions do.
 
-#### Object Methods 
+#### Object Method 
 
 ```javascript
 
