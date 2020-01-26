@@ -513,7 +513,7 @@ lauren.sayHello()
 // "Hello everybody, my name is lauren!"
 ```
 
-#### classes 
+#### class
 ```javascript
 
 class User {
