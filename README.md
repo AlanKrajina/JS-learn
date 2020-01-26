@@ -2736,6 +2736,48 @@ const copy = Object.assign({}, obj);
 console.log(copy); // { a: 1 }
 ```
 
+##### Object.entries()
+
+The `Object.entries()` method returns an `array` of a given object's own enumerable string-keyed property [key, value] pairs, in the same order as that provided by a for...in loop. (The only important difference is that a for...in loop enumerates properties in the prototype chain as well). 
+
+The order of the array returned by `Object.entries()` does not depend on how an object is defined. If there is a need for certain ordering, then the array should be sorted first, like:
+
+```javascript
+Object.entries(obj).sort((a, b) => b[0].localeCompare(a[0]));.
+```
+
+```javascript
+const anObj = { 100: 'a', 2: 'b', 7: 'c' };
+
+console.log(Object.entries(anObj)); 
+
+// [ ['2', 'b'], ['7', 'c'], ['100', 'a'] ]
+```
+
+##### Object.keys()
+
+The `Object.keys()` method returns an `array` of a given object's own enumerable property names, iterated in the same order that a normal loop would.
+
+```javascript
+const anObj = { 100: 'a', 2: 'b', 7: 'c' };
+
+console.log(Object.keys(anObj)); 
+
+// console: ['2', '7', '100']
+```
+
+##### Object.values()
+
+The `Object.values()` method returns an `array` of a given object's own enumerable property values, in the same order as that provided by a for...in loop. (The only difference is that a for...in loop enumerates properties in the prototype chain as well.)
+
+```javascript
+const arrayLikeObj2 = { 100: 'a', 2: 'b', 7: 'c' };
+
+console.log(Object.values(arrayLikeObj2 )); 
+
+// ['b', 'c', 'a']
+```
+
 ## Array methods
 
 ```javascript
