@@ -767,6 +767,20 @@ greet.call(sally);
 
 -----------------
 
+var person1 = {
+  fullName: function() {
+    return this.firstName + " " + this.lastName;
+  }
+}
+var person2 = {
+  firstName:"John",
+  lastName: "Doe",
+}
+
+person1.fullName.call(person2);  // Will return "John Doe"
+
+-----------------
+
 The APPLY works similarly to call, except that apply only takes two arguments: 
 - the value of this, 
 - and then an Array of arguments to pass to the function, like so:
@@ -843,6 +857,58 @@ class Dog extends Animal {
 let d = new Dog('Mitzie');
 d.speak(); // Mitzie barks.
 ```
+
+##### Prototype methods
+
+```js
+class Rectangle {
+  constructor(height, width) {
+    this.height = height;
+    this.width = width;
+  }
+  // Getter
+  get area() {
+    return this.calcArea();
+  }
+  // Method
+  calcArea() {
+    return this.height * this.width;
+  }
+}
+
+const square = new Rectangle(10, 10);
+
+console.log(square.area); // 100
+```
+
+##### Static methods
+
+The `static` keyword defines a static method for a class. Static methods are called without instantiating their class and cannot be called through a class instance. Static methods are often used to create utility functions for an application.
+
+```js
+class Point {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+
+  static distance(a, b) {
+    const dx = a.x - b.x;
+    const dy = a.y - b.y;
+
+    return Math.hypot(dx, dy);
+  }
+}
+
+const p1 = new Point(5, 5);
+const p2 = new Point(10, 10);
+p1.distance; //undefined
+p2.distance; //undefined
+
+console.log(Point.distance(p1, p2)); // 7.0710678118654755
+```
+
+
 
 
 ### Module
@@ -2616,6 +2682,59 @@ console.log(john);
 The Array.prototype.find() method returns the value of the first element in the array that satisfies the provided testing function.
 
 
+## Object methods
+
+#### Object.create(obj)
+
+The `Object.create()` method creates a new object, using an existing object as the prototype of the newly created object.
+
+```javascript
+const person = {
+  isHuman: false,
+  printIntroduction: function () {
+    console.log(`My name is ${this.name}. Am I human? ${this.isHuman}`);
+  }
+};
+
+const me = Object.create(person);
+
+me.name = "Matthew"; // "name" is a property set on "me", but not on "person"
+me.isHuman = true; // inherited properties can be overwritten
+
+me.printIntroduction();
+// expected output: "My name is Matthew. Am I human? true"
+```
+
+#### Object.assign(target, source)
+
+The `Object.assign()` method copies all enumerable own properties from one or more source objects to a target object. It returns the `target object`.
+
+The `target` object — what to apply the sources’ properties to, which is returned after it is modified.
+
+The `source` object(s) — objects containing the properties you want to apply.
+
+
+```javascript
+const target = { a: 1, b: 2 };
+const source = { b: 4, c: 5 };
+
+const returnedTarget = Object.assign(target, source);
+
+console.log(target);
+// expected output: Object { a: 1, b: 4, c: 5 }
+
+console.log(returnedTarget);
+// expected output: Object { a: 1, b: 4, c: 5 }
+```
+
+##### Cloning an object
+
+```javascript
+const obj = { a: 1 };
+const copy = Object.assign({}, obj);
+
+console.log(copy); // { a: 1 }
+```
 
 ## Array methods
 
