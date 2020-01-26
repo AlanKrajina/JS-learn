@@ -11,6 +11,7 @@
 * [Explain how `this` works in JavaScript](#explain-how-this-works-in-javascript)
 * [What's the difference between `.call` and `.apply`?](#whats-the-difference-between-call-and-apply)
 * [Bind, Call, Apply](#Bind-Call-Apply)
+* [Classes](#Classes)
 * [Module](#Module)
 * [What is a closure, and how/why would you use one?](#what-is-a-closure-and-howwhy-would-you-use-one)
 * [Callbacks](#callbacks)
@@ -805,6 +806,42 @@ intro(asgardianBrothers[0], phrase) //=> Thor Odinsson says: I like this brown d
 
 intro(asgardianBrothers[0], phrase) === introWithContext.call(asgardianBrothers[0], phrase)     //=> true
 intro(asgardianBrothers[0], phrase) === introWithContext.apply(asgardianBrothers[0], [phrase])  //=> true
+```
+
+
+### Classes
+
+Syntactical sugar over JavaScript's existing prototype-based inheritance.
+
+A `constructor` can use the `super` keyword to call the constructor of the super class.
+
+The `extends` keyword is used in class declarations or class expressions to create a class as a child of another class.
+
+If there is a `constructor` present in the subclass, it needs to first call `super()` before using `"this"`.
+
+```js
+class Animal { 
+  constructor(name) {
+    this.name = name;
+  }
+  
+  speak() {
+    console.log(`${this.name} makes a noise.`);
+  }
+}
+
+class Dog extends Animal {
+  constructor(name) {
+    super(name); // call the super class constructor and pass in the name parameter
+  }
+
+  speak() {
+    console.log(`${this.name} barks.`);
+  }
+}
+
+let d = new Dog('Mitzie');
+d.speak(); // Mitzie barks.
 ```
 
 
