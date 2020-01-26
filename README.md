@@ -659,7 +659,7 @@ person.greet();
 
 ```
 
-#### Classes 
+#### Class
 ```javascript
 
 class Person {
