@@ -186,7 +186,6 @@ function doSomething(){
 }
 doSomething();
 //Uncaught ReferenceError: x is not defined
-
 }
 ```
 
