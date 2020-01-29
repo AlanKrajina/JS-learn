@@ -2496,6 +2496,18 @@ O(n + n^2)
 
 ### Object iteration
 
+```js
+let some1 = {
+        blogss: ['blog1', 'blog2'],
+        getthem: function(){
+            this.blogss.forEach(el=>console.log(el))}   // this
+}
+
+some1.getthem()
+// blog1
+// blog2
+```
+
 For most objects,  `for .. in` :
 
 ```js
