@@ -3070,6 +3070,16 @@ primes.sort((a, b) => b - a)         // descending
 array.sort((a , b) => a - b)
 // [ -1, 1, 3, 5, 6 ]
 
+
+MATH sorting LIST:
+
+Math.min(0, 150, 30, 20, -8, -200);  // returns -200
+
+Math.max(0, 150, 30, 20, -8, -200);  // returns 150
+
+Math.random();     // returns a random number
+
+
 ---------------- .sort() with a callback ------------------
 
 const primes = [13, 7, 17, 2, 5, 3];
