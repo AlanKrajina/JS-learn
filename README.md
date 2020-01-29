@@ -80,7 +80,14 @@ The latest ECMAScript standard defines 8 data types:
 - `BigInt`
 - `String`
 - `Symbol`
-- and `Object`
+- and `Object`   // reference types
+
+Reference types: // all types of objects
+- `object literals`
+- `arrays`
+- `functions`
+- `dates`
+- `all other objects..`
 
 
 ### Hoisting
