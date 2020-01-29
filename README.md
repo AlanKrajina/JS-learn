@@ -125,7 +125,7 @@ SHALLOW copying:
 ```js
 let first = {name: 'alan'}
 let second = first
-let third = Object.assign({},first)        // immutable method      - Object.create ODES NOT WORK
+let third = Object.assign({},first)        // OBJECT.ASSIGN immutable method      - Object.create DOESNT WORK
 
 first.name = 'john'                        // changing value of original object
 
