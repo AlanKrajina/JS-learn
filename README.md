@@ -2641,6 +2641,11 @@ console.log(myArray);
 // [100, 200, 300]
 console.log(newArray); 
 // [200, 400, 600]
+
+
+// const newArray = [...myArray].map(el=> el.x * 2 )
+// [200, 400, 600]
+
 ```
 
 ##### 6. Count the number of each category
