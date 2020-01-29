@@ -2745,6 +2745,8 @@ me.isHuman = true; // inherited properties can be overwritten
 
 me.printIntroduction();
 // expected output: "My name is Matthew. Am I human? true"
+
+me === person    // false
 ```
 
 #### Object.assign(target, source)
