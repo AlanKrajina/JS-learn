@@ -2701,6 +2701,12 @@ let sortByAge = people.sort(function (p1, p2) {
 });
 
 console.log(sortByAge);
+
+(4) [{…}, {…}, {…}, {…}]
+0: {name: "John", age: 21}
+1: {name: "Thomas", age: 25}
+2: {name: "Andrew", age: 29}
+3: {name: "Peter", age: 31}
 ```
 
 ##### 9. Find an element in an array
