@@ -2827,7 +2827,7 @@ me.printIntroduction();
 me === person    // false
 ```
 
-#### Object.assign(target, source)
+#### Object.assign(target, sourceObj)  or  Object.assign({}, sourceObj)
 
 The `Object.assign()` method copies all enumerable own properties from one or more source objects to a target object. It returns the `target object`.
 
