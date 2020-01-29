@@ -72,7 +72,7 @@
 
 The latest ECMAScript standard defines 8 data types:
 
-7 data types that are primitives:
+7 data types that are primitives:                // stored in memory on a STACK
 - `Boolean`
 - `Null`
 - `Undefined`
@@ -82,13 +82,84 @@ The latest ECMAScript standard defines 8 data types:
 - `Symbol`
 - and `Object`   // reference types
 
-Reference types: // all types of objects
+Reference types: // all types of objects         // stored in memory on a HEAP
 - `object literals`
 - `arrays`
 - `functions`
 - `dates`
 - `all other objects..`
 
+#### STACK
+
+##### primitive 
+(they dont change)
+
+```js
+let first = 20
+let second = first
+
+first = 50
+
+// first
+// 50
+
+// second
+// 20              // NOT CHANGED 
+```
+
+##### object
+(they change)
+
+```js
+let first = {name: 'alan'}
+let second = first
+
+first.name = 'john'
+
+second.name
+// "john"                    // CHANGED
+```
+
+SHALLOW copying:
+
+```js
+let first = {name: 'alan'}
+let second = first
+let third = Object.assign({},first)        // immutable method
+
+first.name = 'john'                        // changing value of original object
+
+second.name                  // CHANGED
+// "john"
+
+third.name                   // NOT CHANGED!!!
+// "alan"
+
+https://scotch.io/bar-talk/copying-objects-in-javascript
+```
+
+DEEP copying:
+
+(for NESTED objects)
+
+```js
+let obj = { 
+  a: 1,
+  b: { 
+    c: 2,
+  },
+}
+
+let newObj = JSON.parse(JSON.stringify(obj));
+
+obj.b.c = 20;                // changing nested value of original object
+
+console.log(obj); 
+// { a: 1, b: { c: 20 } }
+
+console.log(newObj); 
+// { a: 1, b: { c: 2 } }     (New Object Intact!), with shallow copying c: would change to 20
+```
 
 ### Hoisting
 
