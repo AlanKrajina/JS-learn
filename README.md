@@ -2519,9 +2519,14 @@ for (let key in yourobject) {
 With ES6, if you need both `keys` and `values` simultaneously, do:
 
 ```js
-for (let [key, value] of Object.entries(yourobject)) {
+for (let [key, value] of Object.entries(some1)) {
     console.log(key, value);
 }
+
+blogss (2) ["blog1", "blog2"]
+
+getthem ƒ (){
+            this.blogss.forEach(el=>console.log(el))}
 ```
 
 To avoid logging inherited properties, check with `hasOwnProperty` :
