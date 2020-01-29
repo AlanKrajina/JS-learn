@@ -2511,9 +2511,24 @@ some1.getthem()
 For most objects,  `for .. in` :
 
 ```js
-for (let key in yourobject) {
-  console.log(key, yourobject[key]);
+let obj = {
+    name: 'alan',
+    age: 32
 }
+
+for (let key in obj){
+    console.log(key, obj[key])
+}
+
+// name alan
+// age 32
+
+for (let key in obj){
+    console.log(obj[key])
+}
+
+// alan
+// 32
 ```
 
 With ES6, if you need both `keys` and `values` simultaneously, do:
