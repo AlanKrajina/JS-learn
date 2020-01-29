@@ -3036,23 +3036,32 @@ fruits.splice(0, 1);        // Removes the first element of fruits
 -----------------------.sort()-----------------------------
 -----------------------.reverse()--------------------------
 
+STRINGS:
 
 var fruits = ["Banana", "Orange", "Apple", "Mango"];
-fruits.sort();        // First sort the elements of fruits
-                      // ["Apple", "Banana", "Mango", "Orange"]
-fruits.reverse();     // Then reverse the order of the elements
-                      // ["Mango", "Apple", "Orange", "Banana"]
 
-// ES2015
+fruits.sort();                        // First sort the elements of fruits
+// ["Apple", "Banana", "Mango", "Orange"]
+
+fruits.reverse();                    // Then reverse the order of the elements
+// ["Mango", "Apple", "Orange", "Banana"]
+
+
+NUMBERS:
+
 const primes = [13, 7, 17, 2, 5, 3];
 const array = [5, 6, -1, 1, 3]
 
-primes.sort((a, b) => a - b)
+primes.sort((a, b) => a - b)         // ascending
 
 // [ 2, 3, 5, 7, 13, 17 ]
 
-array.sort((a , b) => a - b)
+primes.sort((a, b) => b - a)         // descending 
 
+// [ 17, 13, 7, 5, 3, 2 ]
+
+
+array.sort((a , b) => a - b)
 // [ -1, 1, 3, 5, 6 ]
 
 ---------------- .sort() with a callback ------------------
