@@ -2929,6 +2929,28 @@ const map1 = array1.map(x => x * 2);
 // [2, 8, 18, 32]
 
 
+------------ OBJECT --------------
+
+const people = [ {name: "john", age:23},
+                {name: "john", age:43},
+                {name: "jim", age:101},
+                {name: "bob", age:67} ];
+		
+let newPeople = people.map( person => {
+	if (person.age > 50){
+		return {name: person.name, age: 'old'}
+		} else {
+		return person
+		}
+});
+
+newPeople
+
+// (4) [{…}, {…}, {…}, {…}]
+// {name: "john", age: 23}
+// {name: "john", age: 43}
+// {name: "jim", age: "old"}
+// {name: "bob", age: "old"}
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 -------------------------.filter---------------------------
