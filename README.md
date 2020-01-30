@@ -3635,3 +3635,74 @@ people.forEach( el => {
 	content.innerHTML += `<p>${el}</p>`;
 })
 ```
+
+### Getting and Setting Attributes
+
+.getAttribute, .setAttribute
+
+```js
+<a href='https://www.google.com'> Click Here </a>
+
+let link = document.querySelector("a");
+
+link.getAttribute('href')                                  // getAttribute -> returns href string
+link.setAttribute('href', 'https://www.amazon.com')        // setAttribute -> changes href string
+```
+
+### Changing CSS Styles
+
+.style
+
+```js
+let el = document.querySelector("h1");
+ 
+el.style.color                // returns 'orange'    -> color: 'orange'    (object)
+el.style.margin = '50px'      // adds margin to style without overwriting all
+el.style.fontSize = '60px'    // instead font-size
+```
+
+### Adding and Removing Classes
+
+.add, .remove, .toggle
+
+```js
+<p class='error'> text </p>
+
+let content = document.querySelector("p");
+
+content.classList.add('error')                // adding a CLASS if no class is there
+content.classList.add('success')                // adding and replacing existing CLASS 
+content.classList.remove('success')             // remove a CLASS if no class is there
+```
+
+Example:
+```js
+// if error then add error class, if success then add success class
+
+<p> error </p>
+<p> error </p>
+<p> success </p>
+<p> error </p>
+<p> success </p>
+
+let all = document.querySelectorAll('p')
+
+let new = all.forEach( el => {
+	if( el.innerText === 'error'){           // instead of el.innerText -> el.textContent ( better for not visible text )
+						 // other way -> if ( el.textContent.includes('error')
+		el.classList.add('error')
+	} else {
+		el.classList.add('success')
+		}
+	})
+```
+
+#### Toggle Class
+
+```js
+let content = document.querySelector(".title");       // already has a class of '.title'
+
+content.classList.toggle('test');                     // 	 adds '.title .test'
+content.classList.toggle('test');                     // (again) removes '.title'
+
+```
