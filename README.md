@@ -3600,6 +3600,38 @@ let matches = document.querySelectorAll("#idname");
 
 ### Adding and Changing Page Content
 
-```js
+- changing TEXT:
 
+```js
+let el = document.querySelector("h1");
+
+el.innerText                        // returns text
+el.innerText = 'something new'      // changes text
+el.innerText += 'something new'     // adds text
+```
+
+```js
+let matches = document.querySelectorAll("p");
+
+matches.forEach( el => {
+	el.innerText += ' extra text';
+})
+```
+
+- changing HTML:
+
+```js
+let el = document.querySelector("h1");
+
+el.innerHTML = '<p>something</p>'    // replaces with new HTML
+el.innerHTML += '<p>something</p>'   // adds new HTML bellow
+```
+
+```js
+let content = document.querySelector("h1");
+let people = ['alan', 'john', 'mike'];
+
+people.forEach( el => {
+	content.innerHTML += `<p>${el}</p>`;
+})
 ```
