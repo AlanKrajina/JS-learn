@@ -65,6 +65,7 @@
 * [Object methods](#object-methods)
 * [Array methods](#array-methods)
 * [String methods](#string-methods)
+* [DOM](#DOM)
 
 
 
@@ -3572,3 +3573,33 @@ for (var i = 0; i < str.length; i++) {
 
 ```
 
+## DOM
+
+- Document Object Model
+
+### The Query Selector
+
+https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector
+https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll
+
+```js
+// returns only FIRST:
+let el = document.querySelector("h1");
+let el = document.querySelector(".myclass");
+let el = document.querySelector("#idname");
+
+// return specific:
+let el = document.querySelector("div.myclass");
+(dev tools -> elements -> right click on element -> copy -> copy selector)
+
+// returns ALL:
+let matches = document.querySelectorAll("p");
+let matches = document.querySelectorAll(".myclass");
+let matches = document.querySelectorAll("#idname");
+```
+
+### Adding and Changing Page Content
+
+```js
+
+```
