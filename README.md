@@ -3709,4 +3709,50 @@ content.classList.toggle('test');                     // (again) removes '.title
 
 ### NODE Parents, Children & Siblings
 
+- used for dynamic changes (when we dont know the class,tag or it generates randomly)
+
 ![node](https://www.qualitestgroup.com/images/howto/DOMTree_HowTo.png)
+https://www.w3schools.com/js/js_htmldom_navigation.asp
+
+
+##### PARENT - CHILD
+```js
+// accessing children in collection
+
+1. non-destructive creation of array:
+
+<article>
+	<h1> text </h1>
+	<p> text </p>
+	<p> text </p>
+	<div> text </div>
+</article>
+
+let newArr = Array.from(article.children)      // children method
+// [4]
+
+
+2. iterating
+
+newArr.forEach( child => {
+	child.classList.add('newclass')       // adding class to each item
+})
+```
+
+##### Finding PARENT 
+
+```js
+let element = document.querySelector('h1')
+
+let parent = element.parentElement            // parentElement method
+```
+
+##### Finding SIBLING 
+
+```js
+let element = document.querySelector('h1')
+
+let nextSibling = element.nextElementSibling               // nextElementSibling method
+let previousSibling = element.previousElementSibling       // previousElementSibling method
+
+```
