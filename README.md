@@ -3144,6 +3144,8 @@ fruits.splice(0, 1);        // Removes the first element of fruits
 -----------------------.sort()-----------------------------
 -----------------------.reverse()--------------------------
 
+-> destructive - changes original array
+
 STRINGS:
 
 var fruits = ["Banana", "Orange", "Apple", "Mango"];
@@ -3155,7 +3157,24 @@ fruits.reverse();                    // Then reverse the order of the elements
 // ["Mango", "Apple", "Orange", "Banana"]
 
 
+-> non destructive:
+
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+
+let some = [...fruits].sort()
+
+some
+// ["Apple", "Banana", "Mango", "Orange"]
+
+fruits
+// ["Banana", "Orange", "Apple", "Mango"]
+
+
 NUMBERS:
+
+- non destructive -> let some = [...primes].sort((a, b) => a - b) 
+
+-> destructive - changes original array:
 
 const primes = [13, 7, 17, 2, 5, 3];
 const array = [5, 6, -1, 1, 3]
