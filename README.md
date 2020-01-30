@@ -3706,3 +3706,7 @@ content.classList.toggle('test');                     // 	 adds '.title .test'
 content.classList.toggle('test');                     // (again) removes '.title'
 
 ```
+
+### NODE Parents, Children & Siblings
+
+![node](https://www.qualitestgroup.com/images/howto/DOMTree_HowTo.png)
