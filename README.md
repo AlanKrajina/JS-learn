@@ -3803,3 +3803,5 @@ EVENT DELEGATION is a technique involving adding event listeners to a parent ele
 * There is no need to unbind the handler from elements that are removed and to bind the event for new elements.
 
 - when we click on a specific LI, that one becomes a EVENT TARGET
+
+https://www.udemy.com/course/modern-javascript-from-novice-to-ninja/learn/lecture/14174917#overview
