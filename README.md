@@ -3756,3 +3756,60 @@ let nextSibling = element.nextElementSibling               // nextElementSibling
 let previousSibling = element.previousElementSibling       // previousElementSibling method
 
 ```
+
+### Event Listeners
+
+https://developer.mozilla.org/en-US/docs/Web/Events
+
+```js
+// individial element
+
+const button = document.querySelector('button')   
+
+button.addEventListener('click', () => {          // listens for click event and fires a function
+	console.log('you clicked me')
+})
+```
+```js
+// if we have more elements (li tag) 
+
+const list = document.querySelectorAll('li')
+
+list.forEach(el=> {
+	el.addEventListener('click', e => {
+		e.target.style.textDecoration = 'line-through'      // on click it changes specific <li> style
+		})
+	})
+```
+
+### Creating and Removing Elements
+
+Remove clicked <li>:
+	
+```js
+const list = document.querySelectorAll('li')
+
+list.forEach(el=> {
+	el.addEventListener('click', e => {
+		e.target.remove()                       // on click remove() method removes <li>
+		})
+	})
+```
+
+Add <li> element on <button> click:
+	
+```js
+const button = document.querySelector('button')   
+
+const ul = document.querySelectorAll('ul')            // took <ul> that has 4 <li>
+
+button.addEventListener('click', () => {          
+	// ul.innerHTML += '<li> added new li </li>'     // adds new <li>  
+	
+	const li = document.createElement('li');          // BETTER WAY createElement method
+	li.textContent = 'added new li';
+	
+	ul.appent(li)                                     // .append (adds to the bottom)
+	el.prepend(li)                                    // .prepend (adds to the top)
+})
+```
