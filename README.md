@@ -64,6 +64,7 @@
 * [String methods](#string-methods)
 * [DOM](#DOM)
 * [Event Listeners](#Event-Listeners)
+* [Asynchronous JavaScript](#Asynchronous-JavaScript)
 
 
 
@@ -3821,3 +3822,4 @@ ul.addEventListener('click', e => {
 })
 ```
 
+### Asynchronous JavaScript
