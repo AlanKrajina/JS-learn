@@ -63,6 +63,7 @@
 * [Array methods](#array-methods)
 * [String methods](#string-methods)
 * [DOM](#DOM)
+* [Event Listeners](#Event-Listeners)
 
 
 
