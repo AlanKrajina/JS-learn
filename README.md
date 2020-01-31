@@ -3784,7 +3784,7 @@ list.forEach(el=> {
 
 ### Creating and Removing Elements
 
-Remove clicked <li>:
+Remove clicked li:
 	
 ```js
 const list = document.querySelectorAll('li')
@@ -3796,7 +3796,7 @@ list.forEach(el=> {
 	})
 ```
 
-Add <li> element on <button> click:
+Add li element on button click:
 	
 ```js
 const button = document.querySelector('button')   
