@@ -3776,7 +3776,7 @@ Add li element on button click:
 ```js
 const button = document.querySelector('button')   
 
-const ul = document.querySelectorAll('ul')            // took <ul> that has 4 <li>
+const ul = document.querySelector('ul')            // took <ul> that has 4 <li>
 
 button.addEventListener('click', () => {          
 	// ul.innerHTML += '<li> added new li </li>'     // adds new <li>  
@@ -3805,3 +3805,19 @@ EVENT DELEGATION is a technique involving adding event listeners to a parent ele
 - when we click on a specific LI, that one becomes a EVENT TARGET
 
 https://www.udemy.com/course/modern-javascript-from-novice-to-ninja/learn/lecture/14174917#overview
+
+
+We dont need eventListener on every LI, we can add one on UL:
+
+```js
+const ul = document.querySelector('ul') 
+
+ul.addEventListener('click', e => {
+	console.log(e.target)                  // on <li> click it console logs that <li>
+	
+	if (e.target.tagName === 'LI'){
+		e.target.remove()              // removes clicked <li> via bubbling
+	}
+})
+```
+
