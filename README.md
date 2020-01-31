@@ -1104,6 +1104,53 @@ React:
 
 ```
 
+#### Callback Hell
+
+https://www.freecodecamp.org/news/how-to-deal-with-nested-callbacks-and-avoid-callback-hell-1bc8dc4a2012/
+
+```js
+const makeBurger = nextStep => {
+  getBeef(function (beef) {
+    cookBeef(beef, function (cookedBeef) {
+      getBuns(function (buns) {
+        putBeefBetweenBuns(buns, beef, function(burger) {
+          nextStep(burger)
+        })
+      })
+    })
+  })
+}
+
+// Make and serve the burger
+makeBurger(function (burger) => {
+  serve(burger)
+})
+```
+
+There are four solutions to callback hell:
+
+- Write comments
+- Split functions into smaller functions
+- Using Promises
+- Using Async/await
+
+
+##### PROMISE 
+
+```js
+const makeBurger = () => {
+  return getBeef()
+    .then(beef => cookBeef(beef))
+    .then(cookedBeef => getBuns(beef))
+    .then(bunsAndBeef => putBeefBetweenBuns(bunsAndBeef));
+};
+
+// Make and serve burger
+makeBurger().then(burger => serve(burger));
+```
+
+
+
 
 ### Name two programming paradigms important for JavaScript app developers
 
