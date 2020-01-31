@@ -3823,3 +3823,51 @@ ul.addEventListener('click', e => {
 ```
 
 ### Asynchronous JavaScript
+
+'start now - finish later(callback)'
+
+- JS runs one statement (function) at the time
+- example: `setTimeout()`
+
+#### API fetch()
+
+https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+
+- to get data from a server to API endpoints (data as JSON format) 
+
+```js
+fetch('http://example.com/movies.json')
+  .then((response) => {
+    return response.json();
+  })
+  .then((myJson) => {                       // API json data
+    console.log(myJson);
+  });
+
+```
+
+```js
+const bindClickHandlers = () => {
+    $('.all_lessons').on('click', e => {           // on click shows all lessons
+        e.preventDefault()
+        history.pushState(null, null, "lessons")
+        getLessons()
+  })
+
+
+// index lessons Ajax     
+
+  const getLessons = () => {
+    fetch(`/lessons.json`)
+      .then(res => res.json())
+      .then(lessons => {                    // API json data
+         $('#app-container').html('')
+         lessons.forEach(lesson => {
+           let newLesson = new Lesson(lesson)
+           let lessonHtml = newLesson.formatIndex()
+           $('#app-container').append(lessonHtml)
+         })
+      })
+  }
+```
+
