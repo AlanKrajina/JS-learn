@@ -1447,19 +1447,6 @@ const myFirstPromise = new Promise((resolve, reject) => {
 });
 ```
 
-To provide a function with promise functionality, simply have it return a promise:
-```js
-function myAsyncFunction(url) {
-  return new Promise((resolve, reject) => {
-    const xhr = new XMLHttpRequest() 
-    xhr.open("GET", url) 
-    xhr.onload = () => resolve(xhr.responseText) 
-    xhr.onerror = () => reject(xhr.statusText) 
-    xhr.send() 
-  });
-}
-```
-
 Redux promise:
 
 ```js
@@ -1488,6 +1475,69 @@ export const login = (credentials) => {
     }
   }
   ```
+  
+##### Example 1.
+
+```js
+const getSomething = () => {
+
+	return new Promise((resolve,reject) => {    // takes a function as argument
+	// fetch something
+	// if we get some data:
+	resolve(data);              // data 
+	// if there is an error
+	reject('some error')
+	});
+}
+
+// returns promise that will be RESOLVED or REJECTED at some point
+// .then -> this callback function will fire IF the PROMISE is RESOLVED
+
+// second callback function IF REJECTED (.catch)
+
+getSomething().then( data => {
+	console.log(data)           // data from promise IF RESOLVED
+}).catch(err => {                         // second callback function IF REJECTED
+	console.log(err);
+});
+
+
+```
+  
+  
+##### Example 2.
+
+```js
+// function that creates a Promise
+
+const getTodos = (resource) => {
+
+    return new Promise((resolve,reject) => {
+        const request = new XMLHttpRequest();
+	
+	request.addEventListener('readystatechange', () => {
+	    if(request.readyState === 4 && request.status === 200){
+	       const data = JSON.parse(request.responseText);
+	       resolve(data);
+	    } else if(request.readyState === 4){
+	        reject('error getting resource');
+	    }
+	  });
+	  
+	  request.open('GET', resource);
+	  request.send();
+	});
+};	
+
+// calling the function with API and returning some data
+
+getTodos('todos/luigi.json').then(data => {        // .then   for data
+	console.log('promise resolved:' data);
+  }).catch(err => {                                // .catch  for error
+  	console.log('promise rejected:' err);
+});
+```
+
 
 ![promises](https://media.prod.mdn.mozit.cloud/attachments/2018/04/18/15911/32e79f722e83940fdaea297acdb5df92/promises.png)
 
