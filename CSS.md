@@ -2,6 +2,8 @@
 * [CSS Display](#CSS-Display)
 * [CSS Layout - The position Property](#CSS-Layout-The-position-Property)
 * [CSS Layout - float and clear](#CSS-Layout-float-and-clear)
+* [CSS Layout - display: inline-block](#CSS-Layout-display-inline-block)
+
 
 
 ### The CSS Box Model
@@ -83,4 +85,54 @@ The `float` property can have one of the following values:
 - right - The element floats to the right of its container
 - none - The element does not float (will be displayed just where it occurs in the text). This is default
 - inherit - The element inherits the float value of its parent
+
 In its simplest use, the float property can be used to wrap text around images.
+
+```
+.img-container {
+  float: left;
+  width: 33.33%; /* three containers (use 25% for four, and 50% for two, etc) */
+  padding: 5px; /* if you want space between the images */
+}
+```
+
+### CSS Layout - display: inline-block
+
+Compared to `display: inline`, the major difference is that `display: inline-block` allows to set a `width` and `height` on the element.
+
+Also, with `display: inline-block`, the top and bottom `margins/paddings` are respected, but with `display: inline` they are not.
+
+Compared to `display: block`, the major difference is that `display: inline-block` does not add a line-break after the element, so the element can sit next to other elements.
+
+The following example shows the different behavior of `display: inline`, `display: inline-block` and `display: block`:
+
+```
+span.a {
+  display: inline; /* the default for span */
+  width: 100px;
+  height: 100px;
+  padding: 5px;
+  border: 1px solid blue;
+  background-color: yellow;
+}
+
+span.b {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  padding: 5px;
+  border: 1px solid blue;
+  background-color: yellow;
+}
+
+span.c {
+  display: block;
+  width: 100px;
+  height: 100px;
+  padding: 5px;
+  border: 1px solid blue;
+  background-color: yellow;
+}
+```
+https://www.w3schools.com/css/tryit.asp?filename=trycss_inline-block_span1
+
