@@ -2,8 +2,8 @@
 * [Props](#Props)
 * [State](#State)
 * [Style](#Style)
-* [Fixed Dimensions](#Fixed Dimensions)
-* [Flex Dimensions](#Flex Dimensions)
+* [Fixed Dimensions](#Fixed-Dimensions)
+* [Flex Dimensions](#Flex-Dimensions)
 * [Layout with Flexbox](#Layout-with-flexbox)
 
 
