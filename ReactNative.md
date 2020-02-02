@@ -23,7 +23,7 @@ export default class HelloWorldApp extends Component {
 
 #### Basic React Native `props`
 
-- <Image/> - component
+##### Image - component
 
 ```jsx
 import React, { Component } from 'react';
@@ -42,7 +42,7 @@ export default class Bananas extends Component {
   }
 ```
 
-- <Text/> & <View/> - components
+##### Text & View - components
 
 ```jsx
 import React, { Component } from 'react';
