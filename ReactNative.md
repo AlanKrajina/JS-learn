@@ -1,4 +1,6 @@
 * [React Native Basics](#React-Native-Basic)
+* [Props](#Props)
+* [State](#State)
 
 
 ### React Native Basic
@@ -21,7 +23,7 @@ export default class HelloWorldApp extends Component {
 }
 ```
 
-#### Basic React Native `props`
+#### Props
 
 ##### Image - component
 
@@ -68,6 +70,55 @@ class Greeting extends Component {
       <View style={{alignItems: 'center'}}>                         // view component
         <Text>Hello {this.props.name}!</Text>                       // text component
       </View>
+    );
+  }
+}
+```
+
+#### State
+
+For data that is going to change, we have to use `state`.
+
+In general, you should initialize state in the `constructor`, and then call `setState` when you want to change it.
+
+```jsx
+import React, { Component } from 'react';
+import { Text, View } from 'react-native';
+
+export default class BlinkApp extends Component {
+  render() {
+    return (
+      <View>
+        <Blink text='I love to blink' />
+        <Blink text='Yes blinking is so great' />
+        <Blink text='Why did they ever take this out of HTML' />
+        <Blink text='Look at me look at me look at me' />
+      </View>
+    );
+  }
+}
+
+
+class Blink extends Component {
+
+  componentDidMount(){                           // on mounting this function is called                                             
+    setInterval(() => (                          
+      this.setState(previousState => (                    // sets new STATE with previous state
+        { isShowingText: !previousState.isShowingText }
+      ))
+    ), 1000);                                    // Toggle the state every second 
+  }
+
+  //state object
+  state = { isShowingText: true };               // initial state
+
+  render() {
+    if (!this.state.isShowingText) {
+      return null;
+    }
+
+    return (
+      <Text>{this.props.text}</Text>
     );
   }
 }
