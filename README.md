@@ -22,8 +22,6 @@
 * [What are the differences between ES6 class and ES5 function constructors?](#what-are-the-differences-between-es6-class-and-es5-function-constructors)
 * [What advantage is there for using the arrow syntax for a method in a constructor?](#what-advantage-is-there-for-using-the-arrow-syntax-for-a-method-in-a-constructor)
 * [What is the definition of a higher-order function?](#what-is-the-definition-of-a-higher-order-function)
-* [Promises?](#promises)
-* [What are the pros and cons of using Promises instead of callbacks?](#what-are-the-pros-and-cons-of-using-promises-instead-of-callbacks)
 * [What are two-way data binding and one-way data flow, and how are they different?](#What-are-two-way-data-binding-and-one-way-data-flow-and-how-are-they-different)
 * [Design Patterns](#design-patterns)
 * [Explain why the following doesn't work as an IIFE: `function foo(){ }();`. What needs to be changed to properly make it an IIFE?](#explain-why-the-following-doesnt-work-as-an-iife-function-foo--what-needs-to-be-changed-to-properly-make-it-an-iife)
@@ -65,7 +63,8 @@
 * [DOM](#DOM)
 * [Event Listeners](#Event-Listeners)
 * [Asynchronous JavaScript](#Asynchronous-JavaScript)
-
+* [Promises?](#promises)
+* [What are the pros and cons of using Promises instead of callbacks?](#what-are-the-pros-and-cons-of-using-promises-instead-of-callbacks)
 
 
 ### Data types
@@ -1425,142 +1424,6 @@ const transformNamesToUppercase = function(names) {
 };
 transformNamesToUppercase(names); // ['IRISH', 'DAISY', 'ANNA']
 ```
-
-### Promises?
-
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
-
-A promise is an object that may produce a single value sometime in the future: either a resolved value or a reason that it's not resolved (e.g., a network error occurred). 
-
-A promise may be in one of 3 possible states: `fulfilled`, `rejected`, or `pending`. 
-
-Promise users can attach callbacks to handle the fulfilled value or the reason for rejection.
-
-Create a promise:
-```js
-const myFirstPromise = new Promise((resolve, reject) => {
-  // do something asynchronous which eventually calls either:
-  //
-  //   resolve(someValue)        // fulfilled
-  // or
-  //   reject("failure reason")  // rejected
-});
-```
-
-Redux promise:
-
-```js
-// asynchronous action creators
-
-export const login = (credentials) => {     
-    return dispatch => {                    
-        return fetch("http://localhost:3001/api/v1/login", {
-          credentials: "include",
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(credentials)
-        })                               
-        .then(r => r.json())
-        .then(response => {                  // promise
-          if (response.error) { 
-            alert(response.error)
-          } else {
-            dispatch(setCurrentUser(response.data)) 
-            dispatch(getMyComments())   
-          }
-        })
-        .catch(console.log)
-    }
-  }
-  ```
-  
-##### Example 1.
-
-```js
-const getSomething = () => {
-
-	return new Promise((resolve,reject) => {    // takes a function as argument
-	// fetch something
-	// if we get some data:
-	resolve(data);              // data 
-	// if there is an error
-	reject('some error')
-	});
-}
-
-// returns promise that will be RESOLVED or REJECTED at some point
-// .then -> this callback function will fire IF the PROMISE is RESOLVED
-
-// second callback function IF REJECTED (.catch)
-
-getSomething().then( data => {
-	console.log(data)           // data from promise IF RESOLVED
-}).catch(err => {                         // second callback function IF REJECTED
-	console.log(err);
-});
-
-
-```
-  
-  
-##### Example 2.
-
-```js
-// function that creates a Promise
-
-const getTodos = (resource) => {
-
-    return new Promise((resolve,reject) => {
-        const request = new XMLHttpRequest();
-	
-	request.addEventListener('readystatechange', () => {
-	    if(request.readyState === 4 && request.status === 200){
-	       const data = JSON.parse(request.responseText);
-	       resolve(data);
-	    } else if(request.readyState === 4){
-	        reject('error getting resource');
-	    }
-	  });
-	  
-	  request.open('GET', resource);
-	  request.send();
-	});
-};	
-
-// calling the function with API and returning some data
-
-getTodos('todos/luigi.json').then(data => {        // .then   for data
-	console.log('promise resolved:' data);
-  }).catch(err => {                                // .catch  for error
-  	console.log('promise rejected:' err);
-});
-```
-
-
-![promises](https://media.prod.mdn.mozit.cloud/attachments/2018/04/18/15911/32e79f722e83940fdaea297acdb5df92/promises.png)
-
-
-### What are the pros and cons of using Promises instead of callbacks?
-
-**Pros**
-
-* Avoid callback hell which can be unreadable.
-* Makes it easy to write sequential asynchronous code that is readable with `.then()`.
-* Makes it easy to write parallel asynchronous code with `Promise.all()`.
-* With promises, these scenarios which are present in callbacks-only coding, will not happen:
-  * Call the callback too early
-  * Call the callback too late (or never)
-  * Call the callback too few or too many times
-  * Fail to pass along any necessary environment/parameters
-  * Swallow any errors/exceptions that may happen
-
-**Cons**
-
-* Slightly more complex code (debatable).
-* In older browsers where ES2015 is not supported, you need to load a polyfill in order to use it.
-
 
 ### What are two-way data binding and one-way data flow, and how are they different?
 
@@ -3926,20 +3789,26 @@ ul.addEventListener('click', e => {
 - JS runs one statement (function) at the time
 - example: `setTimeout()`
 
-#### API fetch()
+#### API fetch() + Promise
 
 https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
 
-- to get data from a server to API endpoints (data as JSON format) 
+- to get data from a server to API endpoints (data as JSON format)
+
+- `.then` -> RESOLVED 
+- `.catch` -> promise is REJECTED only when there is an NETWORK ERROR
 
 ```js
 fetch('http://example.com/movies.json')
   .then((response) => {
     return response.json();
   })
-  .then((myJson) => {                       // API json data
+  .then((myJson) => {                       // API json data RESOLVED
     console.log(myJson);
-  });
+  })
+  .catch(err => {                           // REJECTED         
+   console.log('rejected', err);
+  }) 
 
 ```
 
@@ -3967,4 +3836,188 @@ const bindClickHandlers = () => {
       })
   }
 ```
+
+
+#### Async & Await (instead of using .then)
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function
+
+The `async function` declaration defines an `asynchronous function` — a function that returns an `AsyncFunction object`. Asynchronous functions operate in a separate order than the rest of the code via the event loop, returning an implicit `Promise` as its result.
+
+- create function for all async code
+- `async function` ALWAYS returns a `promise` whatever is inside
+- we use `fetch()` inside to grab data
+
+- `await` stops assinging a value to (const response) until the `promise` is `resolved`
+- cleaner way 
+- non blocking
+
+
+```js
+const getTodos = async () => {                              // async - added to convert to async function
+	
+	// with ASYNC and AWAIT we dont need to do ->        fetch('todos/luigi.json').then(() => {...})
+	
+	const response = await fetch('todos/luigi.json');         // using AWAIT instead .THEN
+	const data = await response.json();            	          // returns value of promise when RESOLVED
+	return data;
+}
+
+// calling:
+
+console.log(1);
+console.log(2);
+
+getTodos()
+     .then(data => {console.log('resolved', data)})           // have to use .then when calling 
+     .catch(err => console.log('rejected', err))              // ERROR if there is problem with json fetch
+	
+console.log(3);
+console.log(4);
+
+// 1
+// 2
+// 3
+// 4
+// resolved (3) [{..}, {..}, {..}]                  -> resolved async code - NON BLOCKING async function
+	
+```
+
+
+
+### Promises?
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
+
+A promise is an object that may produce a single value sometime in the future: either a resolved value or a reason that it's not resolved (e.g., a network error occurred). 
+
+A promise may be in one of 3 possible states: `fulfilled`, `rejected`, or `pending`. 
+
+Promise users can attach callbacks to handle the fulfilled value or the reason for rejection.
+
+Create a promise:
+```js
+const myFirstPromise = new Promise((resolve, reject) => {
+  // do something asynchronous which eventually calls either:
+  //
+  //   resolve(someValue)        // fulfilled
+  // or
+  //   reject("failure reason")  // rejected
+});
+```
+
+Redux promise:
+
+```js
+// asynchronous action creators
+
+export const login = (credentials) => {     
+    return dispatch => {                    
+        return fetch("http://localhost:3001/api/v1/login", {
+          credentials: "include",
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(credentials)
+        })                               
+        .then(r => r.json())
+        .then(response => {                  // promise
+          if (response.error) { 
+            alert(response.error)
+          } else {
+            dispatch(setCurrentUser(response.data)) 
+            dispatch(getMyComments())   
+          }
+        })
+        .catch(console.log)
+    }
+  }
+  ```
+  
+##### Example 1.
+
+```js
+const getSomething = () => {
+
+	return new Promise((resolve,reject) => {    // takes a function as argument
+	// fetch something
+	// if we get some data:
+	resolve(data);              // data 
+	// if there is an error
+	reject('some error')
+	});
+}
+
+// returns promise that will be RESOLVED or REJECTED at some point
+// .then -> this callback function will fire IF the PROMISE is RESOLVED
+
+// second callback function IF REJECTED (.catch)
+
+getSomething().then( data => {
+	console.log(data)           // data from promise IF RESOLVED
+}).catch(err => {                         // second callback function IF REJECTED
+	console.log(err);
+});
+
+
+```
+  
+  
+##### Example 2.  XMLHttpRequest (old way)
+
+```js
+// function that creates a Promise
+
+const getTodos = (resource) => {
+
+    return new Promise((resolve,reject) => {
+        const request = new XMLHttpRequest();                 // OLD WAY -> new way FETCH
+	
+	request.addEventListener('readystatechange', () => {
+	    if(request.readyState === 4 && request.status === 200){
+	       const data = JSON.parse(request.responseText);
+	       resolve(data);
+	    } else if(request.readyState === 4){
+	        reject('error getting resource');
+	    }
+	  });
+	  
+	  request.open('GET', resource);
+	  request.send();
+	});
+};	
+
+// calling the function with API and returning some data
+
+getTodos('todos/luigi.json').then(data => {        // .then   for data
+	console.log('promise resolved:' data);
+  }).catch(err => {                                // .catch  for error
+  	console.log('promise rejected:' err);
+});
+```
+
+
+
+![promises](https://media.prod.mdn.mozit.cloud/attachments/2018/04/18/15911/32e79f722e83940fdaea297acdb5df92/promises.png)
+
+
+### What are the pros and cons of using Promises instead of callbacks?
+
+**Pros**
+
+* Avoid callback hell which can be unreadable.
+* Makes it easy to write sequential asynchronous code that is readable with `.then()`.
+* Makes it easy to write parallel asynchronous code with `Promise.all()`.
+* With promises, these scenarios which are present in callbacks-only coding, will not happen:
+  * Call the callback too early
+  * Call the callback too late (or never)
+  * Call the callback too few or too many times
+  * Fail to pass along any necessary environment/parameters
+  * Swallow any errors/exceptions that may happen
+
+**Cons**
+
+* Slightly more complex code (debatable).
+* In older browsers where ES2015 is not supported, you need to load a polyfill in order to use it.
 
