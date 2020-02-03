@@ -1214,7 +1214,7 @@ console.log(person.getFunction());
 console.log(person.phone_number.landline); 
 ```
 
-- using an Object Constructor:
+- old way pre ES6:
 
 ```js
 //using a constructor 
@@ -1230,7 +1230,7 @@ console.log(person1.first_name);
 console.log(`${person2.first_name} ${person2.last_name}`);
 ```
 
-- using Object.create() method
+- using Object.create() method, + we can use .assign
 
 ```js
 const Book = { 
@@ -1248,11 +1248,12 @@ console.log(book1.summary());
 ```
 
 ##### Classes & Inheritance
-// blueprint of an object
+// blueprint of an object, new way ES6 to create Object using Class
 
 ```js
 class Book {
    constructor(name) {
+   // properties
       this.name = name
    }
 }
@@ -1285,8 +1286,9 @@ const Book = function(t, a) {
    }
 }
 const book1 = new Book('Hippie', 'Paulo Coelho');
+
 book1.summary();
-> Hippie written by Paulo Coelho.
+//  Hippie written by Paulo Coelho.
 ```
 
 
@@ -1357,7 +1359,7 @@ It's much more verbose to use inheritance in ES5 and the ES6 version is easier t
 The main advantage of using an arrow function as a method inside a constructor is that the value of `this` gets set at the time of the function creation and can't change after that. So, when the constructor is used to create a new object, `this` will always refer to that object. For example, let's say we have a `Person` constructor that takes a first name as an argument has two methods to `console.log` that name, one as a regular function and one as an arrow function:
 
 ```js
-const Person = function(firstName) {
+const Person = function(firstName) {             // pre ES6
   this.firstName = firstName;
   this.sayName1 = function() { console.log(this.firstName); };
   this.sayName2 = () => { console.log(this.firstName); };
