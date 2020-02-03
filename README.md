@@ -60,6 +60,7 @@
 * [Object methods](#object-methods)
 * [Array methods](#array-methods)
 * [String methods](#string-methods)
+* [Spread and Rest](#spread-and-rest)
 * [DOM](#DOM)
 * [Event Listeners](#Event-Listeners)
 * [Asynchronous JavaScript](#Asynchronous-JavaScript)
@@ -2811,6 +2812,26 @@ user.logout()
 // loged out
 ```
 
+#### Create new object using SPREAD - `non-destructive`
+
+```js
+const person = {name: 'alan', age: 10}
+
+const some = person
+
+some === person
+// true
+
+const some2 = {...person}
+
+some2
+// {name: "alan", age: 10}
+
+some2 === person
+// false
+```
+
+
 #### Using Class constructor
 
 ```js
@@ -3599,6 +3620,65 @@ for (var i = 0; i < str.length; i++) {
 }
 
 ```
+
+## Spread and Rest
+
+#### Spread
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax
+
+Arrays:
+```js
+const people = ['alan', 'joe', 'mike']
+console.log(...people)
+
+// alan joe mike                              // spreads array
+```
+
+```js
+const people = ['alan', 'joe', 'mike']
+const members = ['herc', 'big', ...people]
+console.log(members)
+
+// (5) ["herc", "big", "alan", "joe", "mike"]                // spreads array and adds to new one
+```
+
+Object:
+
+```js
+const person = {name: 'alan', age: 10}
+const some = person
+
+some === person
+// true
+
+const some2 = {...person}
+some2
+// {name: "alan", age: 10}
+
+some2 === person
+// false                        // creating a full copy - not a pointer
+```
+
+#### Rest
+
+- allows us to bundle up arguments inside function in to a single array parameter
+
+```js
+const double = (...nums) => {              // takes all arguments and bundles in to single array
+	console.log(nums)
+	return nums.map(num => num*2)
+}
+
+const result = double(1,2,3,4,5,6,7)
+console.log(result)
+
+// (7) [1, 2, 3, 4, 5, 6, 7]               // new array
+// (7) [2, 4, 6, 8, 10, 12, 14]
+```
+
+
+
+
 
 ## DOM
 
