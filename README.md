@@ -921,20 +921,53 @@ class Animal {
 }
 
 class Dog extends Animal {
-  constructor(name) {
-    super(name); // call the super class constructor and pass in the name parameter
+  constructor(name, title) {               // if we have a CONSTRUCTOR here it wont run the CONSTRUCTOR from  					           // class Animal  -> we create a instance with new values
+    super(name);                           // IF WE HAVE super() it WILL look for constructor in class Animal
+    this.title = title;                    // because its accesing 'this.name' from speak() in class Animal
   }
 
   speak() {
-    console.log(`${this.name} barks.`);
+    console.log(`${this.name} barks and has ${this.title}.`);
   }
 }
 
-let d = new Dog('Mitzie');
-d.speak(); // Mitzie barks.
+let ani = new Animal('alan')
+ani.speak()
+//alan makes a noise.
+
+let dogi = new Dog('semi','spots')
+dogi.speak()
+// semi barks and has spots.
+
+
+// Adding Prototype method
+Animal.prototype.bark = () => console.log('woof')
+
+ani.bark()
+// woof
+
+dogi.bark()
+// woof
 ```
 
-##### Prototype methods
+##### Prototype methods 
+
+Array prototype methods:   // stored on Array prototype
+```js
+sort()
+filter()
+reduce()
+..
+```
+
+Date prototype methods:   // stored on Date prototype
+```js
+getDay()
+getMonth()
+...
+```
+
+- `__proto__` points to the Array `prototype` - this is where the methods you can use are stored
 
 ```js
 class Rectangle {
