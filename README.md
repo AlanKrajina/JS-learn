@@ -2744,6 +2744,38 @@ The Array.prototype.find() method returns the value of the first element in the 
 
 ## Object methods
 
+#### new Object() - `object constructor`
+
+```js
+let person = new Object();
+
+person.firstName = "John";
+person.lastName = "Doe";
+person.age = 50;
+person.eyeColor = "blue";
+
+person
+// {firstName: "John", lastName: "Doe", age: 50, eyeColor: "blue"}
+```
+
+- different ways for functions in objects: 
+```js
+let user = {
+    login(){
+        console.log('loged in');
+    },
+    logout: () => {
+        console.log('loged out');
+    }
+}
+
+user.login()
+// loged in
+
+user.logout()
+// loged out
+```
+
 #### Object.create(obj)
 
 The `Object.create()` method creates a new object, using an existing object as the prototype of the newly created object.
@@ -2767,7 +2799,7 @@ me.printIntroduction();
 me === person    // false
 ```
 
-#### Object.assign(target, sourceObj)  or  Object.assign({}, sourceObj)
+#### Object.assign(target, sourceObj) - `destructive`  or  Object.assign({}, sourceObj) - `non destructive`
 
 The `Object.assign()` method copies all enumerable own properties from one or more source objects to a target object. It returns the `target object`.
 
