@@ -2004,10 +2004,13 @@ let baz = 'qux'; // Uncaught SyntaxError: Identifier 'baz' has already been decl
 
 ```js
 // This is fine.
+var some = 'alan';
+some = 'joe';
+
 let foo = 'foo';
 foo = 'bar';
 
-// This causes an exception.
+// This causes an exception. Uncaught TypeError: Assignment to constant variable.
 const baz = 'baz';
 baz = 'qux';
 ```
