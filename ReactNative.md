@@ -1,4 +1,5 @@
-* [React Native Basics](#React-Native-Basic)
+* [React Native](#React-Native)
+* [New React Native App](#New-React-Native-App)
 * [Props](#Props)
 * [State](#State)
 * [Style](#Style)
@@ -7,13 +8,28 @@
 * [Layout with Flexbox](#Layout-with-flexbox)
 
 
-### React Native Basic
+### React Native
 
-React Native is like React, but it uses `native components` instead of `web components` as building blocks.
+- collection of `special React components`
+- gives abillty to use camera API etc..
+- iOS + Android
+--> `Views`, `<Text>` ..are compiled to native code
+
+- React Native is like React, but it uses `native components` instead of `web components` as building blocks.
+
+```jsx
+ReactJS:
+<div>
+<input>
+  
+React Native:
+<View>
+<TextInput>
+```
 
 ```jsx
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { Text, View } from 'react-native';             // <View>, <Text>
 
 export default class HelloWorldApp extends Component {
 
@@ -26,6 +42,21 @@ export default class HelloWorldApp extends Component {
   }
 }
 ```
+
+### New React Native App
+
+`Expo CLI/Tool`
+- free
+- managed App Development workflow
+- simplifies development
+- LIMITED to Expo Ecosystem
+
+`React Native CLI`
+- bare-bone Development (basic setup)
+- for using camera will need to install third party software
+- full control and flexibility
+- for a lot of manual work
+
 
 #### Props
 
