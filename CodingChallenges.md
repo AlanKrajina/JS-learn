@@ -39,3 +39,31 @@ function compareTriplets(a, b) {
 
 compareTriplets(arr1, arr2)
 ```
+
+### A Very Big Sum
+
+Example 1.
+```js
+let ar = [1000000001,1000000002,1000000003,1000000004,1000000005]
+
+function aVeryBigSum(ar) {
+    return ar.reduce((target, item) => {
+        return target + item;
+    }, 0);
+}
+
+// 5000000015
+```
+
+Example 2.
+```js
+let arr = ['5', '1000000001 1000000002 1000000003 1000000004 1000000005']
+
+function aVeryBigSum(arr) {
+
+  let newArr = arr[1].split(' ').map(el=> parseInt(el))
+  return newArr.reduce((a,b)=> a+b)
+}
+
+// 5000000015
+```
