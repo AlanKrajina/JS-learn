@@ -24,13 +24,10 @@
 * [What is the definition of a higher-order function?](#what-is-the-definition-of-a-higher-order-function)
 * [What are two-way data binding and one-way data flow, and how are they different?](#What-are-two-way-data-binding-and-one-way-data-flow-and-how-are-they-different)
 * [Design Patterns](#design-patterns)
-* [Explain why the following doesn't work as an IIFE: `function foo(){ }();`. What needs to be changed to properly make it an IIFE?](#explain-why-the-following-doesnt-work-as-an-iife-function-foo--what-needs-to-be-changed-to-properly-make-it-an-iife)
-* [What's the difference between a variable that is: `null`, `undefined` or undeclared? How would you go about checking for any of these states?](#whats-the-difference-between-a-variable-that-is-null-undefined-or-undeclared-how-would-you-go-about-checking-for-any-of-these-states)
+* [IIFE](#iife)
+* [What's the difference between a variable that is: `null`, `undefined` or `undeclared`?](#whats-the-difference-between-a-variable-that-is-null-undefined-or-undeclared)
 * [What's a typical use case for anonymous functions?](#whats-a-typical-use-case-for-anonymous-functions)
-* [How do you organize your code? (module pattern, classical inheritance?)](#how-do-you-organize-your-code-module-pattern-classical-inheritance)
-* [What's the difference between host objects and native objects?](#whats-the-difference-between-host-objects-and-native-objects)
 * [Difference between: `function Person(){}`, `var person = Person()`, and `var person = new Person()`?](#difference-between-function-person-var-person--person-and-var-person--new-person)
-* [When would you use `document.write()`?](#when-would-you-use-documentwrite)
 * [Explain Ajax in as much detail as possible.](#explain-ajax-in-as-much-detail-as-possible)
 * [What are the advantages and disadvantages of using Ajax?](#what-are-the-advantages-and-disadvantages-of-using-ajax)
 * [Explain how JSONP works (and how it's not really Ajax).](#explain-how-jsonp-works-and-how-its-not-really-ajax)
@@ -41,7 +38,6 @@
 * [NaN](#nan)
 * [Explain the same-origin policy with regards to JavaScript.](#explain-the-same-origin-policy-with-regards-to-javascript)
 * [Why is it called a Ternary expression, what does the word "Ternary" indicate?](#why-is-it-called-a-ternary-expression-what-does-the-word-ternary-indicate)
-* [Why would you use something like the `load` event? Does this event have disadvantages? Do you know any alternatives, and why would you use those?](#why-would-you-use-something-like-the-load-event-does-this-event-have-disadvantages-do-you-know-any-alternatives-and-why-would-you-use-those)
 * [Explain what a single page app is and how to make one SEO-friendly.](#explain-what-a-single-page-app-is-and-how-to-make-one-seo-friendly)
 * [What are some of the advantages/disadvantages of writing JavaScript code in a language that compiles to JavaScript?](#what-are-some-of-the-advantagesdisadvantages-of-writing-javascript-code-in-a-language-that-compiles-to-javascript)
 * [What tools and techniques do you use debugging JavaScript code?](#what-tools-and-techniques-do-you-use-for-debugging-javascript-code)
@@ -1516,67 +1512,45 @@ Behavioral design patterns are concerned with the assignment of responsibilities
 https://www.javascriptjanuary.com/blog/writing-maintainable-and-readable-javascript-design-patterns
 
 
-#### Can you give an example of one of the ways that working with this has changed in ES6?
+### IIFE
 
-ES6 allows you to use [arrow functions](http://2ality.com/2017/12/alternate-this.html#arrow-functions) which uses the [enclosing lexical scope](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions#No_separate_this). This is usually convenient, but does prevent the caller from controlling context via `.call` or `.apply`—the consequences being that a library such as `jQuery` will not properly bind `this` in your event handler functions. Thus, it's important to keep this in mind when refactoring large legacy applications.
+An IIFE (Immediately Invoked Function Expression) is a JavaScript function that runs as soon as it is defined.
 
-
-### Explain why the following doesn't work as an IIFE: `function foo(){ }();`. What needs to be changed to properly make it an IIFE?
-
-IIFE stands for Immediately Invoked Function Expressions. The JavaScript parser reads `function foo(){ }();` as `function foo(){ }` and `();`, where the former is a *function declaration* and the latter (a pair of parentheses) is an attempt at calling a function but there is no name specified, hence it throws `Uncaught SyntaxError: Unexpected token )`.
-
-Here are two ways to fix it that involves adding more parentheses: `(function foo(){ })()` and `(function foo(){ }())`. Statements that begin with `function` are considered to be *function declarations*; by wrapping this function within `()`, it becomes a *function expression* which can then be executed with the subsequent `()`. These functions are not exposed in the global scope and you can even omit its name if you do not need to reference itself within the body.
-
-You might also use `void` operator: `void function foo(){ }();`. Unfortunately, there is one issue with such approach. The evaluation of given expression is always `undefined`, so if your IIFE function returns anything, you can't use it. An example:
+The primary reason to use an IIFE is to obtain data privacy. Because JavaScript's var scopes variables to their containing function, any variables declared within the IIFE cannot be accessed by the outside world.
 
 ```
-// Don't add JS syntax to this code block to prevent Prettier from formatting it.
-const foo = void function bar() { return 'foo'; }();
+(function () {
+    var aName = "Barry";
+})();
 
-console.log(foo); // undefined
+               // Variable aName is not accessible from the outside scope
+aName          // throws "Uncaught ReferenceError: aName is not defined"
 ```
 
 
-### What's the difference between a variable that is: `null`, `undefined` or undeclared? How would you go about checking for any of these states?
+### What's the difference between a variable that is: `null`, `undefined` or `undeclared`? How would you go about checking for any of these states?
 
-**Undeclared** variables are created when you assign a value to an identifier that is not previously created using `var`, `let` or `const`. Undeclared variables will be defined globally, outside of the current scope. In strict mode, a `ReferenceError` will be thrown when you try to assign to an undeclared variable. Undeclared variables are bad just like how global variables are bad. Avoid them at all cost! To check for them, wrap its usage in a `try`/`catch` block.
+A variable is `undeclared` when it does not use the var,let,const keyword. It gets created on the global object (that is, the window)
 
 ```js
-function foo() {
-  x = 1; // Throws a ReferenceError in strict mode
-}
-
-foo();
-console.log(x); // 1
+undeclaredVariable = 1
 ```
 
-A variable that is `undefined` is a variable that has been declared, but not assigned a value. It is of type `undefined`. If a function does not return any value as the result of executing it is assigned to a variable, the variable also has the value of `undefined`. To check for it, compare using the strict equality (`===`) operator or `typeof` which will give the `'undefined'` string. Note that you should not be using the abstract equality operator to check, as it will also return `true` if the value is `null`.
+A variable is `undefined` when it does not have any value assigned.
+To check for it, compare using the strict equality (`===`) operator or `typeof` which will give the `'undefined'` string.
 
 ```js
-var foo;
-console.log(foo); // undefined
-console.log(foo === undefined); // true
-console.log(typeof foo === 'undefined'); // true
-
-console.log(foo == null); // true. Wrong, don't use this to check!
-
-function bar() {}
-var baz = bar();
-console.log(baz); // undefined
+var undefinedVariable;    // undefined
+typeof undefinedVariable; // "undefined"
 ```
 
-A variable that is `null` will have been explicitly assigned to the `null` value. It represents no value and is different from `undefined` in the sense that it has been explicitly assigned. To check for `null,` simply compare using the strict equality operator. Note that like the above, you should not be using the abstract equality operator (`==`) to check, as it will also return `true` if the value is `undefined`.
+A variable that is `null` will have been explicitly assigned to the `null` value. It represents no value
 
 ```js
 var foo = null;
 console.log(foo === null); // true
 console.log(typeof foo === 'object'); // true
-
-console.log(foo == undefined); // true. Wrong, don't use this to check!
 ```
-
-As a personal habit, I never leave my variables undeclared or unassigned. I will explicitly assign `null` to them after declaring if I don't intend to use it yet. If you use a linter in your workflow, it will usually also be able to check that you are not referencing undeclared variables.
-
 
 ### What's a typical use case for anonymous functions?
 
@@ -1607,22 +1581,6 @@ console.log(double); // [2, 4, 6]
 ```
 
 
-### How do you organize your code? (module pattern, classical inheritance?)
-
-In the past, I've used Backbone for my models which encourages a more OOP approach, creating Backbone models and attaching methods to them.
-
-The module pattern is still great, but these days, I use React/Redux which utilize a single-directional data flow based on Flux architecture. I would represent my app's models using plain objects and write utility pure functions to manipulate these objects. State is manipulated using actions and reducers like in any other Redux application.
-
-I avoid using classical inheritance where possible. When and if I do, I stick to [these rules](https://medium.com/@dan_abramov/how-to-use-classes-and-sleep-at-night-9af8de78ccb4).
-
-
-### What's the difference between host objects and native objects?
-
-Native objects are objects that are part of the JavaScript language defined by the ECMAScript specification, such as `String`, `Math`, `RegExp`, `Object`, `Function`, etc.
-
-Host objects are provided by the runtime environment (browser or Node), such as `window`, `XMLHTTPRequest`, etc.
-
-
 ### Difference between: `function Person(){}`, `var person = Person()`, and `var person = new Person()`?
 
 This question is pretty vague. My best guess at its intention is that it is asking about constructors in JavaScript. Technically speaking, `function Person(){}` is just a normal function declaration. The convention is to use PascalCase for functions that are intended to be used as constructors.
@@ -1645,10 +1603,6 @@ console.log(person); // Person { name: "John" }
 console.log(person.name); // "john"
 ```
 
-
-### When would you use `document.write()`?
-
-`document.write()` writes a string of text to a document stream opened by `document.open()`. When `document.write()` is executed after the page has loaded, it will call `document.open` which clears the whole document (`<head>` and `<body>` removed!) and replaces the contents with the given parameter value. Hence it is usually considered dangerous and prone to misuse.
 
 
 ### Explain Ajax in as much detail as possible.
@@ -1785,12 +1739,6 @@ The same-origin policy prevents JavaScript from making requests across domain bo
 
 "Ternary" indicates three, and a ternary expression accepts three operands, the test condition, the "then" expression and the "else" expression. Ternary expressions are not specific to JavaScript and I'm not sure why it is even in this list.
 
-
-### Why would you use something like the `load` event? Does this event have disadvantages? Do you know any alternatives, and why would you use those?
-
-The `load` event fires at the end of the document loading process. At this point, all of the objects in the document are in the DOM, and all the images, scripts, links and sub-frames have finished loading.
-
-The DOM event `DOMContentLoaded` will fire after the DOM for the page has been constructed, but do not wait for other resources to finish loading. This is preferred in certain cases when you do not need the full page to be loaded before initializing.
 
 
 ### Explain what a single page app is and how to make one SEO-friendly.
