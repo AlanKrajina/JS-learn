@@ -1111,6 +1111,17 @@ closure(2)                // calls with arguments for inner function
 
 A callback function is a function passed into another function as an argument, which is then invoked inside the outer function to complete some kind of routine or action.
 
+```js
+function doHomework(subject, callback) {
+  alert(`Starting my ${subject} homework.`);
+  callback();
+}
+function alertFinished(){
+  alert('Finished my homework');
+}
+doHomework('math', alertFinished);
+```
+
 ```javascript
 function greeting(name) {
   alert('Hello ' + name);
