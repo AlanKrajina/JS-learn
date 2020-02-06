@@ -1402,6 +1402,7 @@ It's much more verbose to use inheritance in ES5 and the ES6 version is easier t
 ### What advantage is there for using the arrow syntax for a method in a constructor?
 
 The main advantage of using an arrow function as a method inside a constructor is that the value of `this` gets set at the time of the function creation and can't change after that. So, when the constructor is used to create a new object, `this` will always refer to that object. For example, let's say we have a `Person` constructor that takes a first name as an argument has two methods to `console.log` that name, one as a regular function and one as an arrow function:
+- binds `this` to the instance of an object upon creation and it cannot change after
 
 ```js
 const Person = function(firstName) {             // pre ES6
