@@ -3028,6 +3028,7 @@ function reduceToAnyTrue(values){
   return values.some(isBelowThreshold);
 }
 
+-> return TRUE or FALSE
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ----------------------.findIndex---------------------------
