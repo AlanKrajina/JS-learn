@@ -3033,6 +3033,9 @@ function reduceToAnyTrue(values){
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ----------------------.findIndex---------------------------
 
+The findIndex() method returns the index of the `first element` in an array that pass a test (provided as a function).
+
+
 const array1 = [5, 12, 8, 130, 44];
 
 const isLargeNumber = (element) => element > 13;
@@ -3044,6 +3047,9 @@ console.log(array1.findIndex(isLargeNumber));
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 -----------------------.indexOf----------------------------
+
+The indexOf() method searches the array for the specified item, and returns its `position`.
+
 
 const beasts = ['ant', 'bison', 'camel', 'duck', 'bison'];
 
@@ -3095,13 +3101,22 @@ fruits.join(',')
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ---------------------.slice()------------------------------
 
+The slice() method returns the selected elements in an array, as a new array object.
+
+`non destructive`
 
 var fruits = ["Banana", "Orange", "Apple", "Mango"];
 
 function returnFirstTwoDrivers(fruits) {
   return fruits.slice(0, 2);
 };
-// fruits = ["Banana", "Orange"];
+
+console.log(returnFirstTwoDrivers(fruits))
+console.log(fruits)
+
+// [ 'Banana', 'Orange' ]
+// [ 'Banana', 'Orange', 'Apple', 'Mango' ]
+
 
 const returnLastTwoDrivers = function (fruits) {
   return fruits.slice(-2);
@@ -3113,11 +3128,22 @@ const returnLastTwoDrivers = function (fruits) {
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ----------------------.splice()----------------------------
 
+The splice() method adds/removes items to/from an array, and returns the removed item(s).
+
+`destructive`
 
 var fruits = ["Banana", "Orange", "Apple", "Mango"];
-fruits.splice(2, 0, "Lemon", "Kiwi");
 
-// fruits = ["Banana", "Orange", "Lemon", "Kiwi", "Apple", "Mango"]
+function splice1(fruits){
+  let some = fruits.splice(2, 0, "Lemon", "Kiwi")
+  console.log(some)
+  console.log(fruits)
+}
+
+splice1(fruits)
+
+// []                                                            - no new array created
+// [ 'Banana', 'Orange', 'Lemon', 'Kiwi', 'Apple', 'Mango' ]     - modified old array
 
 
 var fruits = ["Banana", "Orange", "Apple", "Mango"];
@@ -3318,7 +3344,7 @@ console.log(`The word "${word}" ${sentence.includes(word)? 'is' : 'is not'} in t
 function diffArray(arr1, arr2) {
   return arr1
     .concat(arr2)
-    .filter(item => !arr1.includes(item) || !arr2.includes(item));
+    .filter(item => !arr1.includes(item) || !arr2.includes(item));       // returns items to new array that are TRUE for includes
 }
 // difference between 2 arrays
 
