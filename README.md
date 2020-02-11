@@ -67,7 +67,7 @@
 
 The latest ECMAScript standard defines 8 data types:
 
-7 data types that are primitives:                // stored in memory on a STACK
+7 data types that are primitives:               // stored in memory on a STACK
 - `Boolean`
 - `Null`
 - `Undefined`
