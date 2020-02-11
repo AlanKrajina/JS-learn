@@ -112,7 +112,7 @@ let second = first
 first.name = 'john'
 
 second.name
-// "john"                    // CHANGED
+// "john"           // CHANGED
 ```
 
 SHALLOW copying:
