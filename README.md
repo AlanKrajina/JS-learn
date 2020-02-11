@@ -77,7 +77,7 @@ The latest ECMAScript standard defines 8 data types:
 - `Symbol`
 - and `Object`   // reference types
 
-Reference types: // all types of objects         // stored in memory on a HEAP
+Reference types: // all types of objects        // stored in memory on a HEAP
 - `object literals`
 - `arrays`
 - `functions`
