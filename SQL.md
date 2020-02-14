@@ -18,6 +18,8 @@ INSERT INTO groceries VALUES (2, "Peanut Butter", 1);
 INSERT INTO groceries VALUES (3, "Dark chocolate bars", 2);
 ```
 
+## SQL Tutorial
+
 ### Querying data from a table
 
 Query data in columns c1, c2 from a table
