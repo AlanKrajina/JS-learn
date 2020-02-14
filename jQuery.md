@@ -16,17 +16,66 @@
 * [Target Even Elements Using jQuery](#Target-Even-Elements-Using-jQuery)
 * [Use jQuery to Modify the Entire Page](#Use-jQuery-to-Modify-the-Entire-Page)
 
+jQuery is a fast, small, and feature-rich JavaScript library. It makes things like HTML document traversal and manipulation, event handling, animation, and Ajax much simpler with an easy-to-use API that works across a multitude of browsers.
+
+https://api.jquery.com/
 
 
 ### Target HTML Elements with Selectors Using jQuery
 
+You should use the jQuery addClass() function to give the classes 'animated' and 'bounce' to your button elements.
+
+##### .addClass()
+
+```
+<script>
+  $(document).ready(function() {
+
+    $("button").addClass("animated bounce");
+
+  });
+</script>
+
+// HTML bellow...
+```
+
 ### Target Elements by Class Using jQuery
+
+You should use the jQuery addClass() function to give the classes animated and shake to all your elements with the class well.
+
+```
+<script>
+  $(document).ready(function() {
+    $("button").addClass("animated bounce");              // selector
+    $(".well").addClass("animated shake");                // class
+
+  });
+</script>
+```
 
 ### Target Elements by id Using jQuery
 
-### Delete Your jQuery Functions
+```
+<script>
+  $(document).ready(function() {
+    $("button").addClass("animated bounce");
+    $(".well").addClass("animated shake");
+    $("#target3").addClass("animated fadeOut");           // id
+  });
+</script>
+```
 
 ### Target the Same Element with Multiple jQuery Selectors
+
+```
+<script>
+  $(document).ready(function() {
+    $("button").addClass("animated");
+    $(".btn").addClass("shake");
+    $("#target1").addClass("btn-primary"); 
+  });
+</script>
+```
 
 ### Remove Classes from an Element with jQuery
 
