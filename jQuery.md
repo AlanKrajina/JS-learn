@@ -96,12 +96,22 @@ You should use the jQuery addClass() function to give the classes animated and s
 ```
 <script>
   $(document).ready(function() {
-    $("#target1").css("color", "red");     //
+    $("#target1").css("color", "red");     // changed color
   });
 </script>
 ```
 
 ### Disable an Element Using jQuery
+
+##### .prop()
+
+```
+<script>
+  $(document).ready(function() {
+    $("#target1").prop("disabled", true);    // disabled button with this ID
+  });
+</script>
+```
 
 ### Change Text Inside an Element Using jQuery
 
