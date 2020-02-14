@@ -18,6 +18,62 @@ INSERT INTO groceries VALUES (2, "Peanut Butter", 1);
 INSERT INTO groceries VALUES (3, "Dark chocolate bars", 2);
 ```
 
+### Querying the table
+
+```js
+CREATE TABLE groceries (id INTEGER PRIMARY KEY, name TEXT, quantity INTEGER, aisle INTEGER);
+INSERT INTO groceries VALUES (1, "Bananas", 4, 7);
+INSERT INTO groceries VALUES(2, "Peanut Butter", 1, 2);
+INSERT INTO groceries VALUES(3, "Dark Chocolate Bars", 2, 2);
+INSERT INTO groceries VALUES(4, "Ice cream", 1, 12);
+INSERT INTO groceries VALUES(5, "Cherries", 6, 2);
+INSERT INTO groceries VALUES(6, "Chocolate syrup", 1, 4);
+
+SELECT * FROM groceries ORDER BY aisle;                      // order ascending by aisle
+
+
+id	name	              quantity	aisle
+2	Peanut Butter	     1     	2
+3	Dark Chocolate Bars	2	     2
+5	Cherries	          6	     2
+6	Chocolate syrup	1	     4
+1	Bananas	          4	     7
+4	Ice cream	          1	     12
+
+
+SELECT * FROM groceries WHERE aisle > 5 ORDER BY aisle;      // order ascending by aisle WHERE aisle > 5
+
+id	name	     quantity	aisle
+1	Bananas	    4	7
+4	Ice cream	    1	12
+```
+
+### Aggregating data
+
+```js
+SELECT SUM(quantity) FROM groceries;             // sum up all rows in guantity column
+
+SUM(quantity)
+15
+
+
+SELECT MAX(quantity) FROM groceries;             // return biggest numb
+
+SUM(quantity)
+6
+
+
+SELECT aisle, SUM(quantity) FROM groceries GROUP BY aisle;     // returns ALL aisles + SUM of Quantity for EACH aisle with SAME NUMBER
+
+aisle	SUM(quantity)
+2	      9
+4	      1
+7	      4
+12	      1
+
+https://www.khanacademy.org/computing/computer-programming/sql/sql-basics/pp/project-design-a-store-database
+```
+
 ## SQL Tutorial
 
 ### Querying data from a table
