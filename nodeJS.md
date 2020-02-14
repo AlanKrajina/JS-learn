@@ -41,3 +41,60 @@ undefined
 
 > .exit
 ```
+
+### Launching Node
+
+The `program.js` is a plain text file with a `.js` extension. To run this program, we go to terminal, navigate to the folder with the script, and run this command:
+
+```js
+node program.js
+
+// or
+
+node program
+```
+
+If you are not in the same folder as your script file, you can navigate to it or specify path:
+
+```js
+node /Users/azat/Documents/Code/learn-co/program.js
+```
+
+List of node CLI commands:
+
+```js
+node -h
+```
+```js
+-v, --version          //: print Node.js version
+-e, --eval script      //: evaluate script
+-p, --print            //: evaluate script and print result
+-c, --check            //: syntax check script without executing
+-i, --interactive      //: always enter the REPL even if stdin does not appear to be a terminal
+-r, --require          //: module to preload (option can be repeated)
+--no-deprecation       //  silence deprecation warnings
+--throw-deprecation    //  throw an exception anytime a deprecated function is used
+--trace-deprecation    //  show stack traces on deprecations
+--trace-sync-io        //  show stack trace when use of sync IO is detected after the first tick
+--track-heap-objects   //  track heap object allocations for heap snapshots
+--v8-options           //  print v8 command line options
+--tls-cipher-list=val  //  use an alternative default TLS cipher list
+--icu-data-dir=dir     //  set ICU data load path to dir (overrides NODE_ICU_DATA)
+```
+
+##### Use node CLI command options and flags to launch node scripts in different modes
+
+Run the code from a command-line:
+
+```js
+node -e "console.log(new Date)"
+
+// 2020-02-14T16:48:11.238Z
+```
+Pattern:
+
+node [options] [ -e script | script.js ] [arguments]
+
+Where square brackets [] mean optional parameters. The [options] can be a single option like -v, or a combination of options listed by the help command. script.js is a file with the code to execute. We can also run code from a string (-e).
+
+And the argument is the data to pass to the script. We can pass multiple argument separating them with spaces. 
