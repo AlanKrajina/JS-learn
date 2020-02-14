@@ -143,7 +143,31 @@ jQuery has a function called `.remove()` that will remove an HTML element entire
 
 ### Use appendTo to Move Elements with jQuery
 
+`.appentTo()`
+
+jQuery has a function called `appendTo()` that allows you to select HTML elements and append them to another element.
+
+```
+<script>
+  $(document).ready(function() {
+    $("#target2").appendTo("#right-well");
+  });
+</script>
+```
+
 ### Clone an Element Using jQuery
+
+`.clone()`
+
+jQuery has a function called `clone()` that makes a copy of an element.
+
+```
+<script>
+  $(document).ready(function() {
+    $("#target5").clone().appendTo("#left-well");       // chaining methods
+  });
+</script>
+```
 
 ### Target the Parent of an Element Using jQuery
 
