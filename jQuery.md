@@ -171,7 +171,32 @@ jQuery has a function called `clone()` that makes a copy of an element.
 
 ### Target the Parent of an Element Using jQuery
 
+`.parent()`
+
+jQuery has a function called `parent()` that allows you to access the parent of whichever element you've selected.
+
+```
+<script>
+  $(document).ready(function() {
+    $("#target1").parent().css("background-color", "red")    // changing target1 PARENT css
+  });
+</script>
+```
+
 ### Target the Children of an Element Using jQuery
+
+`.children()`
+
+jQuery has a function called `children()` that allows you to access the children of whichever element you've selected.
+
+```
+<script>
+<script>
+  $(document).ready(function() {
+    $("#right-well").children().css("color", "orange")        // changing color of #right-well children
+  });
+</script>
+```
 
 ### Target a Specific Child of an Element Using jQuery
 
