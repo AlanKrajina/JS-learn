@@ -98,3 +98,61 @@ node [options] [ -e script | script.js ] [arguments]
 Where square brackets [] mean optional parameters. The [options] can be a single option like -v, or a combination of options listed by the help command. script.js is a file with the code to execute. We can also run code from a string (-e).
 
 And the argument is the data to pass to the script. We can pass multiple argument separating them with spaces. 
+
+### Mocha Testing Framework
+
+This lesson will cover the basics of Mocha testing framework and Chai Expect behavioral-driven language.
+
+```js
+npm install mocha@2.4.5 --save-dev
+npm install chai@3.5.0 --save-dev
+```
+
+##### TEST
+
+```js
+var expect = require('chai').expect
+var name = 'React Quickly'
+var url = ['http://reactquickly.co', 'https://www.manning.com/books/react-quickly']
+
+describe('name and url', function() {
+  it('must match the values', function(done){
+    expect(name).to.be.a('string')
+    expect(name).to.equal('React Quickly')
+    expect(url).to.have.length(2)
+    expect(url).to.have.deep.property('[1]', 'https://www.manning.com/books/react-quickly')
+      .with.length(43)
+    done()
+  })
+})
+```
+
+##### Launching Mocha Tests
+
+There are two ways to run Mocha tests: local and global.
+
+Local in terminal:
+```js
+node_modules/mocha/bin/mocha test.js
+```
+
+### Hello World Lab (exporting .js file)
+
+https://stackabuse.com/how-to-use-module-exports-in-node-js/
+
+```js
+npm install
+npm test
+```
+
+```js
+// expression:
+
+const helloWorld = () => {
+  return 'Hello World'
+}
+
+module.exports = helloWorld
+```
+
+
