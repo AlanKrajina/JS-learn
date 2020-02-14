@@ -155,4 +155,24 @@ const helloWorld = () => {
 module.exports = helloWorld
 ```
 
+### Node Debugger
+
+https://learn.co/tracks/introduction-to-node-js/intro-to-node-js/node-basics/node-debugger
+
+```js
+node inspect program.js
+```
+
+##### Debugger Commands
+
+```js
+run                    // run program
+cont (c)               // continue, i.e., proceed with the execution until a breakpoint
+next (n)               // step to the next line
+step (s)               // step in (go deeper into the execution context)
+out (o)                // step out (go out of the execution, skipping the deeper context)
+setBreakpoint (sb)     // put the break point, e.g., setBreakpoint(20) sets the break point on line 20
+clearBreakpoint (cb)   // remove the break point, e.g., clearBreakpoint('script.js', 1) clears the break point in thescript.js` file on                           line 1.
+```
+
 
