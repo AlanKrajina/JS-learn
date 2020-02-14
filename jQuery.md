@@ -25,7 +25,7 @@ https://api.jquery.com/
 
 You should use the jQuery addClass() function to give the classes 'animated' and 'bounce' to your button elements.
 
-##### .addClass()
+`.addClass()`
 
 ```
 <script>
@@ -79,7 +79,7 @@ You should use the jQuery addClass() function to give the classes animated and s
 
 ### Remove Classes from an Element with jQuery
 
-##### .removeClass()
+`.removeClass()`
 
 ```
 <script>
@@ -91,7 +91,7 @@ You should use the jQuery addClass() function to give the classes animated and s
 
 ### Change the CSS of an Element Using jQuery
 
-##### .css()
+`.css()`
 
 ```
 <script>
@@ -103,7 +103,7 @@ You should use the jQuery addClass() function to give the classes animated and s
 
 ### Disable an Element Using jQuery
 
-##### .prop()
+`.prop()`
 
 ```
 <script>
@@ -114,6 +114,18 @@ You should use the jQuery addClass() function to give the classes animated and s
 ```
 
 ### Change Text Inside an Element Using jQuery
+
+`.html()`
+
+```
+<script>
+  $(document).ready(function() {
+    $("#target4").html("<em>jQuery Playground</em>");   // changed tags and text
+  });
+</script>
+```
+
+jQuery also has a similar function called `.text()` that only alters text without adding tags. In other words, this function will not evaluate any HTML tags passed to it, but will instead treat it as the text you want to replace the existing content with.
 
 ### Remove an Element Using jQuery
 
