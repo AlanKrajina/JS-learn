@@ -213,4 +213,20 @@ jQuery uses CSS Selectors to target elements. The `target:nth-child(n)` CSS sele
 
 ### Target Even Elements Using jQuery
 
+`:odd` or `:even`
+
+You can also target elements based on their positions using `:odd` or `:even` selectors.
+
+Note that jQuery is zero-indexed which means the first element in a selection has a position of 0. This can be a little confusing as, counter-intuitively, :odd selects the second element (position 1), fourth element (position 3), and so on.
+
+
+```
+<script>
+  $(document).ready(function() {
+    $(".target:even").addClass("animated shake");     // because indexing FIRST, THIRD shake
+    $(".target:odd").addClass("animated shake");
+  });
+</script>
+```
+
 ### Use jQuery to Modify the Entire Page
