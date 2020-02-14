@@ -20,3 +20,24 @@ For example, a `Node.js` server can process a request from client B while it wai
 
 `REPL` is as an environment in which we can run Node code. Many other languages and platforms also have a similar REPL environment. Browser JavaScript can be run in the console of Google Chrome DevTools. You should be familiar with a REPL from using the Ruby-REPL irb.
 
+##### USING (JS irb)
+
+```js
+// in terminal or cmd type:
+
+node
+
+// then:
+
+> 1+1
+2
+
+> function adder(){return 1 + 1}
+undefined
+> adder()
+2
+
+// exiting
+
+> .exit
+```
