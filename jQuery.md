@@ -129,6 +129,18 @@ jQuery also has a similar function called `.text()` that only alters text withou
 
 ### Remove an Element Using jQuery
 
+`.remove()`
+
+jQuery has a function called `.remove()` that will remove an HTML element entirely
+
+```
+<script>
+  $(document).ready(function() {
+    $("#target4").remove();
+  });
+</script>
+```
+
 ### Use appendTo to Move Elements with jQuery
 
 ### Clone an Element Using jQuery
