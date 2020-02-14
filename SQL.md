@@ -4,7 +4,7 @@ https://www.sqltutorial.org/wp-content/uploads/2016/04/SQL-cheat-sheet.pdf
 
 ### Creating a table and inserting data
 
-```
+```js
 /** Grocery list: 
 Bananas (4)
 Peanut Butter (1)
