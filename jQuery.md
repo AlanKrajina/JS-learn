@@ -191,7 +191,6 @@ jQuery has a function called `children()` that allows you to access the children
 
 ```
 <script>
-<script>
   $(document).ready(function() {
     $("#right-well").children().css("color", "orange")        // changing color of #right-well children
   });
@@ -199,6 +198,18 @@ jQuery has a function called `children()` that allows you to access the children
 ```
 
 ### Target a Specific Child of an Element Using jQuery
+
+`target:nth-child(n)`
+
+jQuery uses CSS Selectors to target elements. The `target:nth-child(n)` CSS selector allows you to select all the nth elements with the `target` class or element type.
+
+```
+<script>
+  $(document).ready(function() {
+    $(".target:nth-child(2)").addClass("animated bounce");   // all elements with .target get added a new class (second element)
+  });
+</script>
+```
 
 ### Target Even Elements Using jQuery
 
