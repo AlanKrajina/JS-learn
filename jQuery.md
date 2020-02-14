@@ -91,6 +91,16 @@ You should use the jQuery addClass() function to give the classes animated and s
 
 ### Change the CSS of an Element Using jQuery
 
+##### .css()
+
+```
+<script>
+  $(document).ready(function() {
+    $("#target1").css("color", "red");     //
+  });
+</script>
+```
+
 ### Disable an Element Using jQuery
 
 ### Change Text Inside an Element Using jQuery
