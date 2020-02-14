@@ -1,3 +1,5 @@
+https://www.sqltutorial.org/wp-content/uploads/2016/04/SQL-cheat-sheet.pdf
+
 ### Querying data from a table
 
 Query data in columns c1, c2 from a table
