@@ -79,6 +79,16 @@ You should use the jQuery addClass() function to give the classes animated and s
 
 ### Remove Classes from an Element with jQuery
 
+##### .removeClass()
+
+```
+<script>
+  $(document).ready(function() {
+    $("button").removeClass("btn-default");
+  });
+</script>
+```
+
 ### Change the CSS of an Element Using jQuery
 
 ### Disable an Element Using jQuery
