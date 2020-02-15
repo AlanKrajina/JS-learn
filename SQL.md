@@ -238,7 +238,7 @@ COUNT(*)
 /* CASE */
 SELECT type, heart_rate,
     CASE 
-        WHEN heart_rate > 220-30 THEN "above max"
+        WHEN heart_rate > 220-30 THEN "above max"                      // creates new column and assigns value of TYPE and HEART_RATE
         WHEN heart_rate > ROUND(0.90 * (220-30)) THEN "above target"
         WHEN heart_rate > ROUND(0.50 * (220-30)) THEN "within target"
         ELSE "below target"
@@ -258,7 +258,7 @@ hiking	            85	        below target
 
 
 
-SELECT COUNT(*),                // returns total count 
+SELECT COUNT(*),                // returns total count grouped by the number of HR_ZONE
     CASE 
         WHEN heart_rate > 220-30 THEN "above max"
         WHEN heart_rate > ROUND(0.90 * (220-30)) THEN "above target"
