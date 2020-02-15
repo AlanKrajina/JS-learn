@@ -101,15 +101,15 @@ INSERT INTO exercise_logs(type, minutes, calories, heart_rate) VALUES ("dancing"
 SELECT * FROM exercise_logs WHERE calories > 50 AND minutes < 30;         /* AND */
 
 id	type	     minutes	calories	heart_rate
-3	dancing	15	       200	120
+3	dancing	        15	       200	        120
 
 
 SELECT * FROM exercise_logs WHERE calories > 50 OR heart_rate > 100;      /* OR */
 
 id	type	     minutes	calories	heart_rate
-1	biking	30	       100	110
-2	biking	10	        30	105
-3	dancing	15	       200	120
+1	biking	        30	       100      	110
+2	biking	        10	        30	        105
+3	dancing	        15	       200	        120
 ```
 
 ### Querying IN subqueries
