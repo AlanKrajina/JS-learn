@@ -55,7 +55,7 @@ id	name	     quantity	aisle
 ### Aggregating data
 
 ```js
-SELECT SUM(quantity) FROM groceries;             // sum up all rows in guantity column
+SELECT SUM(quantity) FROM groceries;             // sum up all rows in quantity column
 
 SUM(quantity)
 15
@@ -67,13 +67,17 @@ SUM(quantity)
 6
 
 
-SELECT aisle, SUM(quantity) FROM groceries GROUP BY aisle;     // returns ALL aisles + SUM of Quantity for EACH aisle with SAME NUMBER
+SELECT aisle, SUM(quantity) FROM groceries GROUP BY aisle;     // returns ALL aisles reduced + SUM of Quantity for EACH aisle with SAME aisle  NUMBER
 
 aisle	SUM(quantity)
 2	      9
 4	      1
 7	      4
 12	      1
+
+SELECT type, SUM(calories) AS total_calories FROM exercise_logs GROUP BY type;
+
+// using AS we change the colum name from CALORIES to TOTAL_CALORIES
 
 https://www.khanacademy.org/computing/computer-programming/sql/sql-basics/pp/project-design-a-store-database
 ```
@@ -124,22 +128,7 @@ SELECT * FROM exercise_logs WHERE type IN ("biking", "hiking", "tree climbing", 
 SELECT * FROM exercise_logs WHERE type NOT IN ("biking", "hiking", "tree climbing", "rowing");
 ```
 
-
-EXAMPLE - 2 tables:
-```js
-// To finish creating the 'Pop' playlist, add another query that will select the title of all the songs from the 'Pop' artists. It should use IN on a nested subquery that's based on your previous query.
-
-
-SELECT title FROM songs WHERE artist = 'Queen';
-
-SELECT name FROM artists WHERE genre = 'Pop';
-
-SELECT title FROM songs WHERE artist IN (SELECT name FROM artists WHERE genre = "Pop" AND name = artist);
-
-// returns TITLE from SONGS where ARTIST in artist table has genre 'Pop' and name MATHING to TITLE from songs
-```
-
-##### INNER QUERY (subquery)
+### INNER QUERY (subquery)
 
 ```js
 CREATE TABLE drs_favorites
@@ -169,6 +158,48 @@ SELECT * FROM exercise_logs WHERE type IN (
 
 ```
 
+EXAMPLE - 2 tables:
+```js
+// To finish creating the 'Pop' playlist, add another query that will select the title of all the songs from the 'Pop' artists. It should use IN on a nested subquery that's based on your previous query.
+
+
+SELECT title FROM songs WHERE artist = 'Queen';
+
+SELECT name FROM artists WHERE genre = 'Pop';
+
+SELECT title FROM songs WHERE artist IN (SELECT name FROM artists WHERE genre = "Pop" AND name = artist);
+
+// returns TITLE from SONGS where ARTIST in artist table has genre 'Pop' and name MATHING to TITLE from songs
+```
+
+### Restricting grouped results with HAVING
+
+```js
+SELECT type, SUM(calories) AS total_calories FROM exercise_logs
+    GROUP BY type
+    HAVING total_calories > 150
+    ;
+
+SELECT type, AVG(calories) AS avg_calories FROM exercise_logs
+    GROUP BY type
+    HAVING avg_calories > 70
+    ; 
+    
+SELECT type FROM exercise_logs GROUP BY type HAVING COUNT(*) >= 2;      // returns TYPE whos ROW shows up in table >= 2 times
+```
+
+EXERCISE
+```js
+// In this first step, select all the authors who have written more than 1 million words, using GROUP BY and HAVING. Your results table should include the 'author' and their total word count as a 'total_words' column.
+
+SELECT author, SUM(words) AS total_words FROM books GROUP BY author HAVING total_words > 1000000;
+
+author	        total_words
+J.K. Rowling	1086594
+
+
+SELECT author, AVG(words) AS avg_words FROM books GROUP BY author HAVING avg_words > 150000;    // AVERAGE
+```
 
 ## SQL Tutorial
 
