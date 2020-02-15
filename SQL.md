@@ -37,19 +37,19 @@ SELECT * FROM groceries ORDER BY aisle;                      // order ascending 
 
 
 id	name	              quantity	aisle
-2	Peanut Butter	     1     	2
-3	Dark Chocolate Bars	2	     2
-5	Cherries	          6	     2
-6	Chocolate syrup	1	     4
-1	Bananas	          4	     7
-4	Ice cream	          1	     12
+2	Peanut Butter	        1     	2
+3	Dark Chocolate Bars	    2	    2
+5	Cherries	            6	    2
+6	Chocolate syrup	        1       4
+1	Bananas	                4	    7
+4	Ice cream	            1	   12
 
 
 SELECT * FROM groceries WHERE aisle > 5 ORDER BY aisle;      // order ascending by aisle WHERE aisle > 5
 
 id	name	     quantity	aisle
-1	Bananas	    4	7
-4	Ice cream	    1	12
+1	Bananas	        4	      7
+4	Ice cream	    1	     12
 ```
 
 ### Aggregating data
