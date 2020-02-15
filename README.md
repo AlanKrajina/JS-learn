@@ -49,6 +49,7 @@
 * [ES6 Template Literals offer a lot of flexibility in generating strings, can you give an example?](#es6-template-literals-offer-a-lot-of-flexibility-in-generating-strings-can-you-give-an-example)
 * [What are the benefits of using spread syntax and how is it different from rest syntax?](#what-are-the-benefits-of-using-spread-syntax-and-how-is-it-different-from-rest-syntax)
 * [How can you share code between files?](#how-can-you-share-code-between-files)
+* [ReactJS](#reactjs)
 * [Nodejs](#nodejs)
 * [Big O](#big-o)
 * [Object iteration](#object-iteration)
@@ -2135,6 +2136,29 @@ On the client (browser environment), as long as the variables/functions are decl
 On the server (Node.js), the common way has been to use CommonJS. Each file is treated as a module and it can export variables and functions by attaching them to the `module.exports` object.
 
 ES2015 defines a module syntax which aims to replace both AMD and CommonJS. This will eventually be supported in both browser and Node environments.
+
+### ReactJS
+
+https://www.freecodecamp.org/news/the-react-cheatsheet-for-2020/
+
+#### Core Concepts
+- Elements and JS
+- Components and Props
+- Lists and Keys
+- Events and Event Handlers
+
+#### React Hooks
+- State and useState
+- Side Effects and useEffect
+- Performance and useCallback
+- Memoization and useMemo
+- Refs and useRef
+
+#### Advanced Hooks
+- Context and useContext
+- Reducers and useReducer
+- Writing custom hooks
+- Rules of hooks
 
 
 ### Nodejs
