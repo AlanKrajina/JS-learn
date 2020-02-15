@@ -158,7 +158,7 @@ SELECT * FROM exercise_logs WHERE type IN (
 
 ```
 
-EXAMPLE - 2 tables:
+##### EXAMPLE - 2 tables:
 ```js
 // To finish creating the 'Pop' playlist, add another query that will select the title of all the songs from the 'Pop' artists. It should use IN on a nested subquery that's based on your previous query.
 
@@ -188,7 +188,7 @@ SELECT type, AVG(calories) AS avg_calories FROM exercise_logs
 SELECT type FROM exercise_logs GROUP BY type HAVING COUNT(*) >= 2;      // returns TYPE whos ROW shows up in table >= 2 times
 ```
 
-EXERCISE
+##### EXAMPLE
 ```js
 // In this first step, select all the authors who have written more than 1 million words, using GROUP BY and HAVING. Your results table should include the 'author' and their total word count as a 'total_words' column.
 
@@ -200,6 +200,81 @@ J.K. Rowling	1086594
 
 SELECT author, AVG(words) AS avg_words FROM books GROUP BY author HAVING avg_words > 150000;    // AVERAGE
 ```
+
+### Calculating results with CASE
+
+```js
+SELECT * FROM exercise_logs;
+
+id	type	        minutes	calories	heart_rate
+1	biking	            30	    100	        110
+2	biking	            10	    30	        105
+3	dancing	            15	    200	        120 
+4	dancing	            15	    165	        120
+5	tree climbing	    30	    70	         90
+6	tree climbing	    25	    72	         80
+7	rowing	            30	    70	         90
+8	hiking	            60	    80	         85
+
+
+
+SELECT COUNT(*) FROM exercise_logs WHERE heart_rate > 220 - 30;
+
+COUNT(*)
+0
+
+
+
+/* 50-90% of max*/
+SELECT COUNT(*) FROM exercise_logs WHERE
+    heart_rate >= ROUND(0.50 * (220-30)) 
+    AND  heart_rate <= ROUND(0.90 * (220-30));
+    
+COUNT(*)
+4
+
+
+
+/* CASE */
+SELECT type, heart_rate,
+    CASE 
+        WHEN heart_rate > 220-30 THEN "above max"
+        WHEN heart_rate > ROUND(0.90 * (220-30)) THEN "above target"
+        WHEN heart_rate > ROUND(0.50 * (220-30)) THEN "within target"
+        ELSE "below target"
+    END as "hr_zone"
+FROM exercise_logs;
+
+
+type	        heart_rate	    hr_zone
+biking	            110	        within target
+biking	            105	        within target
+dancing	            120	        within target
+dancing	            120	        within target
+tree climbing	    90	        below target
+tree climbing	    80	        below target
+rowing	            90	        below target
+hiking	            85	        below target
+
+
+
+SELECT COUNT(*),                // returns total count 
+    CASE 
+        WHEN heart_rate > 220-30 THEN "above max"
+        WHEN heart_rate > ROUND(0.90 * (220-30)) THEN "above target"
+        WHEN heart_rate > ROUND(0.50 * (220-30)) THEN "within target"
+        ELSE "below target"
+    END as "hr_zone"
+FROM exercise_logs
+GROUP BY hr_zone;
+
+
+COUNT(*)	hr_zone
+4	        below target
+4	        within target   
+```
+
+
 
 ## SQL Tutorial
 
