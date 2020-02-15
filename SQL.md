@@ -274,7 +274,61 @@ COUNT(*)	hr_zone
 4	        within target   
 ```
 
+## Relational Queries in SQL
 
+https://www.khanacademy.org/computing/computer-programming/sql/relational-queries-in-sql/pt/joining-related-tables
+
+```js
+// Old Table with all data:
+
+student_name	    book_title	                    book_author
+Peter Rabbit	    The Tale of Mrs. Tiggy-Winkle	Beatrix Potter
+Peter Rabbit	    Jabberwocky	                    Lewis Carroll
+Alice Wonderland	The Hunting of the Snark	    Lewis Carroll
+Alice Wonderland	Jabberwocky	                    Lewis Carroll
+```
+
+```js
+// New Tables with seperated data:
+
+student_id	student_name	    
+1	        Peter Rabbit	    
+2	        Alice Wonderland	
+1	        Peter Rabbit	    
+2	        Alice Wonderland	
+
+
+id	book_title	                    book_author
+1	The Tale of Mrs. Tiggy-Winkle	Beatrix Potter
+2	Jabberwocky	                    Lewis Carroll
+3	The Hunting of the Snark	    Lewis Carroll
+```
+
+```js
+// JOIN TABLE we use to connect:
+
+student_id	book_id
+1	            1
+1	            2
+2	            3
+2	            2
+```
+
+There are several types of `database relationship`:
+
+- One to One 
+- One-to-Many (or Many-to-One) 
+- Many to Many -> linked by an intermediary table.
+
+When selecting data from multiple tables with relationships, we will be using the JOIN query. 
+
+- Cross Joins
+- Natural Joins
+- Inner Joins
+- Left (Outer) Joins
+- Right (Outer) Joins
+
+https://database.guide/the-3-types-of-relationships-in-database-design/
 
 ## SQL Tutorial
 
