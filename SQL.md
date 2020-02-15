@@ -1,5 +1,9 @@
 https://www.sqltutorial.org/wp-content/uploads/2016/04/SQL-cheat-sheet.pdf
 
+SQL Joins:
+
+https://4.bp.blogspot.com/-_HsHikmChBI/VmQGJjLKgyI/AAAAAAAAEPw/JaLnV0bsbEo/s1600/sql%2Bjoins%2Bguide%2Band%2Bsyntax.jpg
+
 ## Khan Academy
 
 ### Creating a table and inserting data
@@ -73,6 +77,98 @@ aisle	SUM(quantity)
 
 https://www.khanacademy.org/computing/computer-programming/sql/sql-basics/pp/project-design-a-store-database
 ```
+
+### Complex queries with AND/OR
+
+```js
+CREATE TABLE exercise_logs
+    (id INTEGER PRIMARY KEY AUTOINCREMENT,
+    type TEXT,
+    minutes INTEGER, 
+    calories INTEGER,
+    heart_rate INTEGER);
+
+
+INSERT INTO exercise_logs(type, minutes, calories, heart_rate) VALUES ("biking", 30, 100, 110);
+INSERT INTO exercise_logs(type, minutes, calories, heart_rate) VALUES ("biking", 10, 30, 105);
+INSERT INTO exercise_logs(type, minutes, calories, heart_rate) VALUES ("dancing", 15, 200, 120);
+
+
+SELECT * FROM exercise_logs WHERE calories > 50 AND minutes < 30;         /* AND */
+
+id	type	     minutes	calories	heart_rate
+3	dancing	15	       200	120
+
+
+SELECT * FROM exercise_logs WHERE calories > 50 OR heart_rate > 100;      /* OR */
+
+id	type	     minutes	calories	heart_rate
+1	biking	30	       100	110
+2	biking	10	        30	105
+3	dancing	15	       200	120
+```
+
+### Querying IN subqueries
+
+```js
+// instead of using:
+
+SELECT * FROM exercise_logs WHERE type = "biking" OR type = "hiking" OR type = "tree climbing" OR type = "rowing";
+
+// we use IN:
+
+SELECT * FROM exercise_logs WHERE type IN ("biking", "hiking", "tree climbing", "rowing");
+
+// reverse of IN -> NOT IN
+
+SELECT * FROM exercise_logs WHERE type NOT IN ("biking", "hiking", "tree climbing", "rowing");
+```
+
+
+EXAMPLE - 2 tables:
+```js
+// To finish creating the 'Pop' playlist, add another query that will select the title of all the songs from the 'Pop' artists. It should use IN on a nested subquery that's based on your previous query.
+
+
+SELECT title FROM songs WHERE artist = 'Queen';
+
+SELECT name FROM artists WHERE genre = 'Pop';
+
+SELECT title FROM songs WHERE artist IN (SELECT name FROM artists WHERE genre = "Pop" AND name = artist);
+
+// returns TITLE from SONGS where ARTIST in artist table has genre 'Pop' and name MATHING to TITLE from songs
+```
+
+##### INNER QUERY (subquery)
+
+```js
+CREATE TABLE drs_favorites
+    (id INTEGER PRIMARY KEY,
+    type TEXT,
+    reason TEXT);
+
+INSERT INTO drs_favorites(type, reason) VALUES ("biking", "Improves endurance and flexibility.");
+INSERT INTO drs_favorites(type, reason) VALUES ("hiking", "Increases cardiovascular health.");
+
+
+
+SELECT type FROM drs_favorites;
+
+SELECT * FROM exercise_logs WHERE type IN (
+    SELECT type FROM drs_favorites);             // inner query, returns ALL from exercise_logs that MATCH TYPE from drs_favorites
+
+
+SELECT * FROM exercise_logs WHERE type IN (
+    SELECT type FROM drs_favorites WHERE reason = "Increases cardiovascular health");   // more specific return based on TYPE AND REASON
+    
+    
+/* LIKE */
+
+SELECT * FROM exercise_logs WHERE type IN (
+    SELECT type FROM drs_favorites WHERE reason LIKE "%cardiovascular%");   // returns all with KEYWORD
+
+```
+
 
 ## SQL Tutorial
 
