@@ -170,6 +170,14 @@ SELECT name FROM artists WHERE genre = 'Pop';
 SELECT title FROM songs WHERE artist IN (SELECT name FROM artists WHERE genre = "Pop" AND name = artist);
 
 // returns TITLE from SONGS where ARTIST in artist table has genre 'Pop' and name MATHING to TITLE from songs
+
+
+title
+Shake it off
+Stay
+My heart will go on
+A new day has come
+Conga
 ```
 
 ### Restricting grouped results with HAVING
