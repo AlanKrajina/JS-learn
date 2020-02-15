@@ -330,6 +330,72 @@ When selecting data from multiple tables with relationships, we will be using th
 
 https://database.guide/the-3-types-of-relationships-in-database-design/
 
+##### TABLES
+
+```js
+CREATE TABLE students (id INTEGER PRIMARY KEY,
+    first_name TEXT,
+    last_name TEXT,
+    email TEXT,
+    phone TEXT,
+    birthdate TEXT);
+    
+CREATE TABLE student_grades (id INTEGER PRIMARY KEY,
+    student_id INTEGER,
+    test TEXT,
+    grade INTEGER);
+```
+
+#### Cross Join
+
+```js
+// 2 tables, student_grades, students
+
+SELECT * FROM student_grades, students;
+```
+
+#### Inner Join
+
+```js
+/* implicit inner join */                       // joinst 2 tables in to 1
+
+SELECT * FROM student_grades, students
+    WHERE student_grades.student_id = students.id;
+    
+    
+id	student_id	test	    grade	id	first_name	last_name	email	                phone	    birthdate
+1	1	        Nutrition	95	    1	Peter	    Rabbit	    peter@rabbit.com	    555-6666	2002-06-24
+2	2	        Nutrition	92	    2	Alice	    Wonderland	alice@wonderland.com	555-4444	2002-07-04
+3	1	        Chemistry	85	    1	Peter	    Rabbit	    peter@rabbit.com	    555-6666	2002-06-24
+4	2	        Chemistry	95	    2	Alice	    Wonderland	alice@wonderland.com	555-4444	2002-07-04    
+
+// SAME RESULT different way:
+
+/* explicit inner join - JOIN */
+
+SELECT * FROM students
+    JOIN student_grades
+    ON students.id = student_grades.student_id;
+```
+
+```js
+/* explicit inner join - JOIN */
+
+SELECT students.first_name, students.last_name, students.email, student_grades.test, student_grades.grade FROM students
+    JOIN student_grades                                              // joining with other table
+    ON students.id = student_grades.student_id                       // where to join with conditional
+    WHERE grade > 90;                                                // additional where conditional 
+
+
+first_name	last_name	email	                test	    grade
+Peter	    Rabbit	    peter@rabbit.com	    Nutrition	95
+Alice	    Wonderland	alice@wonderland.com	Nutrition	92
+Alice	    Wonderland	alice@wonderland.com	Chemistry	95
+```
+
+
+
+
 ## SQL Tutorial
 
 ### Querying data from a table
