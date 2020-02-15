@@ -382,9 +382,9 @@ SELECT * FROM students
 /* explicit inner join - JOIN */
 
 SELECT students.first_name, students.last_name, students.email, student_grades.test, student_grades.grade FROM students
-    JOIN student_grades                                              // joining with other table
+    JOIN student_grades                                              // joining with other table = JOINED TABLE
     ON students.id = student_grades.student_id                       // where to join with conditional
-    WHERE grade > 90;                                                // additional where conditional 
+    WHERE grade > 90;                                                // additional where conditional to return selected value 
 
 
 first_name	last_name	email	                test	    grade
@@ -393,6 +393,88 @@ Alice	    Wonderland	alice@wonderland.com	Nutrition	92
 Alice	    Wonderland	alice@wonderland.com	Chemistry	95
 ```
 
+### Stack O example
+
+
+Suppose you have two tables, with a single column each, and data as follows:
+```js
+A    B
+-    -
+1    3
+2    4
+3    5
+4    6
+```
+
+Note that (1,2) are unique to A, (3,4) are common, and (5,6) are unique to B.
+
+##### Inner join
+
+An inner join using either of the equivalent queries gives the intersection of the two tables, i.e. the two rows they have in common.
+
+```js
+SELECT * FROM a 
+    INNER JOIN b 
+    ON a.a = b.b;
+
+a | b
+--+--
+3 | 3
+4 | 4
+```
+
+##### Left outer join
+
+A left outer join will give all rows in A, plus any common rows in B.
+
+```js
+SELECT * FROM a
+    LEFT OUTER JOIN b 
+    ON a.a = b.b;
+
+a |  b
+--+-----
+1 | null
+2 | null
+3 |    3
+4 |    4
+```
+
+##### Right outer join
+
+A right outer join will give all rows in B, plus any common rows in A.
+
+```js
+SELECT * FROM a 
+    RIGHT OUTER JOIN b 
+    ON a.a = b.b;
+
+a    |  b
+-----+----
+3    |  3
+4    |  4
+null |  5
+null |  6
+```
+
+##### Full outer join
+
+A full outer join will give you the union of A and B, i.e. all the rows in A and all the rows in B. If something in A doesn't have a corresponding datum in B, then the B portion is null, and vice versa.
+
+```js
+SELECT * FROM a 
+    FULL OUTER JOIN b 
+    ON a.a = b.b;
+
+ a   |  b
+-----+-----
+   1 | null
+   2 | null
+   3 |    3
+   4 |    4
+null |    6
+null |    5
+```
 
 
 
