@@ -232,7 +232,7 @@ function myFunction() {
 #### Local scope
 
 ```js
-// code here can NOT use carName
+//  code here can NOT use carName
 
 function myFunction() {
   var carName = "Volvo";
