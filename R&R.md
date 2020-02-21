@@ -27,22 +27,29 @@ http://www.tutorialspoint.com/ruby-on-rails/rails-framework.htm
 Rails uses both snake_case and camelCase in different situations
 
 Model names are singular and capitalised.
+
 e.g. User or Post
 
 Controller names are generally pluralised and written in camel case.
+
 e.g. UsersController, PostsController
 
 However there are some exceptions (e.g. SessionController, ApplicationController)
+
 View names should match the action names in the controller to which they are associated with.
+
 e.g. ‘posts#show’ would correspond to show.html.erb (in /views/posts)
 
 Migrations are capitalised and written in camel case.
+
 e.g. CreateUsers
 
 Table names are pluralised with underscores if necessary (as opposed to camel case).
+
 e.g. users
 
 Join tables names are made up the pluralised version of both of the relevant tables. These are alphabetised and separated by an underscore.
+
 e.g. libraries_posts
 
 ## How would I execute some code for each element in a collection?
@@ -51,7 +58,7 @@ In Ruby, it is encouraged that one iterates over a collection using an enumerabl
 
 Below is a list Ruby enumerables in Ruby 2.2.1 http://ruby-doc.org/core-2.2.1/Enumerable.html
 
-##Name a few object-oriented concepts in Ruby
+## Name a few object-oriented concepts in Ruby
 
 Object-oriented programming" (OOP) is at the core of Ruby (and modern programming). In a nutshell, object-oriented programming sees the world as data, modeled in code by "objects." 
 
