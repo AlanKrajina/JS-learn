@@ -83,7 +83,7 @@ Class variables are shared between all instances of a class. In other words, the
 - http://ruby.bastardsbook.com/chapters/oops/
 - http://www.tutorialspoint.com/ruby/ruby_object_oriented.htm
 
-##When should load be used in Ruby, as opposed to require?
+## When should load be used in Ruby, as opposed to require?
 
 **Require:**
 
@@ -104,7 +104,7 @@ Most of the time, you’ll want to use require instead of load but load is there
 You will probably never want to use load in practice.
 
 
-##What are filters in Rails? Give some examples.
+## What are filters in Rails? Give some examples.
 
 Filters are methods that are run before, after or “around” a controller action. These methods can halt the action processing by redirecting or set up common data to every action in the controller. 
 
@@ -116,7 +116,7 @@ Around - these may have logic that runs before and after the action, and yield t
 
 N.B. Used to be called filters but now you can use action as a keyword as well.
 
-##What are GET and POST methods?
+## What are GET and POST methods?
 
 GET and POST methods are part of the REST software architecture style.
 
@@ -128,7 +128,7 @@ Key things to mention: RESTful, HTTP verbs, GET request shouldn’t update anyth
 
 Further reading - http://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post
 
-##What is YAML?
+## What is YAML?
 
 YAML is an acronym for “YAML Ain't Markup Language” and is a human friendly data serialisation standard for programming languages.
 
@@ -143,7 +143,7 @@ Useful Links:
 - http://yaml.org/
 - https://blog.udemy.com/ruby-yaml/
 
-##Give some examples of what you could define in a Rails model.
+## Give some examples of what you could define in a Rails model.
 
 In a model, you can define the association to other models. For example, you can define if it is a one-to-one, one-to-many, many-to-many etc. In addition, you can define whether the model belongs to another model or if it has other models.
 
@@ -151,15 +151,8 @@ If the rails application were a game, the logic of the game could be defined in 
 
 Also very important: validations.
 
-##How does GPS work?
 
-##How do you add a method to jQuery?
-
-##What is browser sniffing? When would you use it?
-
-#B team
-
-##What is meant by convention over configuration?
+## What is meant by convention over configuration?
 
 The idea that you have certain placing or naming conventions so you don't have to explicitly tell the program where stuff is or what it is called.
 
@@ -177,7 +170,7 @@ Another way you can describe convention over configuration is 'sensible defaults
 predetermined way of doing common things (convention) alleviates ppl of the need to make explicit choices (configuration)
 ```
 
-##What is MVC?
+## What is MVC?
 
 MVC is a design pattern for building graphic user interfaces.
 
@@ -193,7 +186,7 @@ MVC is designed to separate logic from the user interface.
 
 The point of using an MVC pattern is separation of concerns. 
 
-##Explain RESTful architecture.
+## Explain RESTful architecture.
 
 The REST in RESTful architecture stands for Representational State Transfer, which is a software architecture style consisting of guidelines and best practices for creating scalable web services.
 
@@ -217,7 +210,7 @@ That is RESTful architecture.
 
 If they ask you how you would design an API, you would say using a RESTful architecture. 
 
-##Explain the difference between empty? and nil?
+## Explain the difference between empty? and nil?
 
 Nil is a Ruby method that can be used on any object and returns true if the object is nil and false for anything else.
 
@@ -247,7 +240,7 @@ Empty: we know you have no Middle Name - your MN is ''
 Nil: Your MN has no value in the DB, so don't know if you have one or not
 ```
 
-##Provide an example showing how an iterator is used
+## Provide an example showing how an iterator is used
 
 **JS for loop example:** 
 
@@ -276,7 +269,7 @@ end
 end
 ```
 
-##What is the difference between an argument and a parameter?
+## What is the difference between an argument and a parameter?
 
 Function parameters are the names listed in the function definition.
 
@@ -284,7 +277,7 @@ Function arguments are the real values passed to (and received by) the function.
 
 A parameter is a variable in a method definition. When a method is called, the arguments are the data you pass into the method's parameters.
 
-````
+```
 functionName(parameter1, parameter2, parameter3) {
     code to be executed
 }
@@ -295,7 +288,7 @@ functionName(argument1, argument2, argument4);
 
 In reality, the terms can be used interchangebly. 
 
-##Explain how sessions work, specifically in relation to cookies.
+## Explain how sessions work, specifically in relation to cookies.
 
 A session refers to a limited time of communication between two systems. Some sessions involve a client and a server, while other sessions involve two personal computers.
 
@@ -305,7 +298,7 @@ Browser cookies come in two different flavors: "session" and "persistent." Sessi
 
 Joel says this question might be more in relation to the interaction between how Rails keeps track of which user owns which session via cookies.. this is explained in the Rails Guide: http://guides.rubyonrails.org/security.html
 
-##Andrew: what is The Halting Problem and what are its ramifications?
+## What is The Halting Problem and what are its ramifications?
 
 The halting problem is the problem of determining, whether a computer program will finish running or continue to run forever, such as an infinite loop.  Such as in psudocode: if (true) continue doesn't halt, whereas print "hello world" does halt. In 1936 Alan Turing proved no algorithm can exist which will always correctly decide whether, for a given arbitrary program and its input, the program halts when run with that input; the essence of Turing's proof is that any such algorithm can be made to contradict itself, and therefore cannot be correct. For real-time programming, it's important that programmers attempt to write subroutines that are not only guaranteed to finish (halt), but are guaranteed to finish before the given deadline.
 
@@ -315,7 +308,7 @@ Joel says in essence, it is that we can't check for infinite loops before a prog
 
 @BarisBalic, a software engineer in London, says it is: "a fallacy based on the assumption humans posses the skill/capacity necessary to keep a program running indefinitely."
 
-##What is TDD?
+## What is TDD?
 
 TDD or Test-driven development is a software development process. 
 
@@ -335,7 +328,7 @@ By focusing on writing only the code necessary to pass tests, designs can often 
 
 **Joel says it's also worth mentioning the benefits of automated testing and the red green refactor cycle.**
 
-##How can two databases be accessed from the same Rails application?
+## How can two databases be accessed from the same Rails application?
 
 Connections are usually created through ActiveRecord::Base.establish_connection and retrieved by ActiveRecord::Base.connection.
 
@@ -371,7 +364,7 @@ end
 ```
 
 
-##What is an IP address?
+## What is an IP address?
 
 An IP address is an Internet Protocol address. 
 
@@ -408,12 +401,12 @@ start->run->cmd->ipconfig/all It shows your internal ip address.
 
 Public or external ip address is used to access the internet.
 
-##How might your prevent name conflicts in Javascript?
+## How might your prevent name conflicts in Javascript?
 
 1. you can use objects and put everything inside that object, eg an app object like we do with Backbone, and then that is the only place you could have a possible conflict
 2. inside the document.ready any variables you define will only exist inside the document.ready function, so you can prevent conflicts just by wrapping them in a document.ready 
 
-##How would you model a coffee shop in Rails?
+## How would you model a coffee shop in Rails?
 
 Coffee, Customer, Order, Employee, Owner
 
@@ -433,7 +426,7 @@ an employee belongs_to :owner
 
 an owner has_many :employees
 
-##Why is it better to serve site assets from multiple domains?
+## Why is it better to serve site assets from multiple domains?
 
 Serving assets from multiple domains can increase the number of assets a browser can download in parallel. This then would improve a website's response time.
 
@@ -443,26 +436,25 @@ To avoid overloading on one server, the browser has the limit on the number of r
 
 But there can be a downside to this - depending on bandwidth and CPU speed, too many parallel downloads can degrade performance.
 
-#C team
 
-##What is a framework?
+## What is a framework?
 
 Frameworks, such as Rails, Sinatra, Backbone, provide structure to the complex computer systems/computer languages. The user can add to the frameworks with their own code and customizations. Frameworks may include APIs, libraries, toolsets, compilers, support programs that enable development.
 
-##How does MVC work?
+## How does MVC work?
 
 Model-Views-Controller is the basic architectural pattern for software applications for implementing user interfaces. (talk about the router if you are going for a Rails job)
 Model- directly manages the data, logic, and rules of the application
 Views - requests info from the model and uses info to generate and output representation to the user
 Controller - accepts the input and converts it to commands for the model or view; can send commands to the model to update the model’s state
 
-##Why would you use Rails rather than another framework?
+## Why would you use Rails rather than another framework?
 
 Rails allows the user to easily develop software because it is optimized for programmer happiness and sustainable productivity (aka ideal for building web applications). Rails is completely free and open-source and it even runs on Linux. Rails has a big community so it is easy to search websites like Stackoverflow for questions. It is scalable as many big companies have used it to develop their own software such as Twitter (which also means it allows for complexity).
 
 The large rails community has also meant the continuous development of useful gems.
 
-##What operators are available in Ruby?
+## What operators are available in Ruby?
 
 Ruby operators:
 
@@ -480,13 +472,13 @@ range (.., ...)
 
 ternary (?:)
 
-##What are the looping structures in Ruby?
+## What are the looping structures in Ruby?
 
 Loops in Ruby are used to execute the same block of code a specified number of times, or each element in a collection.
 
 for - while - until - begin  - each - select - any? - times - map - unless - loop do
 
-##Compare validations, callbacks and observers in ActiveRecord
+## Compare validations, callbacks and observers in ActiveRecord
 
 Validations are used to ensure that only valid data is saved into your database
 
@@ -494,11 +486,11 @@ Callbacks, which are sometimes referred to as ‘hooks’, are methods that are 
 
 Whereas callbacks can pollute a model with code that isn’t directly related to its purpose, observers allow you to add the same functionality without changing the code of the model.
 
-##What are helpers in Rails?
+## What are helpers in Rails?
 
 (this is more of a view helper) helpers in rails assist with assets, dates, forms, numbers and model objects. They are more like methods in that you call them on an object, which might help you to format time or to capitalize a person’s first name. You can either use the standard template helpers or you can create your own customized helpers 
 
-##What are the associations available in ActiveRecord models?
+## What are the associations available in ActiveRecord models?
 
 belongs_to - one-to-one connection with another model
 
@@ -511,11 +503,11 @@ has_one :through - This association indicates that the declaring model can be ma
 
 has_and_belongs_to_many - creates a direct many-to-many connection with another model, with no intervening model
 
-##What is the log to check for errors in Rails?
+## What is the log to check for errors in Rails?
 
 Rails maintains error logs for the application. There are separate logs for development, production and testing environments. The development and testing logs can be found in the log folder in the app root directory. The production log can only be accessed on the host once the application is deployed to production.
 
-##What is ORM in Rails?
+## What is ORM in Rails?
 
 Using ORM, the properties and relationships of the objects in an application can be easily stored and retrieved from a database without writing SQL statements directly and with less overall database access code.
 ORM is Object Relational Mapper. It means you don't have to manually call the database yourself; the ORM handles it for you. Ruby on Rails uses one called ActiveRecord
@@ -528,21 +520,14 @@ Active Record gives us several mechanisms, the most important being the ability 
 - Perform database operations in an object-oriented fashion
 
 
-##How does a URL work?
 
-##What happens when you enter a URL into your browser?
-
-##Name 3 ways to decrease page load.
-
-#D Team
-
-##Compare Ruby on Rails and PHP
+## Compare Ruby on Rails and PHP
 
 Like comparing apples to oranges. PHP is a scripting language, Ruby on Rails is a web development framework based on the scripting language Ruby.
 
 Why Rails over PHP? PHP projects do not have a mature, proven framework (there are lots to choose from), whereas Rail's framework utilises convention over configuration using automation (generators/scaffolding, gems/plugins, Active Record ORM, tests)
 
-##What is a destructive method?
+## What is a destructive method?
 
 A destructive method is one which alters the state of an object. String, Array, and Hash, and others have such methods. Often there are two versions of a method, one with a plain name, the other with the same, but followed by !. The plain version takes a copy of the receiver, makes its change to it, and returns the copy. The version with the ! modifies the receiver in place.
 
@@ -554,7 +539,7 @@ Can be faster and more efficient if you can afford to manipulate the original da
 
 (reference: http://www.rootr.net/rubyfaq-7.html)
 
-##Explain the different variable scopes in Ruby
+## Explain the different variable scopes in Ruby
 
 Scope defines where in a program a variable is accessible. Ruby has four types of variable scope, local, global, instance and class. In addition, Ruby has one constant type. Each variable type is declared by using a special character at the start of the variable name as outlined in the following table.
 
@@ -574,7 +559,7 @@ In addition, Ruby has two pseudo-variables which cannot be assigned values. Thes
 
 reference(http://www.techotopia.com/index.php/Ruby_Variable_Scope)
 
-##What is the Ruby convention for naming methods?
+## What is the Ruby convention for naming methods?
 
 Use snake_case for symbols, methods and variables.
 
@@ -586,28 +571,8 @@ Methods also have the convention of being suffixed with ? (which will return tru
 
 (reference: https://github.com/bbatsov/ruby-style-guide#naming)
 
-##Compare instance and class variables
 
-##Describe the concept of visibility in Rails
-
-##What is meant by DRY?
-
-##What is a garbage collector and how does it work?
-
-automation of memory deallocation
-
-How? Ruby uses bitmap marking
-
-The GC module provides an interface to Ruby’s mark and sweep garbage collection mechanism
-
-GC module in Ruby that you can set GC.disable => true || false
-
-Why? dramatically reduce overall memory consumption by all Ruby processes running on a web server!
-
-http://patshaughnessy.net/2012/3/23/why-you-should-be-excited-about-garbage-collection-in-ruby-2-0
-
-
-##What is the role of a router in Rails?
+##  What is the role of a router in Rails?
 
 Recognizes URLs and dispatches them to a controller's action.
 
@@ -617,17 +582,6 @@ Resource routing allows you to quickly declare all of the common routes for a gi
 
 Browsers request pages from Rails by making a request for a URL using a specific HTTP method, such as GET, POST, PATCH, PUT and DELETE. Each method is a request to perform an operation on the resource. A resource route maps a number of related requests to actions in a single controller.
 
-##What is your favourite browser and why?
-
-Chrome
-
-Why? Dev tools, HTML5, Web Components, Automated Updating, UX
-
-##How would you make a web page load faster?
-
-##What is the difference between a SPAN and a DIV?
-
-##If you could master one technology this year, what would it be?
 
 
 
