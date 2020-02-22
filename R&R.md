@@ -4,10 +4,6 @@ Rails is an open source web application framework written in Ruby. It is a full-
 
 Extra: David Heinemeier Hansson (DHH) is the creator of Rails, having extracted it from his work on Basecamp. He first released Rails as open source in July 2004.
 
-Useful Links:
-
-http://en.wikipedia.org/wiki/Ruby_on_Rails
-
 ## What are the components of Rails MVC?
 
 MVC: Model-View-Controller
