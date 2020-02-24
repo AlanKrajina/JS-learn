@@ -1229,6 +1229,8 @@ Functional programming is a programming paradigm — a style of building the str
 
 ### What is object oriented programming?
 
+https://medium.com/@alankrajina/object-oriented-programming-e0db97a84a56
+
 Features or mechanisms which makes a Language Object Oriented like:
 
 ##### Object:
