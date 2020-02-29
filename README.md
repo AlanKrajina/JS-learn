@@ -353,7 +353,8 @@ Variables declared with let and const have block scope. var doesn’t have block
 
 ### What is `"use strict";`? What are the advantages and disadvantages to using it?
 
-'use strict' is a statement used to enable strict mode to entire scripts or individual functions. Strict mode is a way to opt into a restricted variant of JavaScript.
+'use strict' is a statement used to enable strict mode to entire scripts or individual functions. 
+Strict mode is a way to opt into a restricted variant of JavaScript.
 
 Advantages:
 
