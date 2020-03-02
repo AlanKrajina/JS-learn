@@ -100,7 +100,7 @@ first = 50
 // 50
 
 // second
-// 20             // NOT CHANGED 
+// 20            // NOT CHANGED 
 ```
 
 ##### object
