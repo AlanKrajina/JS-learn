@@ -106,7 +106,7 @@ A sticky element toggles between relative and fixed, depending on the scroll pos
 
 ### CSS Layout - float and clear
 
-The CSS `float` property specifies how an element should float.
+The CSS `float` property specifies how an element should float. 
 
 The CSS `clear` property specifies what elements can float beside the cleared element and on which side.
 
