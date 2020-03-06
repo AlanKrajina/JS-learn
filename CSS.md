@@ -100,7 +100,7 @@ An element with position: `absolute`; is positioned relative to the nearest posi
 
 However; if an absolute positioned element has no positioned ancestors, it uses the document body, and moves along with page scrolling.
 
-An element with position: `sticky`; is positioned based on the user's scroll position.
+An element with position: `sticky` is positioned based on the user's scroll position.
 
 A sticky element toggles between relative and fixed, depending on the scroll position. It is positioned relative until a given offset position is met in the viewport - then it "sticks" in place (like position:fixed).
 
