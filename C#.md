@@ -83,7 +83,7 @@ namespace HelloWorld
 }
 ```
 
-_________________________________________ DATATYPES __________________________________________________
+## Datatypes
 
 ```cs
 
@@ -163,7 +163,7 @@ namespace HelloWorld
 // Alan4ALAN
 ```
 
-_________________________________________ Data Conversion and Constants__________________________________________________
+## Data Conversion and Constants
 
 ```cs
 // constants -> immutable values (cant change after creation)
