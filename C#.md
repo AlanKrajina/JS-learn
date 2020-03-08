@@ -67,7 +67,7 @@ static void Main(string[] args)            // here args (parameters) are type of
 
 F5 runs program
 
-
+```cs
 using System;  // namespace as well
 
 namespace HelloWorld
@@ -81,3 +81,4 @@ namespace HelloWorld
         }
     }
 }
+```
