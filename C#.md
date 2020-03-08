@@ -249,7 +249,7 @@ namespace Tutlane
 
     {
 
-        static void Main(string[] args)
+        static void Main(string[] args)    // Return_Type -> void (no value)
 
         {
 
@@ -265,7 +265,7 @@ namespace Tutlane
 
         }
 
-        public string GetUserDetails(string name, int age)
+        public string GetUserDetails(string name, int age)    // Return_Type -> string
 
         {
 
