@@ -307,11 +307,11 @@ alan
 Name: Alan, Age: 33
 ```
 
-#### Inputs + IF ELSE
+### Inputs + IF ELSE + TRY CATCH
 
 ```cs
 using System;
-
+using System.Linq.Expressions;
 
 namespace Tutlane
 
@@ -323,16 +323,45 @@ namespace Tutlane
 
         static void Main(string[] args)
         {
+            NumbCalculator(); // works only if numbers are inputs
+            inputValidator(); // if input is string CATCHES an Exception
+        }
+
+        public static void NumbCalculator ()
+        {
             string input = Console.ReadLine();
             string input2 = Console.ReadLine();
             string operat = Console.ReadLine();
 
-            if (operat == "+"){
-            Console.WriteLine(int.Parse(input) + int.Parse(input2));
-            } else if(operat == "-"){
-            Console.WriteLine(int.Parse(input) - int.Parse(input2));
+            if (operat == "+")
+            {
+                Console.WriteLine(int.Parse(input) + int.Parse(input2));
+            }
+            else if (operat == "-")
+            {
+                Console.WriteLine(int.Parse(input) - int.Parse(input2));
             }
         }
+
+
+        public static void inputValidator()
+        {
+            string input = Console.ReadLine();  
+
+            try        // if integer OK, if string CATCH error exception
+            {
+                int inputInteger = int.Parse(input);
+
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("That was not an integer");
+            }
+
+        }
+
+    }
 }
-}
+
+
 ```
