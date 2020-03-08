@@ -60,3 +60,24 @@ static void Main(string[] args)            // here args (parameters) are type of
 {                                          // VOID means nothing -> method does not return a Value
 	
 }
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+F5 runs program
+
+
+using System;  // namespace as well
+
+namespace HelloWorld
+{
+    class Program
+    {
+        static void Main(string[] args)            // method Main
+        {
+        	Console.ForegroundColor = ConsoleColor.Blue;   // property
+            Console.WriteLine("Hello World!");             // method
+        }
+    }
+}
