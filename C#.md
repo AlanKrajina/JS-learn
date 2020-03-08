@@ -267,6 +267,9 @@ namespace Tutlane
             Console.WriteLine(name);   // this works
 
             Console.WriteLine(p.name2); // this works because we created -> Program p = new Program();
+
+            Console.WriteLine(GetUserDetails2("Alan", 33)); // calling static method 
+        
         }
 
         public string GetUserDetails(string name, int age)    // Return_Type -> string
@@ -279,10 +282,27 @@ namespace Tutlane
 
         }
 
+
+        public static string GetUserDetails2(string name, int age)    // STATIC so we dont need to create an INSTANCE of the CLASS (new Program)
+
+        {
+
+            string info = string.Format("Name: {0}, Age: {1}", name, age);
+
+            return info;
+
+        }
+
+
     }
 
 }
 
 
 
+
+Name: Suresh Dasari, Age: 31
+alan
+alan
+Name: Alan, Age: 33
 ```
