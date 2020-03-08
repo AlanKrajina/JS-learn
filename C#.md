@@ -240,7 +240,7 @@ Parameters - The method parameters are useful to send or receive data from a met
 ```cs
 using System;
 
- 
+
 namespace Tutlane
 
 {
@@ -248,9 +248,13 @@ namespace Tutlane
     class Program
 
     {
+        // string name = "alan";   -> error object reference (variable has to be static)
+        static string name = "alan"; // this works
 
-        static void Main(string[] args)    // Return_Type -> void (no value)
-				           // (string[] args) -> array of strings called args
+        string name2 = "alan"; // this works because we created -> Program p = new Program();
+
+        static void Main(string[] args)   // Return_Type -> void (no value)
+                                          // (string[] args) -> array of strings called args
 
         {
 
@@ -259,11 +263,10 @@ namespace Tutlane
             string result = p.GetUserDetails("Suresh Dasari", 31);  // arguments to store "info" into "result"
 
             Console.WriteLine(result);
+      //    Console.WriteLine(name);   -> error object reference (variable has to be static)
+            Console.WriteLine(name);   // this works
 
-            Console.WriteLine("Press Enter Key to Exit..");
-
-            Console.ReadLine();
-
+            Console.WriteLine(p.name2); // this works because we created -> Program p = new Program();
         }
 
         public string GetUserDetails(string name, int age)    // Return_Type -> string
@@ -279,5 +282,7 @@ namespace Tutlane
     }
 
 }
+
+
 
 ```
