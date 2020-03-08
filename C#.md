@@ -162,3 +162,50 @@ namespace HelloWorld
 // 0.7
 // Alan4ALAN
 ```
+
+_________________________________________ Data Conversion and Constants__________________________________________________
+
+```cs
+// constants -> immutable values (cant change after creation)
+
+
+using System;
+
+namespace HelloWorld
+{
+    class Program
+    {
+
+    	// constants are OUTSIDE ANY METHODS -> as fields
+        const string day = "22.01";  // doesnt need to be STATIC to be used inside class
+
+
+        static void Main(string[] args)
+        {
+            bool isit = true;
+            bool isnot = !isit;
+
+            string some = "15";  // cant be decimal if using int.Parse()
+            int numb = int.Parse(some);
+
+            string some2 = "15.34";
+            float numb2 = float.Parse(some2);
+
+            Console.WriteLine(isnot);
+            Console.WriteLine(numb);
+            Console.WriteLine(numb2);
+
+            Console.WriteLine("My birthday is on: " + day);
+            Console.WriteLine("My birthday is on: {0}", day);      // {0} means it adding day variable to that position   
+        }
+    }
+}
+
+// False
+// 15
+// 15.34
+// My birthday is on: 22.01
+// My birthday is on: 22.01
+
+https://www.tutorialsteacher.com/articles/convert-string-to-int
+```
