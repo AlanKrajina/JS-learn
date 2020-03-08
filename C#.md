@@ -306,3 +306,33 @@ alan
 alan
 Name: Alan, Age: 33
 ```
+
+#### Inputs + IF ELSE
+
+```cs
+using System;
+
+
+namespace Tutlane
+
+{
+
+    class Program
+
+    {
+
+        static void Main(string[] args)
+        {
+            string input = Console.ReadLine();
+            string input2 = Console.ReadLine();
+            string operat = Console.ReadLine();
+
+            if (operat == "+"){
+            Console.WriteLine(int.Parse(input) + int.Parse(input2));
+            } else if(operat == "-"){
+            Console.WriteLine(int.Parse(input) - int.Parse(input2));
+            }
+        }
+}
+}
+```
