@@ -209,3 +209,74 @@ namespace HelloWorld
 
 https://www.tutorialsteacher.com/articles/convert-string-to-int
 ```
+
+
+## Methods
+
+https://www.tutlane.com/tutorial/csharp/csharp-methods-functions-with-examples
+
+```cs
+Syntax:
+
+<Access Specifier> <Return Type> <Method Name> (Parameter List)
+{
+	Method Body
+}
+```
+
+
+Access_Specifier - It is used to define an access level either public or private, etc. to allow other classes to access the method. If we didn’t mention any access modifier, 
+					then by default it is private. 
+
+Return_Type - It is used to specify the type of value the method can return. In case, if the method is not returning any value, then we need to mention void as return type. 
+
+Method_Name - It must be a unique name to identify the method in a class. 
+
+Parameters - The method parameters are useful to send or receive data from a method and these method parameters are enclosed within parentheses and are separated by commas. 
+			 In case, if no parameters are required for a method then, we need to define a method with empty parentheses.
+
+
+
+```cs
+using System;
+
+ 
+namespace Tutlane
+
+{
+
+    class Program
+
+    {
+
+        static void Main(string[] args)
+
+        {
+
+            Program p = new Program();   // instance of Program class p -> so it can use Program methods
+
+            string result = p.GetUserDetails("Suresh Dasari", 31);  // arguments to store "info" into "result"
+
+            Console.WriteLine(result);
+
+            Console.WriteLine("Press Enter Key to Exit..");
+
+            Console.ReadLine();
+
+        }
+
+        public string GetUserDetails(string name, int age)
+
+        {
+
+            string info = string.Format("Name: {0}, Age: {1}", name, age);
+
+            return info;
+
+        }
+
+    }
+
+}
+
+```
