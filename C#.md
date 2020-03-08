@@ -250,6 +250,7 @@ namespace Tutlane
     {
 
         static void Main(string[] args)    // Return_Type -> void (no value)
+				           // (string[] args) -> array of strings called args
 
         {
 
