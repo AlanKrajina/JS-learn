@@ -483,6 +483,23 @@ console.log( findDuplicates([1, 2, 3, 1, 2, 1]) ); // [1, 2]
 
 ```
 
+```js
+let str = "1112211333";
+
+function charSplit(str) {
+    var arr = [], l, j = -1;
+    for (var i=0; i<str.length; i++) {
+        var c = str.charAt(i);
+        l==c ? arr[j] += c : arr[++j] = c;
+        l=c;
+    }
+    return arr;
+}
+console.log( charSplit(str) ); 
+
+// [ '111', '22', '11', '333' ]
+```
+
 ### FizzBuzz
 
 ```js
