@@ -645,3 +645,84 @@ namespace HelloWorld
 
 
 ```
+
+### More private + public + Setter + Getter
+
+- changing properties using Setter and getting changed ones using Getter
+
+##### Class 1
+
+```cs
+using System;
+
+namespace HelloWorld
+{
+
+    class Program
+
+    {
+        static void Main(string[] args)
+        {
+            Box calc = new Box(2,4,5);
+            calc.DisplayInfo();
+
+            calc.SetLength(13); // set method to change this.length DESTRUCTIVE
+            calc.DisplayInfo();
+
+            // Length is 2,height is 4, width is 5 so the volume is 40
+            // Length is 13,height is 4, width is 5 so the volume is 260
+
+            // Console.WriteLine(calc.length); // Box.length is inacessible due protection level
+
+            Console.WriteLine(calc.GetLength()); // getter method returns 13 (new length we set in SETTER)
+        }
+    }
+}
+```
+
+##### Class 2 Blueprint
+
+```cs
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace HelloWorld
+{
+    class Box
+    {
+        // member variables
+        protected int length;
+        private int height;
+        private int width;
+        private int volume;
+
+        public Box(int length, int height, int width)
+        {
+            this.height = height;
+            this.length = length;
+            this.width = width;
+        }
+
+        // setter method 
+        public void SetLength(int length)
+        {
+            this.length = length;
+        }
+
+        // getter method
+        public int GetLength()
+        {
+            return this.length;
+        }
+
+        public void DisplayInfo()
+        {
+            Console.WriteLine("Length is {0},height is {1}, width is {2} so the volume is {3}", length, height, width, volume = length*height*width);
+        }
+
+
+
+    }
+}
+```
