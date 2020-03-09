@@ -727,3 +727,70 @@ namespace HelloWorld
     }
 }
 ```
+
+### PROPERTIES (continues on setter and getters)
+
+The meaning of Encapsulation, is to make sure that "sensitive" data is hidden from users. 
+To achieve this, you must:
+
+- declare fields/variables as private
+- provide public get and set methods, through properties, to access and update the value of a private field
+
+https://www.w3schools.com/cs/cs_properties.asp
+
+```cs
+using System;
+
+namespace HelloWorld
+{
+    class Person
+    {
+        private string name; // field
+        private string prezime; // field
+
+
+        private string ime = "Ime1";
+        public string ime2 = "Ime2";
+
+        // created to be able to SET and GET -> PRIVATE string name (myObj.Name)
+        public string Name   // property (uppercase Name), not a variable
+        {
+            get { return name; }   // get method
+            set { name = value; }  // set method
+        }
+
+        // Automatic Properties (Short Hand) -> sets preyime variable as value 
+        public string Prezime  // property
+        { get; set; }
+    }
+}
+
+```
+
+```cs
+namespace HelloWorld
+{
+
+    class Program
+
+    {
+        static void Main(string[] args)
+        {
+            Person myObj = new Person();
+            myObj.Name = "Alan";   // SETTING value to lowercase name property from class
+            Console.WriteLine(myObj.Name);   // GETTING value of lowercase name property from class
+
+       //   Console.WriteLine(myObj.ime);   // error -> private
+            Console.WriteLine(myObj.ime2);  // OK -> public
+            
+            myObj.Prezime = "Krajina";
+            Console.WriteLine(myObj.Prezime);
+        }
+    }
+}
+
+
+// Alan
+// Ime2
+// Krajina
+```
