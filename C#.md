@@ -493,4 +493,62 @@ namespace HelloWorld
 
 ```
 
+### Constructors
 
+##### Class 1
+
+```cs
+using System;
+
+namespace HelloWorld
+{
+
+    class Program
+
+    {
+        static void Main(string[] args)
+        {
+            Human alan = new Human("alan","krajina"); // instance of class
+            // class     // calling constructor with arguments
+            alan.Hello();
+
+        }
+    }
+}
+    
+
+// Hi alan krajina
+
+```
+
+##### Class 2 Blueprint
+
+```cs
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace HelloWorld
+{
+    class Human
+    {
+        // member variable needed to use in constructor
+        private string firstName; // private 
+        private string lastName;
+
+        // constructor
+        public Human(string firstName, string lastName) // same name as CLASS
+        {
+            this.firstName = firstName;
+            this.lastName = lastName;
+        // no methods inside constructor?
+        }
+        
+        public void Hello() // must be public to use on instance
+        {
+            Console.WriteLine("Hi " + firstName + " " + lastName);
+        }
+    }
+}
+
+```
