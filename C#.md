@@ -649,6 +649,7 @@ namespace HelloWorld
 ### More private + public + Setter + Getter
 
 - changing properties using Setter and getting changed ones using Getter
+- accessing data depending if PUBLIC or PRIVATE
 
 ##### Class 1
 
@@ -666,7 +667,7 @@ namespace HelloWorld
             Box calc = new Box(2,4,5);
             calc.DisplayInfo();
 
-            calc.SetLength(13); // set method to change this.length DESTRUCTIVE
+            calc.SetLength(13); // setter method to change this.length DESTRUCTIVE -> works because SetLength is PUBLIC
             calc.DisplayInfo();
 
             // Length is 2,height is 4, width is 5 so the volume is 40
@@ -674,7 +675,7 @@ namespace HelloWorld
 
             // Console.WriteLine(calc.length); // Box.length is inacessible due protection level
 
-            Console.WriteLine(calc.GetLength()); // getter method returns 13 (new length we set in SETTER)
+            Console.WriteLine(calc.GetLength()); // getter method returns 13 (new length we set in SETTER) -> works because GetLength is PUBLIC
         }
     }
 }
@@ -692,8 +693,8 @@ namespace HelloWorld
     class Box
     {
         // member variables
-        protected int length;
-        private int height;
+        protected int length;  // all inacessible in Main as calc.length  -> (only able to use getter that is PUBLIC)
+        private int height; 
         private int width;
         private int volume;
 
@@ -705,18 +706,18 @@ namespace HelloWorld
         }
 
         // setter method 
-        public void SetLength(int length)
+        public void SetLength(int length)     // acccesable in Main because its public
         {
             this.length = length;
         }
 
         // getter method
-        public int GetLength()
+        public int GetLength()                // acccesable in Main because its public
         {
             return this.length;
         }
 
-        public void DisplayInfo()
+        public void DisplayInfo()             // acccesable in Main because its public
         {
             Console.WriteLine("Length is {0},height is {1}, width is {2} so the volume is {3}", length, height, width, volume = length*height*width);
         }
