@@ -364,3 +364,67 @@ namespace Tutlane
     }
 }
 ```
+
+```cs
+// user first signs in and creates account with his details get saved to variables
+// then program asks to log in with ne inputs and if loged in inputs are the same as ones he used to sign in
+// -> login() is successfull
+
+using System;
+
+namespace Tutlane
+{
+
+    class Program
+
+    {
+        static string name;
+        static string password;
+
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Please enter your name and password to create account:");
+
+            Signin();
+
+            Login();
+
+    }
+
+        static void Login()
+        {
+            string loginName = Console.ReadLine();
+            string loginPassword = Console.ReadLine();
+
+            if (name == loginName && password == loginPassword)
+            {
+                Console.WriteLine("Loged in!");
+
+            }
+            else
+            {
+                Console.WriteLine("Invalid credentials, try again.");
+                Login();
+            };
+        }
+
+        static void Signin()
+        {
+            name = Console.ReadLine();
+            password = Console.ReadLine();
+
+            if (name != "" && password != "")
+            {
+                Console.WriteLine("Account created!");
+
+            }
+            else
+            {
+                Console.WriteLine("Invalid credentials, try again.");
+                Signin();
+            };
+        }
+    }
+}
+
+```
