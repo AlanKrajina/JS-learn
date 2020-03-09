@@ -574,6 +574,11 @@ namespace HelloWorld
             alan.Hello();
             mick.Hello();
 
+
+            Console.WriteLine(alan.firstName); // inaccesible since firstName is PRIVATE in Human class
+            Console.WriteLine(alan.lastName);  // accessible since lastName is PUBLIC in Human class
+ 
+            // https://code-maze.com/csharp-basics-access-modifiers/
         }
     }
 }
@@ -596,8 +601,8 @@ namespace HelloWorld
     class Human
     {
         // member variable needed to use in constructor
-        private string firstName; // private 
-        private string lastName;
+        private string firstName; 
+        public string lastName;
 
         // constructor 1
         public Human(string firstName, string lastName) // same name as CLASS
