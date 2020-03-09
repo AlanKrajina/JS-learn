@@ -428,3 +428,65 @@ namespace Tutlane
 }
 
 ```
+
+## OOP Classes
+
+
+Class is a blueprint of an Object.
+
+-> has methods
+-> has properties
+-> inheritance
+
+
+##### Class 1
+
+```cs
+using System;
+
+namespace HelloWorld
+{
+
+    class Program
+
+    {
+        static void Main(string[] args)
+        {
+            Human alan = new Human();
+            alan.Hello();
+            Console.WriteLine(alan.firstName);
+
+            Human mick = new Human();
+            mick.firstName = "Mick";
+            mick.Hello();
+            Console.WriteLine(mick.firstName);
+
+        }
+    }
+}
+    
+```
+
+##### Class 2 Blueprint
+
+```cs
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace HelloWorld
+{
+    class Human
+    {
+        public string firstName = "Alan"; // must be public to use on instance
+
+        public void Hello() // must be public to use on instance
+        {
+            Console.WriteLine("Hi " + firstName);
+        }
+    }
+}
+
+```
+
+
