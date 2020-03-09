@@ -588,6 +588,15 @@ namespace HelloWorld
 // no value
 
 ```
+Objects that implement PUBLIC access modifiers are accessible from everywhere in our project. Therefore, there are no accessibility restrictions.
+
+Objects that implement PRIVATE access modifier are accessible only inside a class or a structure. As a result, we can’t access them outside the class they are created.
+
+The PROTECTED keyword implies that the object is accessible inside the class and in all classes that derive from that class.
+
+The INTERNAL keyword specifies that the object is accessible only inside its own assembly but not in other assemblies:
+
+
 
 ##### Class 2 Blueprint
 
