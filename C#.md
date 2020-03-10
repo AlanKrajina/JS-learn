@@ -960,6 +960,8 @@ foreach (int i in numbers)
 
 ##### Multidimensional Arrays
 
+Multi-dimensional arrays are also known as Rectangular Arrays, due to the fact that the size of every row will always be same.
+
 ```cs
 // two-dimensional array of four rows and two columns:
 
@@ -983,6 +985,94 @@ foreach (int i in array4)
 // Output: 1 2 3 4 5 6 7 8
 
 ```
+
+##### Jagged Arrays (nested from js)
+
+A jagged array is an array whose elements are arrays. The elements of a jagged array can be of different dimensions and sizes. A jagged array is sometimes called an "array of arrays." 
+
+
+Printing everything in 1 row:
+
+```cs
+            int[][] jaggedArray3 =
+            {
+                new int[] { 1, 3, 5, 7, 9 },
+                new int[] { 0, 2, 4, 6 },
+                new int[] { 11, 22 }
+            };
+
+            foreach (int[] array in jaggedArray3)
+            {
+                foreach (int i in array)
+                {
+                    Console.WriteLine(i);
+                }
+            }
+/*	    
+1
+3
+5
+7
+9
+2
+4
+6
+8
+*/
+
+```
+Printing everything in 2 rows:
+
+```cs
+// Declare the array of two elements.
+        int[][] arr = new int[2][];
+
+        // Initialize the elements.
+        arr[0] = new int[5] { 1, 3, 5, 7, 9 };
+        arr[1] = new int[4] { 2, 4, 6, 8 };
+
+            // Display the array elements.
+            for (int i = 0; i < arr.Length; i++)
+            {
+                Console.Write("Element({0}): ", i);
+
+                for (int j = 0; j < arr[i].Length; j++)
+                {
+                    Console.Write("{0}", arr[i][j]);
+                }
+                Console.WriteLine();
+            }
+
+
+/* 
+Element(0): 13579
+Element(1): 2468
+*/
+
+
+            foreach (int[] array in arr)
+            {
+                foreach (int i in array)
+                {
+                    Console.WriteLine(i);
+                }
+            }
+	    
+/*	    
+1
+3
+5
+7
+9
+2
+4
+6
+8
+*/	    
+
+```
+
+
 
 Array is an object:
 
