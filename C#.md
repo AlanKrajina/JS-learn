@@ -900,3 +900,95 @@ namespace MembersC
     }
 }
 ```
+
+## Arrays
+
+https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/arrays/
+
+
+```cs
+class TestArraysClass
+{
+    static void Main()
+    {
+        // Declare a single-dimensional array. 
+        int[] array1 = new int[5];
+
+        // Declare and set array element values.
+        int[] array2 = new int[] { 1, 3, 5, 7, 9 };
+
+        // Alternative syntax.
+        int[] array3 = { 1, 2, 3, 4, 5, 6 };
+
+        // Declare a two dimensional array.
+        int[,] multiDimensionalArray1 = new int[2, 3];
+
+        // Declare and set array element values.
+        int[,] multiDimensionalArray2 = { { 1, 2, 3 }, { 4, 5, 6 } };
+
+        // Declare a jagged array.
+        int[][] jaggedArray = new int[6][];
+
+        // Set the values of the first array in the jagged array structure.
+        jaggedArray[0] = new int[4] { 1, 2, 3, 4 };
+    }
+}
+```
+
+##### Single-Dimensional Arrays
+
+```cs
+int[] array = new int[5];         
+
+string[] stringArray = new string[6];
+int[] array1 = new int[] { 1, 3, 5, 7, 9 };
+
+
+---> OR:
+
+string[] weekDays2 = { "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" };
+
+int[] numbers = { 4, 5, 6, 1, 2, 3, -2, -1, 0 };
+
+
+foreach (int i in numbers)
+{
+                Console.WriteLine(i);
+}
+// Output: 4 5 6 1 2 3 -2 -1 0
+```
+
+##### Multidimensional Arrays
+
+```cs
+// two-dimensional array of four rows and two columns:
+
+int[,] array = new int[4, 2];
+int[,] array2D = new int[,] { { 1, 2 }, { 3, 4 }, { 5, 6 }, { 7, 8 } };
+
+// Console.WriteLine(array2D[0, 1]);
+// 2
+
+---> OR:
+
+int[,] array4 = { { 1, 2 }, { 3, 4 }, { 5, 6 }, { 7, 8 } };
+
+// Console.WriteLine(array2D[1, 1]);
+// 4
+
+foreach (int i in array4)
+{
+                Console.WriteLine(i);
+}
+// Output: 1 2 3 4 5 6 7 8
+
+```
+
+Array is an object:
+
+```cs
+int[] numbers = { 1, 2, 3, 4, 5 };
+int lengthOfNumbers = numbers.Length;
+
+// 5
+``
