@@ -1491,11 +1491,11 @@ https://www.geeksforgeeks.org/c-sharp-list-class/
 	
 ```cs
         // Creating an List<T> of Integers 
-        List<int> firstlist = new List<int>(); 
+        List<int> firstlist = new List<int>();    // ovo onda -> List<object> firstlist = new List<object>();
   
         // Adding elements to List 
         firstlist.Add(17); 
-        firstlist.Add(19); 
+        firstlist.Add(19);                     // ovo moze biti -> firstlist.Add("hello");
         firstlist.Add(21); 
         firstlist.Add(9); 
         firstlist.Add(75); 
@@ -1507,7 +1507,7 @@ https://www.geeksforgeeks.org/c-sharp-list-class/
         int p = 0; 
   
         // Displaying the elements of List 
-        foreach(int k in firstlist) 
+        foreach(int k in firstlist)                             // ovdje -> object
         { 
             Console.Write("At Position {0}: ", p); 
             Console.WriteLine(k); 
@@ -1526,7 +1526,7 @@ https://www.geeksforgeeks.org/c-sharp-list-class/
         int p1 = 0; 
   
         // Displaying the elements of List 
-        foreach(int n in firstlist) 
+        foreach(int n in firstlist)                             // ovdje -> object
         { 
             Console.Write("At Position {0}: ", p1); 
             Console.WriteLine(n); 
@@ -1545,7 +1545,7 @@ https://www.geeksforgeeks.org/c-sharp-list-class/
 Elements Present in List:
 
 At Position 0: 17
-At Position 1: 19
+At Position 1: 19                           // hello
 At Position 2: 21
 At Position 3: 9
 At Position 4: 75
@@ -1555,7 +1555,7 @@ At Position 6: 73
 Removing the element at index 3
 
 At Position 0: 17
-At Position 1: 19
+At Position 1: 19                          // hello
 At Position 2: 21
 At Position 3: 75
 At Position 4: 19
