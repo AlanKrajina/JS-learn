@@ -1384,7 +1384,7 @@ a[4][1] = 8
 // 4
 ```
 
-## ArrayList 
+## ArrayList - 	not used anymore
 
 - It can contain elements of any data types. 
 - It is similar to an array, except that it grows automatically as you add items in it. 
@@ -1488,6 +1488,23 @@ Characteristics:
 - For very large List<T> objects, you can increase the maximum capacity to 2 billion elements on a 64-bit system by setting the enabled attribute of the configuration element to true in the run-time environment.
 	
 https://www.geeksforgeeks.org/c-sharp-list-class/
+
+https://www.bitdegree.org/learn/c-sharp-list
+	
+
+Jedan nacin kreiranja Liste:
+```cs
+        List<string> names = new List<string>()            // sa default elementima prvo
+        {"Marge", "Homer"};
+        names.Add("Lisa");
+        names.Add("Bart");
+        names.Remove("Homer");
+        foreach (var name in names)
+        {
+            Console.WriteLine(name);
+        }
+```
+	
 	
 ```cs
         // Creating an List<T> of Integers 
@@ -1647,6 +1664,13 @@ Arrays are limited to one type (int, string..)
 	19
 	73
 	*/
+	
+	
+	int[] numbers = { 4, 5, 6, 1, 2, 3, -2, -1, 0 };
+
+        numbers.ForEach(el => Console.WriteLine(el));            // ERROR -> cannot be used on array, only LIST
+	
+	
     }
     
 ```
