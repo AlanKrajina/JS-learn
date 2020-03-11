@@ -1292,24 +1292,42 @@ Printing everything in 2 rows:
 2468
 */
 
-            foreach (int[] array in arr)
+EXAMPLE 2:
+
+            int[][] a = new int[][] { 
+                new int[] { 0, 0 }, 
+                new int[] { 1, 2 }, 
+                new int[] { 2, 4 }, 
+                new int[] { 3, 6 }, 
+                new int[] { 4, 8 } };
+            int i, j;
+
+            for (i = 0; i < 5; i++)
             {
-                foreach (int i in array)
+                for (j = 0; j < 2; j++)
                 {
-                    Console.WriteLine(i);          // brojke idu prema dolje jer C.WriteLine stvara novi red za svaki broj
+                    Console.WriteLine("a[{0}][{1}] = {2}", i, j, a[i][j]);
                 }
             }
+
+            // accessing element from a jagged array
+            Console.WriteLine(a[2][1]);
+
+
+        }
 	    
 /*	    
-1
-3
-5
-7
-9
-2
+a[0][0] = 0            a[outer index][inner index] = number
+a[0][1] = 0
+a[1][0] = 1
+a[1][1] = 2
+a[2][0] = 2
+a[2][1] = 4
+a[3][0] = 3
+a[3][1] = 6
+a[4][0] = 4
+a[4][1] = 8
 4
-6
-8
 */	    
 
 ## logging out first nested array:
@@ -1341,13 +1359,27 @@ Printing everything in 2 rows:
 // 13579
 ```
 
-
-
-Array is an object:
+##### Array as property (argument)
 
 ```cs
-int[] numbers = { 1, 2, 3, 4, 5 };
-int lengthOfNumbers = numbers.Length;
+        static void Main(string[] args)
+        {
+            int[] gradesArray = { 1, 2, 3, 4, 10 };
+            GetAverage(gradesArray);
+        }
 
-// 5
-``
+        static void GetAverage(int[] gradesArray)
+        {
+            int total = gradesArray.Length;
+            int numbers = 0;
+
+            foreach (int i in gradesArray)
+            {
+                numbers += i;
+            }
+
+            Console.WriteLine(numbers/total);
+        }
+
+// 4
+```
