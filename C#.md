@@ -1562,8 +1562,55 @@ At Position 4: 19
 At Position 5: 73
 ```
 
-#### Difference between List and ArrayList
+#### Difference between List and ArrayList and Arrays
 
 List<T> is a generic class. It supports storing values of a specific type without casting to or from object (which would have incurred boxing/unboxing overhead when T is a value type in the ArrayList case). ArrayList simply stores object references. As a generic collection, List<T> implements the generic IEnumerable<T> interface and can be used easily in LINQ (without requiring any Cast or OfType call).
 
 ArrayList belongs to the days that C# didn't have generics. It's deprecated in favor of List<T>. You shouldn't use ArrayList in new code that targets .NET >= 2.0 unless you have to interface with an old API that uses it.
+
+Arrays are limited to one type (int, string..)
+
+```cs
+        // immutable Array - limited to one type
+
+        int[] scores = { 1, 2, 3, 4, 5 };
+
+        // List 
+        List<int> list = new List<int>();
+
+        // adding elements  
+        list.Add(2);                               // add method
+        list.Add(1);
+        list.Add(3);
+        list.Add(5);
+        list.Add(4);
+
+        // Printing elements of List 
+        foreach (object i in list)
+        {
+        Console.WriteLine(i);
+        }
+
+        list.Sort();                              // sort method
+
+        // Printing SORTED elements of List 
+        foreach (object i in list)
+        {
+            Console.WriteLine(i);
+        }
+    }
+}
+
+/*
+2
+1
+3
+5
+4
+1
+2
+3
+4
+5
+*/
+```
