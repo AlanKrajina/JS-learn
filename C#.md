@@ -936,7 +936,7 @@ class TestArraysClass
 }
 ```
 
-##### Single-Dimensional Arrays
+#### Single-Dimensional Arrays
 
 ```cs
 int[] array = new int[5];         
@@ -960,7 +960,7 @@ int[] numbers = { 4, 5, 6, 1, 2, 3, -2, -1, 0 };
 // Output: 4 5 6 1 2 3 -2 -1 0
 ```
 
-##### Multidimensional Arrays
+#### Multidimensional Arrays
 
 Multi-dimensional arrays are also known as Rectangular Arrays, due to the fact that the size of every row will always be same.
 
@@ -1217,7 +1217,7 @@ namespace CSharpPractice
 ```
 
 
-##### Jagged Arrays (nested from js)
+#### Jagged Arrays (nested from js)
 
 A jagged array is an array whose elements are arrays. The elements of a jagged array can be of different dimensions and sizes. A jagged array is sometimes called an "array of arrays." 
 
@@ -1359,7 +1359,7 @@ a[4][1] = 8
 // 13579
 ```
 
-##### Array as property (argument)
+#### Array as property (argument)
 
 ```cs
         static void Main(string[] args)
@@ -1383,3 +1383,187 @@ a[4][1] = 8
 
 // 4
 ```
+
+## ArrayList 
+
+- It can contain elements of any data types. 
+- It is similar to an array, except that it grows automatically as you add items in it. 
+
+Properties of ArrayList Class:
+
+- Elements can be added or removed from the Array List collection at any point in time.
+- The ArrayList is not guaranteed to be sorted.
+- The capacity of an ArrayList is the number of elements the ArrayList can hold.
+- Elements in this collection can be accessed using an integer index. Indexes in this collection are zero-based.
+- It also allows duplicate elements.
+- Using multidimensional arrays as elements in an ArrayList collection is not supported.
+
+https://www.geeksforgeeks.org/c-sharp-arraylist-class/
+
+```cs
+using System;
+using System.Collections;            // important for ArrayList
+using System.Collections.Generic;
+
+class GFG
+{
+
+    // Driver code  
+    public static void Main()
+    {
+
+        // Creating an ArrayList 
+        ArrayList myList = new ArrayList(10);
+
+        // Adding elements to ArrayList 
+        myList.Add(2);                     // array method
+        myList.Add("hello");
+        myList.Add(6);
+        myList.Add(8);
+        myList.Add(10);
+        myList.Add(12);
+        myList.Add(14);
+        myList.Add(16);
+        myList.Add(18);
+        myList.Add(20);
+
+        // Displaying the elements in ArrayList 
+        Console.WriteLine("The initial ArrayList: ");
+
+        foreach (object i in myList)                           // object umjesto int tako da moze i "hello" logirat
+        {
+            Console.WriteLine(i);
+        }
+
+        // removing 4 elements starting from index 0 
+        myList.RemoveRange(0, 4);                                // array method (slice)
+
+        // Displaying the modified ArrayList 
+        Console.WriteLine("The ArrayList after Removing elements: ");
+
+        // Displaying the elements in ArrayList 
+        foreach (int i in myList)
+        {
+            Console.WriteLine(i);
+        }
+    }
+}
+
+/*
+The initial ArrayList: 
+2
+"hello"
+6
+8
+10
+12
+14
+16
+18
+20
+The ArrayList after Removing elements: 
+10
+12
+14
+16
+18
+20
+*/
+```
+
+## Lists
+
+- Represents the list of objects which can be accessed by index. 
+- It comes under the System.Collection.Generic namespace. 
+- List class can be used to create a collection of different types like integers, strings etc. List<T> class also provides the methods to search, sort, and manipulate lists
+
+Characteristics:
+
+- It is different from the arrays. A List<T> can be resized dynamically but arrays cannot.
+- List<T> class can accept null as a valid value for reference types and it also allows duplicate elements.
+- If the Count becomes equals to Capacity, then the capacity of the List increased automatically by reallocating the internal array. - - The existing elements will be copied to the new array before the addition of the new element.
+- List<T> class is the generic equivalent of ArrayList class by implementing the IList<T> generic interface.
+- This class can use both equality and ordering comparer.
+- List<T> class is not sorted by default and elements are accessed by zero-based index.
+- For very large List<T> objects, you can increase the maximum capacity to 2 billion elements on a 64-bit system by setting the enabled attribute of the configuration element to true in the run-time environment.
+	
+https://www.geeksforgeeks.org/c-sharp-list-class/
+	
+```cs
+        // Creating an List<T> of Integers 
+        List<int> firstlist = new List<int>(); 
+  
+        // Adding elements to List 
+        firstlist.Add(17); 
+        firstlist.Add(19); 
+        firstlist.Add(21); 
+        firstlist.Add(9); 
+        firstlist.Add(75); 
+        firstlist.Add(19); 
+        firstlist.Add(73); 
+  
+        Console.WriteLine("Elements Present in List:\n"); 
+  
+        int p = 0; 
+  
+        // Displaying the elements of List 
+        foreach(int k in firstlist) 
+        { 
+            Console.Write("At Position {0}: ", p); 
+            Console.WriteLine(k); 
+            p++; 
+        } 
+  
+        Console.WriteLine(" "); 
+  
+        // removing the element at index 3 
+        Console.WriteLine("Removing the element at index 3\n"); 
+  
+        // 9 will remove from the List 
+        // and 75 will come at index 3 
+        firstlist.RemoveAt(3); 
+  
+        int p1 = 0; 
+  
+        // Displaying the elements of List 
+        foreach(int n in firstlist) 
+        { 
+            Console.Write("At Position {0}: ", p1); 
+            Console.WriteLine(n); 
+            p1++; 
+        } 
+	
+		// accessing element	
+	        Console.WriteLine(firstlist[0]);
+		// 17
+		
+		// clearing whole list	
+	        firstlist.Clear();
+
+
+```cs
+Elements Present in List:
+
+At Position 0: 17
+At Position 1: 19
+At Position 2: 21
+At Position 3: 9
+At Position 4: 75
+At Position 5: 19
+At Position 6: 73
+ 
+Removing the element at index 3
+
+At Position 0: 17
+At Position 1: 19
+At Position 2: 21
+At Position 3: 75
+At Position 4: 19
+At Position 5: 73
+```
+
+#### Difference between List and ArrayList
+
+List<T> is a generic class. It supports storing values of a specific type without casting to or from object (which would have incurred boxing/unboxing overhead when T is a value type in the ArrayList case). ArrayList simply stores object references. As a generic collection, List<T> implements the generic IEnumerable<T> interface and can be used easily in LINQ (without requiring any Cast or OfType call).
+
+ArrayList belongs to the days that C# didn't have generics. It's deprecated in favor of List<T>. You shouldn't use ArrayList in new code that targets .NET >= 2.0 unless you have to interface with an old API that uses it.
