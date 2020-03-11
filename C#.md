@@ -1614,3 +1614,39 @@ Arrays are limited to one type (int, string..)
 5
 */
 ```
+
+### Lambda expessions
+
+```cs
+        // Creating an List<T> of Integers 
+        List<int> firstlist = new List<int>();
+
+        // Adding elements to List 
+        firstlist.Add(17);
+        firstlist.Add(21);
+        firstlist.Add(9);
+        firstlist.Add(75);
+        firstlist.Add(19);
+        firstlist.Add(73);
+
+	// .FindIndex
+        int index = firstlist.FindIndex(el => el == 9);    // can only FindIndex if integer List
+        Console.WriteLine(index);
+	
+	// 2
+	
+	
+	// .ForEach
+	firstlist.ForEach(el => Console.WriteLine(el));
+	
+	/*
+	17
+	21	
+	9
+	75
+	19
+	73
+	*/
+    }
+    
+```
