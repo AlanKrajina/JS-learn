@@ -1227,28 +1227,35 @@ Printing everything in 1 row:
 ```cs
             int[][] jaggedArray3 =
             {
-                new int[] { 1, 3, 5, 7, 9 },
+                new int[] { 1, 3, 5, 7, 9 },             // jedan nacin
                 new int[] { 0, 2, 4, 6 },
                 new int[] { 11, 22 }
             };
 
             foreach (int[] array in jaggedArray3)
             {
+                Console.WriteLine("Rows");
+
                 foreach (int i in array)
                 {
-                    Console.WriteLine(i);
+                    Console.WriteLine(i);          // brojke idu prema dolje jer C.WriteLine stvara novi red za svaki broj
                 }
             }
 /*	    
+Rows
 1
 3
 5
 7
 9
+Rows
+0
 2
 4
 6
-8
+Rows
+11
+22
 */
 
 ```
@@ -1258,34 +1265,38 @@ Printing everything in 2 rows:
 // Declare the array of two elements.
         int[][] arr = new int[2][];
 
-        // Initialize the elements.
-        arr[0] = new int[5] { 1, 3, 5, 7, 9 };
-        arr[1] = new int[4] { 2, 4, 6, 8 };
+// Initialize the elements.
+        arr[0] = new int[5] { 1, 3, 5, 7, 9 };        // FIRST NESTED array
+        arr[1] = new int[4] { 2, 4, 6, 8 };           // SECOND NESTED array
 
-            // Display the array elements.
-            for (int i = 0; i < arr.Length; i++)
+
+// Display certain element
+        Console.Write("{0}", arr[0][1]);
+// 3
+
+
+// Display the array elements.                           
+            for (int i = 0; i < arr.Length; i++)          // iteration through outer array (empty)
             {
-                Console.Write("Element({0}): ", i);
 
-                for (int j = 0; j < arr[i].Length; j++)
+                for (int j = 0; j < arr[i].Length; j++)   // iteration through inner 2 arrays (done twice)
                 {
-                    Console.Write("{0}", arr[i][j]);
+                    Console.Write(arr[i][j]);   
                 }
-                Console.WriteLine();
+                Console.WriteLine();                      // zbog ovoga je u dva reda a ne (135792468)
             }
 
 
 /* 
-Element(0): 13579
-Element(1): 2468
+13579
+2468
 */
-
 
             foreach (int[] array in arr)
             {
                 foreach (int i in array)
                 {
-                    Console.WriteLine(i);
+                    Console.WriteLine(i);          // brojke idu prema dolje jer C.WriteLine stvara novi red za svaki broj
                 }
             }
 	    
@@ -1301,6 +1312,33 @@ Element(1): 2468
 8
 */	    
 
+## logging out first nested array:
+
+            int counter = 0;
+
+            for (int i = 0; i < arr.Length; i++)                  // iteration through OUTER nested array 
+            {
+
+                if (counter == 0)                                 // if TRUE continues to iterate
+                {
+                    for (int j = 0; j < arr[i].Length; j++)       // iteration through FIRST nested array (arr[0])
+                {
+                    Console.Write(arr[i][j]);
+                }
+                }                        
+                counter++;                                      // then it updates counter after ONE ITERATION
+
+                if (counter == 0)                               // not TRUE -> STOPS all iteration
+                {
+                    Console.Write("Second row: ");
+                    for (int j = 0; j < arr[i].Length; j++)     // iteration through SECOND nested array (arr[1])
+                    {
+                        Console.Write(arr[i][j]);
+                    }
+                }
+            }
+	    
+// 13579
 ```
 
 
