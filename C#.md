@@ -1146,6 +1146,17 @@ class Program
 
 # OOP Polymorphic
 
+- Polymorphism means "many forms", and it occurs when we have many classes that are related to each other by inheritance.
+
+
+- Inheritance lets us inherit fields and methods from another class. 
+- Polymorphism uses those methods to perform different tasks. This allows us to perform a single action in different ways.
+
+- C# provides an option to "override" the base class method, by adding the virtual keyword to the method inside the base class, and by using the override keyword for each derived class methods
+
+
+https://www.w3schools.com/cs/cs_polymorphism.asp
+
 ```cs
 
 ```
