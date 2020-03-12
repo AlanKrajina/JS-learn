@@ -14,9 +14,12 @@
 
 
 
-##### .NET Core vs .NET Framework
+#### .NET Core vs .NET Framework
 
 https://stackify.com/net-core-vs-net-framework/
+
+o	C# (ASP.NET, dotnet core 2.0+) 
+https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-3.1
 
 - Developers use the .NET framework to create Windows desktop applications and server based applications. This includes ASP.NET web applications. 
 - .NET Core is used to create server applications that run on Windows, Linux and Mac. 
