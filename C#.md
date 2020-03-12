@@ -2,6 +2,8 @@
 * [Methods](#Methods)
 * [OOP](#OOP)
 * [OOP Inheritance](#OOP-Inheritance)
+* [OOP Polymorphic](#OOP-Polymorphic)
+
 * [Arrays](#Arrays)
 
 
@@ -1140,6 +1142,12 @@ class Program
     myPig.animalSound();
   }
 }
+```
+
+# OOP Polymorphic
+
+```cs
+
 ```
 
 # Arrays
