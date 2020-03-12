@@ -12,10 +12,14 @@
 * [Lists](#Lists)
 
 
+
+
 ##### .NET Core vs .NET Framework
 
 https://stackify.com/net-core-vs-net-framework/
 
+- Developers use the .NET framework to create Windows desktop applications and server based applications. This includes ASP.NET web applications. 
+- .NET Core is used to create server applications that run on Windows, Linux and Mac. 
 
 https://www.tutlane.com/tutorial/csharp/csharp-tutorial
 
