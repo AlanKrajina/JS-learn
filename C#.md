@@ -3,9 +3,9 @@
 * [OOP](#OOP)
 * [OOP Inheritance](#OOP-Inheritance)
 * [OOP Polymorphic](#OOP-Polymorphic)
-
 * [Arrays](#Arrays)
 
+https://www.tutlane.com/tutorial/csharp/csharp-tutorial
 
 
 C# (C-Sharp) is a programming language developed by Microsoft that runs on the .NET Framework.
@@ -14,12 +14,10 @@ C# is used to develop web apps, desktop apps, mobile apps, games and much more.
 
 .NET Framework is a software framework
 
-
 .NET consists of:
 
 1. CLR (Common Language Runtime)
 2. Class Library (for building applications)
-
 
 
 ________________CLR_________________
@@ -1263,6 +1261,15 @@ namespace Tutlane
 // 
 ```
 
+#### Sealed
+
+In c#, sealed is a keyword that is used to stop inheriting the particular class from other classes and we can also prevent overriding the particular properties or methods based on our requirements.
+
+- sealed Class
+- sealed Methods
+- Sealed Properties
+
+https://www.tutlane.com/tutorial/csharp/csharp-sealed-keyword
 
 # Arrays
 
