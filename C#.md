@@ -429,7 +429,7 @@ namespace Tutlane
 
 ```
 
-## OOP Classes
+# OOP Classes
 
 
 Class is a blueprint of an Object.
@@ -900,6 +900,155 @@ namespace MembersC
     }
 }
 ```
+
+# OOP II
+
+## Class Inheritance + overriding methods
+
+##### Main Class
+
+```cs
+using System;
+using System.Collections;
+using System.Collections.Generic;
+
+namespace HelloWorld
+{
+    class GFG
+{
+    public static void Main()
+    {
+        // default constructor
+        Post post1 = new Post();
+
+        // instance with 3 paramaters
+        Post post2 = new Post("hello there", true, "John");
+
+            Console.WriteLine(post1);
+            Console.WriteLine(post2);
+
+        // calling method with arguments
+            post2.Update("what is this ", true);
+            Console.WriteLine(post2);
+
+        // created inherited instance of Post class
+        InheritFromPostClass imagePost1 = new InheritFromPostClass("Nike", true, "https://...", "Mick");
+            Console.WriteLine(imagePost1.ToString());
+        }
+    }
+}
+
+/*
+ID: 0 My first post by alan
+ID: 1 hello there by John
+ID: 1 what is this  by John
+ID: 2 Nike by Mick via link https://...
+*/
+```
+
+##### Class Constructor II (parent)
+
+```cs
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace HelloWorld
+{
+    class Post
+    {
+        private static int currentPostId;
+
+        // properties
+        // protected -> can only be used by this class and inherits
+        protected int ID { get; set; }
+        protected string Title { get; set; }
+        protected string SendByUsername { get; set; }
+        protected bool IsPublic { get; set; }
+
+        // create CONSTRUCTOR
+        public Post()
+        {
+            ID = 0;
+            Title = "My first post";
+            IsPublic = true;
+            SendByUsername = "alan";
+        }
+
+        // instance CONSTRUCTOR with 3 parameters
+        public Post(string title, bool isPublic, string sendByUsername)
+        {
+            this.ID = GetNextID();
+            this.Title = title;
+            this.IsPublic = isPublic;
+            this.SendByUsername = sendByUsername;
+        }
+
+        // method to create next ID
+
+        protected int GetNextID()
+        {
+            return ++currentPostId;
+        }
+
+        // method to update title and isPublic values on calling
+        // class properties
+        public void Update(string title, bool isPublic)
+        {
+            this.Title = title;
+            this.IsPublic = isPublic;
+        }
+
+        // class that comes from System
+        public override string ToString()
+        {
+            return String.Format("ID: " + this.ID + " " + this.Title + " by " + this.SendByUsername);
+        }
+    }
+}
+```
+
+##### Class that inherits
+
+```cs
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace HelloWorld
+{
+    // inheritance:
+    class InheritFromPostClass:Post
+    {
+        public string ImageURL { get; set; }
+
+        // constructor I
+        public InheritFromPostClass() { }
+        // constructor II
+        public InheritFromPostClass(string title, bool isPublic, string imageURL, string sendByUsername) 
+        {
+            // inherited method from Post
+            this.ID = GetNextID();
+
+            this.Title = title;
+            this.IsPublic = isPublic;
+            this.SendByUsername = sendByUsername;
+
+            this.ImageURL = imageURL;
+        }
+
+        // overriding Post method to include link
+        public override string ToString()
+        {
+            return String.Format("ID: " + this.ID + " " + this.Title + " by " + this.SendByUsername + " via link " + this.ImageURL);
+        }
+    }
+}
+
+```
+
+
+
 
 ## Arrays
 
