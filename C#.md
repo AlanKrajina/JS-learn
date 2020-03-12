@@ -1,3 +1,11 @@
+* [Datatypes](#Datatypes)
+* [Methods](#Methods)
+* [OOP](#OOP)
+* [OOP2](#OOP2)
+* [Arrays](#Arrays)
+
+
+
 C# (C-Sharp) is a programming language developed by Microsoft that runs on the .NET Framework.
 
 C# is used to develop web apps, desktop apps, mobile apps, games and much more.
@@ -18,25 +26,6 @@ ________________CLR_________________
 - this work is called JIT (Just In Time compilation)
 
 
-
-.NET architecture:
-
-
-
----- Class ----
-
-Data    (state of app)
--> make
--> model
--> color
-
-Methods (functions)
--> Start()
--> Move()
-
-
-
-
 ---- Namespace ----
 
 - container for RELATED CLASSES
@@ -47,19 +36,6 @@ Methods (functions)
 ---- Assembly (DLL or EXE)----
 
 - container for RELATED NAMESPACES
-
-
-
-
-___________METHODS____________
-
-- have input and output
-
-
-static void Main(string[] args)            // here args (parameters) are type of STRING array
-{                                          // VOID means nothing -> method does not return a Value
-	
-}
 
 
 
@@ -429,7 +405,7 @@ namespace Tutlane
 
 ```
 
-# OOP Classes
+# OOP 
 
 
 Class is a blueprint of an Object.
@@ -901,7 +877,7 @@ namespace MembersC
 }
 ```
 
-# OOP II
+# OOP2
 
 ## Class Inheritance + overriding methods
 
@@ -1134,7 +1110,37 @@ namespace HelloWorld
 
 ```
 
+### Interface
 
+- An interface is a completely "abstract class", which can only contain abstract methods and properties (with empty bodies)
+- To access the interface methods, the interface must be "implemented" (kinda like inherited) by another class. To implement an interface, use the : symbol (just like with inheritance).
+
+```cs
+// Interface
+interface IAnimal 
+{
+  void animalSound(); // interface method (does not have a body)
+}
+
+// Pig "implements" the IAnimal interface
+class Pig : IAnimal 
+{
+  public void animalSound() 
+  {
+    // The body of animalSound() is provided here
+    Console.WriteLine("The pig says: wee wee");
+  }
+}
+
+class Program 
+{
+  static void Main(string[] args) 
+  {
+    Pig myPig = new Pig();  // Create a Pig object
+    myPig.animalSound();
+  }
+}
+```
 
 # Arrays
 
