@@ -1154,12 +1154,115 @@ class Program
 
 - C# provides an option to "override" the base class method, by adding the virtual keyword to the method inside the base class, and by using the override keyword for each derived class methods
 
+##### Why And When To Use "Inheritance" and "Polymorphism"?
+
+- It is useful for code reusability: reuse fields and methods of an existing class when you create a new class.
 
 https://www.w3schools.com/cs/cs_polymorphism.asp
 
-```cs
+In c#, Run Time Polymorphism means overriding a base class method in the derived class by creating a similar function and this can be achieved by using "override" & "virtual" keywords along with inheritance principle.
 
+https://www.tutlane.com/tutorial/csharp/csharp-polymorphism
+
+
+##### animalSound() method with a VIRTUAL keyword in the base class to allow derived class to OVERRIDE that method using the OVERRIDE keyword
+
+##### Example 1
+```cs
+class Animal  // Base class (parent) 
+{
+  public virtual void animalSound()                     // default VIRTUAL method that gets shared upon inheritance
+  {
+    Console.WriteLine("The animal makes a sound");
+  }
+}
+
+class Pig : Animal  // Derived class (child) 
+{
+  public override void animalSound()                  // OVERRIDE default method and give NEW return value
+  {
+    Console.WriteLine("The pig says: wee wee");
+  }
+}
+
+class Dog : Animal  // Derived class (child) 
+{
+  public override void animalSound()                  // OVERRIDE default method and give NEW return value
+  {
+    Console.WriteLine("The dog says: bow wow");
+  }
+}
+
+class Program 
+{
+  static void Main(string[] args) 
+  {
+    Animal myAnimal = new Animal();  // Create a Animal object
+    Animal myPig = new Pig();  // Create a Pig object
+    Animal myDog = new Dog();  // Create a Dog object
+
+    myAnimal.animalSound();
+    myPig.animalSound();
+    myDog.animalSound();
+  }
+}
+
+/*
+The animal makes a sound
+The pig says: wee wee
+The dog says: bow wow
+*/
 ```
+
+##### Example 2
+
+```cs
+using System;
+
+namespace Tutlane
+{
+    // Base Class
+
+    public class BClass
+    {
+        public virtual void GetInfo()
+        {
+            Console.WriteLine("Learn C# Tutorial");
+        }
+    }
+
+    // Derived Class
+
+    public class DClass : BClass
+    {
+        public override void GetInfo()
+        {
+            Console.WriteLine("Welcome to Tutlane");
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            DClass d = new DClass();
+
+            d.GetInfo();
+
+            BClass b = new BClass();
+
+            b.GetInfo();
+
+            Console.WriteLine("\nPress Enter Key to Exit..");
+
+            Console.ReadLine();
+        }
+    }
+}
+
+// 
+```
+
 
 # Arrays
 
