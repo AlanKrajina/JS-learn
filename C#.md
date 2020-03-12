@@ -2,8 +2,15 @@
 * [Methods](#Methods)
 * [OOP](#OOP)
 * [OOP Inheritance](#OOP-Inheritance)
+* [Constructors](#Constructors)
 * [OOP Polymorphic](#OOP-Polymorphic)
 * [Arrays](#Arrays)
+* [Single Dimensional Arrays](#Single-Dimensional-Arrays)
+* [Multidimensional Arrays](#Multidimensional-Arrays)
+* [Jagged Arrays](#Jagged-Arrays)
+* [Tic Tac Toe game](#Tic-Tac-Toe-game)
+* [Lists](#Lists)
+
 
 https://www.tutlane.com/tutorial/csharp/csharp-tutorial
 
@@ -1335,6 +1342,9 @@ myCar.engine.horsepower = 180
 Engine started
 */
 ```
+### Textfile - read + write
+
+https://www.udemy.com/course/complete-csharp-masterclass/learn/lecture/9567046#overview
 
 
 # Arrays
@@ -1372,7 +1382,7 @@ class TestArraysClass
 }
 ```
 
-### Single-Dimensional Arrays
+### Single Dimensional Arrays
 
 ```cs
 int[] array = new int[5];         
@@ -1653,7 +1663,9 @@ namespace CSharpPractice
 ```
 ___________________________________________________________________________________________________________________________________
 
-### Jagged Arrays (nested from js)
+### Jagged Arrays 
+
+- (nested from js)
 
 A jagged array is an array whose elements are arrays. The elements of a jagged array can be of different dimensions and sizes. A jagged array is sometimes called an "array of arrays." 
 
