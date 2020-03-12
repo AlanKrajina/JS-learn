@@ -1261,15 +1261,81 @@ namespace Tutlane
 // 
 ```
 
-#### Sealed
+### Sealed
 
 In c#, sealed is a keyword that is used to stop inheriting the particular class from other classes and we can also prevent overriding the particular properties or methods based on our requirements.
 
 - sealed Class
-- sealed Methods
+- sealed Methods  (can only seal OVERWRITEN methods!!)
 - Sealed Properties
 
 https://www.tutlane.com/tutorial/csharp/csharp-sealed-keyword
+
+
+### HAS A Relationship
+
+```cs
+public class Engine
+{
+  public int cylinders;
+  public int horsepower;
+
+  public void Start()
+  {
+    System.Console.WriteLine("Engine started");
+  }
+
+}
+
+public class Car
+{
+  public string make;
+  public Engine engine;         // Car has an Engine  -> how we "inherit" Engine as engine in Car
+  				// now we have an option to access Engine class properties FROM CAR
+				// myCar.Start()    -> calls Engine instance method Start()
+				// myCar.engine.cylinders
+
+  public void Start()
+  {
+    engine.Start();
+  }
+
+}
+
+class MainClass
+{
+
+  public static void Main()
+  {
+    // CREATING A CAR instance and giving data
+    System.Console.WriteLine("Creating a Car object");
+    Car myCar = new Car();
+    myCar.make = "Toyota";
+
+    // CREATING A ENGINE instance INSIDE myCar.engine          -> and inheriting al engine properties	!!!
+    System.Console.WriteLine("Creating an Engine object");
+    myCar.engine = new Engine();
+    myCar.engine.cylinders = 4;
+    myCar.engine.horsepower = 180;
+
+    System.Console.WriteLine("myCar.make = " + myCar.make);
+    System.Console.WriteLine("myCar.engine.cylinders = " + myCar.engine.cylinders);    
+    System.Console.WriteLine("myCar.engine.horsepower = " + myCar.engine.horsepower);
+
+    myCar.Start();
+  }
+}
+
+/*
+Creating a Car object
+Creating an Engine object
+myCar.make = Toyota
+myCar.engine.cylinders = 4
+myCar.engine.horsepower = 180
+Engine started
+*/
+```
+
 
 # Arrays
 
