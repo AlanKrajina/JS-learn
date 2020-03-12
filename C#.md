@@ -1,7 +1,7 @@
 * [Datatypes](#Datatypes)
 * [Methods](#Methods)
 * [OOP](#OOP)
-* [OOP2](#OOP2)
+* [OOP Inheritance](#OOP-Inheritance)
 * [Arrays](#Arrays)
 
 
@@ -877,7 +877,7 @@ namespace MembersC
 }
 ```
 
-# OOP2
+# OOP Inheritance
 
 ## Class Inheritance + overriding methods
 
