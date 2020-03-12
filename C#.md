@@ -1095,8 +1095,6 @@ namespace HelloWorld
 
             Console.WriteLine("Song length: " + this.Length);
             Console.ReadLine();
-            aTimer.Stop();
-            aTimer.Dispose();
         }
 
 
@@ -1104,7 +1102,8 @@ namespace HelloWorld
         {
 
             // Create a timer with a 1 second interval.
-            aTimer = new System.Timers.Timer(1000);
+            aTimer = Timer(1000);
+	    
             // Hook up the Elapsed event for the timer. 
             aTimer.Elapsed += OnTimedEvent;
             aTimer.AutoReset = true;
@@ -1116,8 +1115,7 @@ namespace HelloWorld
             if (Counter != this.Length)
             {
             Counter += 0.1;
-            Console.WriteLine("The Elapsed song time: {0}",
-                             Counter);
+            Console.WriteLine("The Elapsed song time: {0}", Counter);
             }
             else
             {
