@@ -12,6 +12,11 @@
 * [Lists](#Lists)
 
 
+##### .NET Core vs .NET Framework
+
+https://stackify.com/net-core-vs-net-framework/
+
+
 https://www.tutlane.com/tutorial/csharp/csharp-tutorial
 
 
