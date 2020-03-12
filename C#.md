@@ -918,7 +918,7 @@ namespace HelloWorld
 {
     public static void Main()
     {
-        // default constructor
+        // default constructor with default data (hardcoded)
         Post post1 = new Post();
 
         // instance with 3 paramaters
@@ -934,6 +934,10 @@ namespace HelloWorld
         // created inherited instance of Post class
         InheritFromPostClass imagePost1 = new InheritFromPostClass("Nike", true, "https://...", "Mick");
             Console.WriteLine(imagePost1.ToString());
+	    
+	
+        VideoClass video1 = new VideoClass("https://...", 0.5);
+            video1.Play();
         }
     }
 }
@@ -943,6 +947,14 @@ ID: 0 My first post by alan
 ID: 1 hello there by John
 ID: 1 what is this  by John
 ID: 2 Nike by Mick via link https://...
+
+Song length: 0.5
+The Elapsed song time: 0.1
+The Elapsed song time: 0.2
+The Elapsed song time: 0.30000000000000004
+The Elapsed song time: 0.4
+The Elapsed song time: 0.5
+Song ended
 */
 ```
 
@@ -1047,10 +1059,86 @@ namespace HelloWorld
 
 ```
 
+#### Timer Class
+
+```cs
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Timers;
+
+namespace HelloWorld
+{
+    class VideoClass:Post
+    {
+        public string VideoURL { get; set; }
+        public double Length { get; set; }
+
+        private static System.Timers.Timer aTimer;
+
+        public static double Counter;
+
+
+        // constructor I
+        public VideoClass() { }
+        // constructor II
+        public VideoClass(string videoURL, double length)
+        {
+            this.Length = length;
+            this.VideoURL = videoURL;
+        }
+
+        // public member Method - can be called from other classes
+        public void Play()
+        {
+            SetTimer();
+
+            Console.WriteLine("Song length: " + this.Length);
+            Console.ReadLine();
+            aTimer.Stop();
+            aTimer.Dispose();
+        }
+
+
+        public void SetTimer()
+        {
+
+            // Create a timer with a 1 second interval.
+            aTimer = new System.Timers.Timer(1000);
+            // Hook up the Elapsed event for the timer. 
+            aTimer.Elapsed += OnTimedEvent;
+            aTimer.AutoReset = true;
+            aTimer.Enabled = true;
+        }
+
+        public void OnTimedEvent(Object source, ElapsedEventArgs e)
+        {
+            if (Counter != this.Length)
+            {
+            Counter += 0.1;
+            Console.WriteLine("The Elapsed song time: {0}",
+                             Counter);
+            }
+            else
+            {
+                aTimer.Stop();
+                Console.WriteLine("Song ended");
+            }
+        }
+
+
+        public override string ToString()
+        {
+            return String.Format("ID: " + this.ID + " " + this.Length + " length and" + " via link " + this.VideoURL);
+        }
+    }
+}
+
+```
 
 
 
-## Arrays
+# Arrays
 
 https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/arrays/
 
@@ -1085,7 +1173,7 @@ class TestArraysClass
 }
 ```
 
-#### Single-Dimensional Arrays
+### Single-Dimensional Arrays
 
 ```cs
 int[] array = new int[5];         
@@ -1109,7 +1197,7 @@ int[] numbers = { 4, 5, 6, 1, 2, 3, -2, -1, 0 };
 // Output: 4 5 6 1 2 3 -2 -1 0
 ```
 
-#### Multidimensional Arrays
+### Multidimensional Arrays
 
 Multi-dimensional arrays are also known as Rectangular Arrays, due to the fact that the size of every row will always be same.
 
@@ -1164,7 +1252,7 @@ int[,] array4 = { { 1, 2 }, { 3, 4 }, { 5, 6 }, { 7, 8 } };
 
 ```
 
-.Length + .Rank
+##### .Length + .Rank
 ```cs
        Console.WriteLine(array3D.Length);   // returns total number of numbers, like one normal array in JS
        Console.WriteLine(array3D.Rank);     // returns number of dimensions ( {{{ )
@@ -1173,7 +1261,7 @@ int[,] array4 = { { 1, 2 }, { 3, 4 }, { 5, 6 }, { 7, 8 } };
 // 3
 ```
 
-#### Tic Tac Toe game
+### Tic Tac Toe game
 
 ```cs
 using System;
@@ -1366,7 +1454,7 @@ namespace CSharpPractice
 ```
 
 
-#### Jagged Arrays (nested from js)
+### Jagged Arrays (nested from js)
 
 A jagged array is an array whose elements are arrays. The elements of a jagged array can be of different dimensions and sizes. A jagged array is sometimes called an "array of arrays." 
 
@@ -1408,7 +1496,7 @@ Rows
 */
 
 ```
-Printing everything in 2 rows:
+##### Printing everything in 2 rows:
 
 ```cs
 // Declare the array of two elements.
@@ -1508,7 +1596,7 @@ a[4][1] = 8
 // 13579
 ```
 
-#### Array as property (argument)
+### Array as property (argument)
 
 ```cs
         static void Main(string[] args)
@@ -1728,7 +1816,7 @@ At Position 4: 19
 At Position 5: 73
 ```
 
-#### Difference between List and ArrayList and Arrays
+### Difference between List and ArrayList and Arrays
 
 List<T> is a generic class. It supports storing values of a specific type without casting to or from object (which would have incurred boxing/unboxing overhead when T is a value type in the ArrayList case). ArrayList simply stores object references. As a generic collection, List<T> implements the generic IEnumerable<T> interface and can be used easily in LINQ (without requiring any Cast or OfType call).
 
