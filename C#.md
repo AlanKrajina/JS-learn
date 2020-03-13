@@ -11,7 +11,7 @@
 * [Tic Tac Toe game](#Tic-Tac-Toe-game)
 * [Lists](#Lists)
 ##### Advanced C#
-* [Lists](#Lists)
+* [Access Modifiers](#Access-Modifiers)
 * [Lists](#Lists)
 
 
@@ -2138,3 +2138,21 @@ Arrays are limited to one type (int, string..)
     }
     
 ```
+
+### Access Modifiers
+
+- The public keyword is an access modifier, which is used to set the access level/visibility for classes, fields, methods and properties.
+
+- we can use SETTERS and GETTERS 
+
+
+Modifier	Description
+___________________________
+public		The code is accessible for all classes
+
+private		The code is only accessible within the same class ( 2 files with 2 classes -> I class creates private, II class Main CAN'T use it)
+
+protected	The code is accessible within the same class, or in a class that is inherited from that class
+
+internal	The code is only accessible within its own assembly, but not from another assembly. 
+
