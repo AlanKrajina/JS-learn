@@ -24,7 +24,7 @@
 * [DateTime class](#DateTime-class)
 * [Nullable](#Nullable)
 * [Abstract](#Abstract)
-##### Events and Delegates
+##### Event and Delegates
 * [Delegates](#Delegates)
 * [Lambda Expressions](#Lambda-Expressions)
 * [Events and Delegates](#Events-and-Delegates)
