@@ -12,10 +12,13 @@
 * [Lists](#Lists)
 ##### Advanced C#
 * [Access Modifiers](#Access-Modifiers)
-* [Lists](#Lists)
-
-
-
+- public, private, protected, internal
+* [Properties](#Properties)
+- fields, properties, get-set
+* [Enums](#Enums)
+* [Math class](#Math-class)
+* [Regular Expressions](#Regular-Expressions)
+* [DateTime class](#DateTime-class)
 
 ___________________________________________________________________________________________________________________________________
 #### .NET Core vs .NET Framework
@@ -2143,6 +2146,8 @@ Arrays are limited to one type (int, string..)
 
 - The public keyword is an access modifier, which is used to set the access level/visibility for classes, fields, methods and properties.
 
+To achieve "Encapsulation" - which is the process of making sure that "sensitive" data is hidden from users. This is done by declaring fields as PRIVATE. 
+
 - we can use SETTERS and GETTERS 
 
 
@@ -2152,7 +2157,195 @@ PUBLIC---------The code is accessible for all classes
 
 PRIVATE---------The code is only accessible within the same class ( 2 files with 2 classes -> I class creates private, II class Main CAN'T use it)
 
+```cs
+class Car
+{
+  private string model = "Mustang";
+}
+
+class Program
+{
+  static void Main(string[] args)
+  {
+    Car myObj = new Car();
+    Console.WriteLine(myObj.model);        // cant use 
+  }
+}
+
+// 'Car.model' is inaccessible due to its protection level                  -> ERROR
+```
+
 PROTECTED---------The code is accessible within the same class, or in a class that is inherited from that class
 
 INTERNAL---------The code is only accessible within its own assembly, but not from another assembly. 
 
+### Properties
+
+The meaning of Encapsulation, is to make sure that "sensitive" data is hidden from users. To achieve this, you must:
+
+- declare fields/variables as private
+- provide public get and set methods, through properties, to access and update the value of a private field
+
+https://www.w3schools.com/cs/cs_properties.asp
+
+- uppercase Name -> property
+- lovercase name -> field
+
+##### Main:
+```cs
+namespace ConsoleApp1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Person myObj = new Person();
+            myObj.Name = "Liam";                 // SET property
+            myObj.Prezime = "Krajina";           // SET property
+	    
+            Console.WriteLine(myObj.Name);       // GET property
+            Console.WriteLine(myObj.Prezime);    // GET property
+
+            Console.WriteLine(myObj.name2);      // public
+            // Console.WriteLine(myObj.name3);   // error protected
+
+            myObj.name2 = "Alan2";               // reassigned FIELD value
+            Console.WriteLine(myObj.name2);
+        }
+    }
+}
+
+/*
+Liam
+Krajina
+alan
+Alan2
+*/
+```
+
+##### Class II:
+```cs
+namespace ConsoleApp1
+{
+    class Person
+    {
+        public string name2 = "alan";
+        private string name3 = "John";
+
+	// OVO NE KORISTIT
+        private string name;           // field lowercase koji moram imat sa long syntax PRIVATE -> zbog toga GET i SET
+        public string Name             // uppercase property - long syntax
+        {
+            get { return name; }
+            set { name = value; }
+        }
+
+	// OVO KORISTIT
+        public string Prezime          // uppercase property - short syntax (ovdje mi ne treba lowercase prezime prije ovog)
+        { get; set; }
+    }
+}
+```
+
+### Enums
+
+- An enum is a special "class" that represents a group of constants (unchangeable/read-only variables).
+
+https://www.w3schools.com/cs/cs_enums.asp
+
+```cs
+class Program
+{
+  enum Level
+  {
+    Low,          // 0
+    Medium,       // 1
+    High          // 2
+  }
+  static void Main(string[] args)
+  {
+    Level myVar = Level.Medium;       // accessing value
+    Console.WriteLine(myVar);
+    
+   int myNum = (int) Level.Medium;    // accessing index
+   Console.WriteLine(myNum);
+
+  }
+}
+
+// Medium
+// 1
+```
+
+### Math class
+
+https://www.w3schools.com/cs/cs_math.asp
+
+Math.Max(x,y)
+```cs
+Math.Max(5, 10);
+
+// 10
+```
+
+Math.Sqrt(x);
+```cs
+Math.Sqrt(64);
+
+// 8
+```
+
+Math.Round()
+```cs
+Math.Round(9.99);
+
+// 10
+```
+
+
+### Regular Expressions
+
+https://regexr.com/   -> CONSOLE
+
+https://www.dotnetperls.com/regex   -> C# examples
+
+https://www.mikesdotnetting.com/article/46/c-regular-expressions-cheat-sheet
+
+
+### DateTime class
+
+https://www.c-sharpcorner.com/article/datetime-in-c-sharp/
+
+```cs
+var date1 = new DateTime(2008, 5, 1, 8, 30, 52);
+Console.WriteLine(date1);
+
+var dat1 = new DateTime();
+Console.WriteLine(dat1);
+
+DateTime date2 = DateTime.Now;
+DateTime date3 = DateTime.UtcNow;
+DateTime date4 = DateTime.Today;
+Console.WriteLine(date2);
+Console.WriteLine(date3);
+Console.WriteLine(date4);
+
+/*
+5/1/2008 8:30:52 AM
+1/1/0001 12:00:00 AM
+3/13/2020 12:53:30 PM
+3/13/2020 12:53:30 PM
+3/13/2020 12:00:00 AM
+*/
+
+
+            DateTime myDate = new DateTime(2015, 12, 25, 10, 30, 45);
+            int year = myDate.Year;              // 2015  
+            int month = myDate.Month;            // 12  
+            int day = myDate.Day;                // 25  
+            int hour = myDate.Hour;              // 10  
+            int minute = myDate.Minute;          // 30  
+            int second = myDate.Second;          // 45  
+            int weekDay = (int)myDate.DayOfWeek; // 5 due to Friday 
+	    
+```
