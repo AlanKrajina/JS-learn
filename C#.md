@@ -1,9 +1,12 @@
 * [Datatypes](#Datatypes)
 * [Methods](#Methods)
 * [OOP](#OOP)
+-> multiple constructors, properties
 * [OOP Inheritance](#OOP-Inheritance)
+-> inheritance, Timer class, interface
 * [Constructors](#Constructors)
 * [OOP Polymorphic](#OOP-Polymorphic)
+-> virtual -override, sealed, HAS-A
 * [Arrays](#Arrays)
 * [Single Dimensional Arrays](#Single-Dimensional-Arrays)
 * [Multidimensional Arrays](#Multidimensional-Arrays)
@@ -19,6 +22,8 @@
 * [Math class](#Math-class)
 * [Regular Expressions](#Regular-Expressions)
 * [DateTime class](#DateTime-class)
+* [Nullable](#Nullable)
+* [Abstract](#Abstract)
 
 ___________________________________________________________________________________________________________________________________
 #### .NET Core vs .NET Framework
@@ -2348,4 +2353,70 @@ Console.WriteLine(date4);
             int second = myDate.Second;          // 45  
             int weekDay = (int)myDate.DayOfWeek; // 5 due to Friday 
 	    
+```
+
+### Nullable
+
+- when we want to set the type to NULL
+- question after datatype
+
+```cs
+int? data1 = null     // OK
+int  data2 = null     // error -> cannot set int to null
+var data3 = null;     // error
+```
+VAR:
+- only used when we dont know the datatype
+
+https://www.c-sharpcorner.com/article/what-does-var-mean-in-c-sharp/
+
+### Abstract
+
+Data abstraction is the process of hiding certain details and showing only essential information to the user.
+Abstraction can be achieved with either abstract classes or interfaces.
+
+The abstract keyword is used for classes and methods:
+
+Abstract class: 
+- is a restricted class that cannot be used to create objects (to access it, it must be inherited from another class).
+
+Abstract method: 
+- can only be used in an abstract class, and it DOES NOT HAVE A BODY. 
+- The body is provided by the derived class (inherited from).
+
+https://www.w3schools.com/cs/cs_abstract.asp
+
+```cs
+// Abstract class
+abstract class Animal
+{
+  public abstract void animalSound();     // Abstract method (does not have a body)
+
+  public void sleep()                     // Regular method
+  {
+    Console.WriteLine("Zzz");
+  }
+}
+
+
+// Derived class (inherit from Animal)
+class Pig : Animal
+{
+  public override void animalSound()           // The body of animalSound() is provided here - OVERRIDE
+  {
+    Console.WriteLine("The pig says: wee wee");
+  }
+}
+
+
+class Program
+{
+  static void Main(string[] args)
+  {
+    Pig myPig = new Pig(); // Create a Pig object
+    myPig.animalSound();  // Call the abstract method
+    myPig.sleep();  // Call the regular method
+  }
+}
+
 ```
