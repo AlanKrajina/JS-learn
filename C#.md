@@ -2146,13 +2146,13 @@ Arrays are limited to one type (int, string..)
 - we can use SETTERS and GETTERS 
 
 
-Modifier	Description
-___________________________
-public		The code is accessible for all classes
+Modifier---------Description
+____________________________________________________________________________________________________________________________________
+PUBLIC---------The code is accessible for all classes
 
-private		The code is only accessible within the same class ( 2 files with 2 classes -> I class creates private, II class Main CAN'T use it)
+PRIVATE---------The code is only accessible within the same class ( 2 files with 2 classes -> I class creates private, II class Main CAN'T use it)
 
-protected	The code is accessible within the same class, or in a class that is inherited from that class
+PROTECTED---------The code is accessible within the same class, or in a class that is inherited from that class
 
-internal	The code is only accessible within its own assembly, but not from another assembly. 
+INTERNAL---------The code is only accessible within its own assembly, but not from another assembly. 
 
