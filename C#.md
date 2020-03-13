@@ -12,9 +12,9 @@
 * [Lists](#Lists)
 ##### Advanced C#
 * [Access Modifiers](#Access-Modifiers)
-- public, private, protected, internal
+-> public, private, protected, internal
 * [Properties](#Properties)
-- fields, properties, get-set
+-> fields, properties, get-set
 * [Enums](#Enums)
 * [Math class](#Math-class)
 * [Regular Expressions](#Regular-Expressions)
