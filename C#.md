@@ -24,6 +24,13 @@
 * [DateTime class](#DateTime-class)
 * [Nullable](#Nullable)
 * [Abstract](#Abstract)
+##### Events and Delegates
+* [Delegates](#Delegates)
+* [Lambda Expressions](#Lambda-Expressions)
+* [Events and Delegates](#Events-and-Delegates)
+
+
+
 
 ___________________________________________________________________________________________________________________________________
 #### .NET Core vs .NET Framework
@@ -2420,3 +2427,103 @@ class Program
 }
 
 ```
+
+### Delegates
+
+- is like a pointer to a function
+- alow methods to be passed as parameters
+- can be used to define call back methods
+- can be changed
+- multiple methods can be called on single event
+- allow the use of anonymous functions
+
+```cs
+delegate returnType Name (parameter1, parameter2...);
+
+// example:
+
+public delegate void Print(int value);             // delegate
+
+static void Main(string[] args)
+{
+    int i = 10;
+    
+    Print prnt = delegate(int val) {               // anonymous method
+        val += i;
+        Console.WriteLine("Anonymous method: {0}", val); 
+    };
+
+    prnt(100);
+}
+
+// Anonymous method: 110
+
+```
+
+Example: Anonymous Method as Parameter
+```cs
+
+public delegate void Print(int value);
+
+class Program
+{
+    public static void PrintHelperMethod(Print printDel,int val)
+    { 
+        val += 10;
+        printDel(val);
+    }
+
+    static void Main(string[] args)
+    {
+        PrintHelperMethod(delegate(int val) { Console.WriteLine("Anonymous method: {0}", val); }, 100);
+    }
+}
+```
+
+Example: Anonymous Method as Event Handler
+```cs
+saveButton.Click += delegate(Object o, EventArgs e)
+{ 
+    System.Windows.Forms.MessageBox.Show("Save Successfully!"); 
+};
+```
+
+- Anonymous method can be defined using the delegate keyword.
+- Anonymous method must be assigned to a delegate.
+- Anonymous method can access outer variables or functions.
+- Anonymous method can be passed as a parameter.
+- Anonymous method can be used as event handlers.
+
+### Lambda Expressions
+
+https://www.tutorialsteacher.com/linq/linq-lambda-expression
+
+- The lambda expression is a shorter way of representing "anonymous method" using some special syntax.
+
+```cs
+blic class Program
+{
+	delegate bool IsTeenAger(Student stud);
+	
+	public static void Main()
+	{
+		IsTeenAger isTeenAger = delegate(Student s) { return s.Age > 12 && s.Age < 20; };
+		
+		Student stud = new Student() { Age = 25 };
+		
+		Console.WriteLine(isTeenAger(stud));
+	}
+}
+
+public class Student{
+
+	public int Id { get; set; }
+	public string Name { get; set; }
+	public int Age { get; set; }
+```
+
+### Events and Delegates
+
+https://medium.com/@text2dipak/c-interview-prep-1-delegates-vs-events-1b6ef656d046
+
+
