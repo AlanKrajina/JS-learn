@@ -28,6 +28,8 @@
 * [Delegates](#Delegates)
 * [Lambda Expressions](#Lambda-Expressions)
 * [Events and Delegates](#Events-and-Delegates)
+##### Database with C#
+* [SQL](#SQL)
 
 
 
@@ -2527,3 +2529,71 @@ public class Student{
 https://medium.com/@text2dipak/c-interview-prep-1-delegates-vs-events-1b6ef656d046
 
 
+## SQL
+
+_________________create DB___________________________
+SQL Management Studio
+-> MSSQLSERVER -> . (dot) to connect
+
+https://stackoverflow.com/questions/16088151/how-to-find-server-name-of-sql-server-management-studio
+
+_________________connect DB___________________________
+
+1. Visual Studio -> view -> server explorer
+
+2. Data Connections -> new server -> server + name
+
+
+_________________create table________________________
+
+1. right click Tables -> new table
+
+2. add Name, change Data Type (nvarchar(50)
+3. click Id -> Identity Specification dole desno -> change (Is Identity) to TRUE so it increments +1
+4. change table name: 
+
+```cs
+CREATE TABLE [dbo].Zoo
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [Location] NVARCHAR(50) NOT NULL
+)
+```
+--> UPDATE gore lijevo
+
+5. Zoo created under Tables (refresh)
+
+_________________update table________________________
+
+1. right click on Zoo -> show table data
+2. update location
+
+3. CREATE PROJECT WPF - file -> new -> project
+4. sa desne strane Solution Explorer se napuni sa novim Projektom
+
+5. onda lijevo Data Source dodat sve - select Tables -> Zoo na Choose Database Objects
+
+6. kliknem tab MainWindow.xaml.cs i tamo:
+
+```cs
+        public MainWindow()
+        {
+            InitializeComponent();
+
+            string connectionString = ConfigurationManager.ConnectionStrings[""]  // to dodam
+        }
+```
+
+7. onda right click na References desno u Solution -> System.Configuration TICK
+
+```cs
+using System.Configuration;   - dodano 
+
+        public MainWindow()
+        {
+            InitializeComponent();
+
+            string connectionString = 		ConfigurationManager.ConnectionStrings["WpfApp1.Properties.Settings.User"].ConnectionString;
+	    // User? je kao string koji sam set up kad sam kreirao data source
+        }
+```
