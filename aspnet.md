@@ -161,3 +161,66 @@ SELECT TOP (1000) [Id]
 ```
 
 ### 6. Book Index get Handler
+
+- Pages -> create BookList folder -> inside create Razor Page - Index
+
+inside BookList -> Index.cshtml.cs:
+
+```cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using BookListRazor.Model;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
+
+namespace BookListRazor
+{
+    public class IndexModel : PageModel
+    {
+        private readonly ApplicationDbContext _db;
+
+        public IndexModel(ApplicationDbContext db)
+        {
+            _db = db; // extracting application from db context to this page using Dependancy Injection
+        }
+
+        public IEnumerable<Book> Books{ get; set; }
+
+        public async Task OnGet()
+        {
+            Books = await _db.Book.ToListAsync(); // going to database and retrieving all books using Entity
+        }                                         // storing that in Books IEnumerable
+    }                                             // -> now inside Pages -> Index.cshtml we have all books to display
+}
+```
+
+### 7. Design Book Index Page
+
+##### Inside _Layout kreiram route:
+
+```html
+   <a class="nav-link text-dark" asp-area="" asp-page="/BookList/Index">Book</a>
+```
+- sada kad pokrenem applikaciju i kliknem "Book" TAB, otvori novi URL:
+
+https://localhost:44300/BookList
+
+
+I onda pokaze:
+
+- BookList -> Index.cshtml:
+
+```html
+@page
+@model BookListRazor.IndexModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+    <h1>Index Book</h1>
+```
+
+
