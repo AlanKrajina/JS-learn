@@ -261,3 +261,5 @@ SQL Server Management Studio
 
 - right click on dbo.Book -> edit
 - refresh page ---> BOOKS SHOW NOW
+
+https://www.udemy.com/course/introduction-to-aspnet-core-x/learn/lecture/18078037#overview
