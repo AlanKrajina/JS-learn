@@ -77,3 +77,84 @@ https://www.udemy.com/course/introduction-to-aspnet-core-x/learn/lecture/1807802
 
 ### 5. Add Book Table to Database
 
+- add -> Model -> class -> ApplicationDbContext.cs
+
+```cs
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace BookListRazor.Model
+{
+    public class ApplicationDbContext : DbContext
+    {
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+        {
+
+        }
+
+        public DbSet<Book> Book { get; set; }
+    }
+}
+```
+
+- Startup.cs:
+
+```cs
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddDbContext<ApplicationDbContext>(option => option.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+        //    services.AddRazorPages().AddRazorRuntimeCompilation();
+        }
+        
+// ctrl + .
+// had to do to include ENTITY framework inside Configuration pipeline
+// next we need to push to database
+```
+
+- Pushing to Database:
+
+- Tools -> NuGet -> Package Manager Console
+
+
+Adding script:
+```cs
+// inside console:
+
+PM> add-migration AddBookToDb
+
+
+            migrationBuilder.CreateTable(
+                name: "Book",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(nullable: false),
+                    Author = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Book", x => x.Id);
+                });
+```
+
+Creating database and push migrations:
+```cs
+// inside console:
+
+PM> update-database
+
+```
+
+In SQL Management Studio
+
+- new Database has been created
+
+```cs
+SELECT TOP (1000) [Id]
+      ,[Name]
+      ,[Author]
+  FROM [BookListRazor].[dbo].[Book]```
