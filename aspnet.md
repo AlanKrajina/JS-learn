@@ -2,7 +2,7 @@ MVC invokes controller classes (and the action methods within them) depending on
 
 [Controller]/[ActionName]/[Parameters]
 
-___________________RAZOR App_________________________
+# Razor Book App
 
 ### 1. Add Package to update page content on page refresh
 
@@ -114,12 +114,12 @@ namespace BookListRazor.Model
 // next we need to push to database
 ```
 
-- Pushing to Database:
+##### Pushing to Database:
 
 - Tools -> NuGet -> Package Manager Console
 
 
-Adding script:
+##### Adding script:
 ```cs
 // inside console:
 
@@ -141,7 +141,7 @@ PM> add-migration AddBookToDb
                 });
 ```
 
-Creating database and push migrations:
+##### Creating database and push migrations:
 ```cs
 // inside console:
 
@@ -149,7 +149,7 @@ PM> update-database
 
 ```
 
-In SQL Management Studio
+##### In SQL Management Studio
 
 - new Database has been created
 
@@ -157,4 +157,7 @@ In SQL Management Studio
 SELECT TOP (1000) [Id]
       ,[Name]
       ,[Author]
-  FROM [BookListRazor].[dbo].[Book]```
+  FROM [BookListRazor].[dbo].[Book]
+```
+
+### 6. Book Index get Handler
