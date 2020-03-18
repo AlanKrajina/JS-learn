@@ -223,4 +223,41 @@ I onda pokaze:
     <h1>Index Book</h1>
 ```
 
+### 8. Design Book Index Page 2
 
+##### Use Razor Syntax to display Books:
+
+- BookList -> Index.cshtml:
+
+```cs
+@page
+@model BookListRazor.IndexModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index Book</h1>
+
+<div>
+    @if (Model.Books.Count() > 0)
+    {
+        @foreach (var item in Model.Books)
+        {
+            <p>Book name: @Html.DisplayFor(m=>item.Name)</p>
+            <p>Book author: @Html.DisplayFor(m => item.Author)</p>
+        }
+
+    }
+    else
+    {
+        <p>No Books Available</p>
+    }
+</div>
+```
+
+#### ADD BOOKS TO DATABASE TO DISPLAY:
+
+SQL Server Management Studio
+
+- right click on dbo.Book -> edit
+- refresh page ---> BOOKS SHOW NOW
