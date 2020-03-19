@@ -39,7 +39,7 @@ ________________________________________________________________________________
 
 https://stackify.com/net-core-vs-net-framework/
 
-o	C# (ASP.NET, dotnet core 2.0+) 
+- C# (ASP.NET, dotnet core 2.0+) 
 https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-3.1
 
 - Developers use the .NET framework to create Windows desktop applications and server based applications. This includes ASP.NET web applications. 
