@@ -11,7 +11,7 @@
 ### React Native
 
 - collection of `special React components`
-- gives abillty to use camera API etc..
+- gives abillty to use camera API etc
 - iOS + Android
 --> `Views`, `<Text>` ..are compiled to native code
 
