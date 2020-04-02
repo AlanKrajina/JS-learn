@@ -1,3 +1,9 @@
+https://medium.com/net-core/asp-net-core-mvc-web-application-project-structure-3ccaa244fa66
+https://medium.com/net-core/building-a-web-application-using-asp-net-core-mvc-and-entity-framework-core-15ee6192b3f3
+https://www.udemy.com/course/introduction-to-aspnet-core-x/
+https://www.udemy.com/course/complete-aspnet-core-21-course/
+https://www.udemy.com/course/introduction-to-aspnet-core-x/
+
 # Razor Book App
 
 ### 1. Add Package to update page content on page refresh
